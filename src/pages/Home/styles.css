@@ -1,0 +1,79 @@
+
+.header{
+    margin-top: 100px;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 100px 100px;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+}
+
+.carrosel{
+    display: flex;
+    background-color: rgb(226, 226, 226);
+    width: 100%;
+    height: 200px
+
+}
+
+.section-two{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 100px;
+}
+
+.box-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    width: 40%;
+}
+
+.box div{
+    height: 180px;
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+}
+
+.box button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: white;
+    border: 1px solid rgb(0, 255, 149);
+    color: rgb(0, 255, 149);
+    font-weight: bold;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.288);
+}
+.box button:hover{
+    background-color:  rgb(0, 255, 149);
+    cursor: pointer;
+    color: white;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.158);
+    transition: 0.3s ease;
+}
+
+
