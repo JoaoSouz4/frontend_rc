@@ -1,11 +1,11 @@
-
+import './mediaScreen.css'
 import './styles.css'
 import { GiGuitarHead } from 'react-icons/gi'
 import { HiPencilAlt } from "react-icons/hi";
 import { FaPaintBrush } from "react-icons/fa";
 export const Home = () => {
     return(
-            <main className="header">
+            <main className="container">
 
                 <section className="cabecalho">
 
@@ -15,13 +15,12 @@ export const Home = () => {
                         Corporis cupiditate in, quam autem voluptatibus at delectus veritatis,
                         laborum, sapiente recusandae dolorum provident nam corrupti quia est eveniet earum adipisci. Fugiat.
                         </p>
-                        <div>
-                            <GiGuitarHead></GiGuitarHead>
-                            <HiPencilAlt></HiPencilAlt>
-                            <FaPaintBrush/>
+                        <div className = "icons-decorations">
+                            <GiGuitarHead className='icon'></GiGuitarHead>
+                            <HiPencilAlt className='icon'></HiPencilAlt>
+                            <FaPaintBrush className='icon'/>
                         </div>
                     </div>
-
                     <div className = "carrosel">
                         Imagens
                     </div>

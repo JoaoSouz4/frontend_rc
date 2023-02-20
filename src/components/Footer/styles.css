@@ -1,31 +1,58 @@
+:root{
+    --color-font: #ffffff;
+    --color-primary:rgb(0, 255, 149);
+    --color-secundary: rgb(8, 216, 171);
+}
+
 footer{
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(0, 255, 149);
+    width: 100%;
+    color: var(--color-font);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.534);
+    font-size: 1.2rem;
 }
 
-footer .informations{
+footer .footer-content{
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-secundary) 
+      );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 3.5rem;
+}
+
+footer .credits{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#author{
+    margin-top: 1.3rem;
+}
+
+.links{
+    display: flex;
+    margin-top: 1.3rem;
+    gap: 2.5rem;
+}
+
+.links a{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin: 40px;
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    background-color: var(--color-font);
 }
-
-footer a{
-    font-size: 27px;
-    background-color: white;
-    border-radius: 50px;
-    color:rgb(10, 223, 134); 
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.418);
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer div{
-    display: flex;
-    gap: 25px;
+#name{
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
 }
