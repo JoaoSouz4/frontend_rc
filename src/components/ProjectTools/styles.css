@@ -1,0 +1,25 @@
+.tools-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.tools-container{
+    margin-top: 2.3rem;
+    text-align: center;
+}
+
+.list-tools{
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+}
+
+.icon-tools{
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px black;
+    font-size: 1.4rem;
+    width: 3.1rem;
+    height: 3.1rem;
+    padding: 5px;
+}
