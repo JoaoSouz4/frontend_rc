@@ -1,19 +1,22 @@
-import './mediaScreen.css'
+
 import './styles.css'
 import { GiGuitarHead } from 'react-icons/gi'
 import { HiPencilAlt } from "react-icons/hi";
 import { FaPaintBrush } from "react-icons/fa";
+import { BsHeadphones } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+
 export const Home = () => {
     return(
-            <main className="container">
+            <main className="main-container">
 
-                <section className="cabecalho">
+                <section className="section-one">
 
                     <div className='description'>
                         <h1>Meu repositório criativo</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Corporis cupiditate in, quam autem voluptatibus at delectus veritatis,
-                        laborum, sapiente recusandae dolorum provident nam corrupti quia est eveniet earum adipisci. Fugiat.
+                        <p>
+                            Bem vindo ao meu web site pessoal onde compartilho alguns dos frutos gerados a partir de meus hobbies, a ilustração e a música.
+                            <br/>Ouça curtas de vários gêneros e artes inspiradas em quadrinhos e mangás.
                         </p>
                         <div className = "icons-decorations">
                             <GiGuitarHead className='icon'></GiGuitarHead>
@@ -32,15 +35,23 @@ export const Home = () => {
                     <div className='box-container'>
                         <div className='box'>
                             <h3>Ilustrações</h3>
-                            <div></div>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto, corrupti ab labore, sadadsad</p>
-                            <button>Acessar</button>
+                            <div>
+                                <FaPaintBrush className='box-icon'/>
+                            </div>
+                            <p>
+                                Ilustrações voltadas para a cultura pop, inpirado em obras do ocidente à oriente que adimiro e que contribuiram 
+                                para a formação do meu traço. Coleção de ilustrações feitas a partir de 2021.
+                            </p>
+                            <Link to={'/Ilustracoes'} className="link-button"><button >Acessar</button></Link>
                         </div>
                         <div className='box'>
                             <h3>Músicas</h3>
-                            <div></div>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto, corrupti ab labore, sadadsad</p>
-                            <button>Acessar</button>
+                            <div>
+                                <BsHeadphones className='box-icon'/>
+                            </div>
+                            <p>Sessão dedicada à curtas composições autorais que fiz ao longo da adolescencia utilizando o bandLab. Aqui você encontra uma 
+                                mistura de gêneros como rock, punk, pop, neo soul entre outros </p>
+                            <Link to={'/Musicas'} className="link-button"><button >Acessar</button></Link>
                         </div>
                     </div>
                 </section>

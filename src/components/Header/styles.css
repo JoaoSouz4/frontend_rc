@@ -5,13 +5,13 @@
   width: 100%;
   border-bottom: 1px solid rgb(221, 220, 220);
   background-color: white;
-  padding: 1.5rem;
 }
 
 nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 1.5rem;
 }
 
 .header-container nav ul{
@@ -36,7 +36,13 @@ nav{
   color:rgb(0, 255, 149); 
 }
 
-.header-container nav label{
+.logo-space{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo{
   font-family: 'Dancing Script', cursive;
   font-size: 2rem;
   font-weight: bold;
@@ -52,16 +58,61 @@ nav{
   text-decoration: none;
 }
 
-
-
-.mobile-menu-icon{
+.menu-icon{
   display: none;
+  font-size: 1.5rem;
 }
 
-.mobile-menu{
+.mobile-menu {
   display: none;
+  width: 100%;
+  transition: 0.3s ease;
+}
+.mobile-menu ul{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style: none;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.5rem;
+  transition: 0.3s ease;
 }
 
-@media screen and (max-width:678px){
-  
+.mobile-menu ul .navegation-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  background-color: rgb(54, 54, 54);
+  padding: 1.5rem ;
+  border-radius: 5px;
+  outline: none;
+}
+
+.navegation-links-icon{
+  font-size: 1.3rem;
+  color: white;
+}
+
+.mobile-menu ul li{
+  color: white;
+  font-weight: bolder;
+}
+
+@media screen and (max-width:650px){
+
+  nav{
+    justify-content: space-between;
+  }
+  .menu-icon{
+    display: block;
+  }
+
+  #list-nav{
+    display: none;
+  }
 }
