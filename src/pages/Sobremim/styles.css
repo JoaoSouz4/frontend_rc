@@ -113,6 +113,13 @@
     gap: 2rem;
 }
 
+/* SOBRE O PROJETO*/
+.about-project{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2.3rem;
+}
 
 /*END*/
 .end{
@@ -130,3 +137,10 @@
     flex-direction: column;
     justify-content: center;
 }
+
+@media screen and (max-width: 640px){
+    .apresentation{
+        flex-wrap: wrap;
+    }
+}
+

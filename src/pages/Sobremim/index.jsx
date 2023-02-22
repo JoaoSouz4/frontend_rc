@@ -21,10 +21,10 @@ export const Sobremim = () => {
 
                     <div className="contact">
                             <ul>
-                                <a href='#' id ='linkedin'><AiFillLinkedin/></a>
-                                <a href='#' id ='github'><AiFillGithub/></a>
-                                <a href='#' id = "email"><AiOutlineMail/></a>
-                                <a href='#' id = "insta"><AiOutlineInstagram/></a>
+                                <a href='https://www.linkedin.com/in/jo%C3%A3o-vitor-souza-508a30231/' target={'_blank'} id ='linkedin'><AiFillLinkedin/></a>
+                                <a href='https://github.com/JoaoSouz4' target={'_blank'} id ='github'><AiFillGithub/></a>
+                                <a href="mailto:joaosouz8@gmail.com?subject=Oi" target = {'_blank'}id = "email"><AiOutlineMail/></a>
+                                <a href='https://www.instagram.com/jo4o.souza/' target ={'_blank'} id = "insta"><AiOutlineInstagram/></a>
                             </ul>
                     </div>
                 </div>
@@ -47,6 +47,13 @@ export const Sobremim = () => {
                         aplicações que me fizeram estudar um pouco mais dos principios básicos do design.
                     </p>
                 </div>
+            </section>
+
+            <section className='about-project'>
+                <h2>Sobre este Projeto</h2>
+                <p>Há cerca de 6 meses atrás, quando decidi estudar frontend, desenvolvi a primeria versão deste projeto, o objetivo era para testar meus conhecimentos, mas era muito simples, na época eu tinha pouco conhecimento de html e css e nada de Javascript, se tratava de um site estático sem uma responsividade bem trabalhada e com um ressalvas no design.</p>
+                <p>Mesmo assim, criei um repositório e compartilhei a ideia em meu linkedin, afirmando que traria mais funcionalidade e performance.</p>
+                <p>Sendo assim, me dediquei muito em persistir nos estudos, investi em cursos de Javascript, React e MongoDB de forma progressiva, conforme os estudos avançavam, ficava mais claro sobre o que eu deveria fazer e aprender para concluir este projeto com êxito. </p>
             </section>
 
             <ProjectTools>
