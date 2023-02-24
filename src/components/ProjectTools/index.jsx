@@ -10,7 +10,7 @@ import { useRef, useState } from 'react';
 
 
 export const ProjectTools = () => {
-    const [toolDescription, setToolDescription] = useState("");
+    const [toolDescription, setToolDescription] = useState("*Clique em uma tech*");
     const desc = useRef();
     const iconTool = useRef();
 

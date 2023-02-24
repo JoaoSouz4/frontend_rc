@@ -1,7 +1,7 @@
 import './styles.css'
 import { Buttons } from './Buttons';
 
-export const DrawPost = (props) =>{
+export const LogoPost = (props) =>{
     const { title, description, data, font, categories, img } = props;
     const handleMoredetails = ()=>{
 
