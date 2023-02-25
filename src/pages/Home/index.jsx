@@ -5,7 +5,6 @@ import { HiPencilAlt } from "react-icons/hi";
 import { FaPaintBrush } from "react-icons/fa";
 import { BsHeadphones } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 
 export const Home = () => {

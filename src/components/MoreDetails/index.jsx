@@ -2,42 +2,36 @@ import './styles.css';
 import { AiOutlineClose } from 'react-icons/ai'
 
 export const MoreDetails = (props) => {
-    const { funcCallback, dataDraw } = props;
+    const { funcCallback, dataToMd } = props;
 
     const handleCloser = () => {
         funcCallback("none");
     }
-
+            return (
+            <div className='container-more-details'>
     
-    return (
-        <div className='container-more-details'>
-
-            <div className='container-button-closer'  onClick={handleCloser}>
-            <AiOutlineClose className='icon-closer'
-            />
-            </div>
-
-            <div className='sub-container'>
-                <div className="draw-photo">
-
+                <div className='container-button-closer'  onClick={handleCloser}>
+                <AiOutlineClose className='icon-closer'
+                />
                 </div>
-
-                <div className="draw-informations">
-
-                    <div className="draw-datas">
-                        <h2 className="draw-title">Titulo do Desenho</h2>
-                        <p>Feito em: </p>
-                        <p>Fonte: </p>
-                    </div>
-
-                    <div className="draw-description">
-                        <h2>Descrição</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias id quidem, molestiae sed quisquam maxime vero, ut necessitatibus eaque aut doloremque soluta omnis deleniti unde ducimus ratione earum eveniet vitae?
-                        </p>
+    
+                <div className='sub-container'>
+                    <img src = {`http://localhost:3000/files${dataToMd.img[0]}`} className="draw-photo"/>
+    
+                    <div className="draw-informations">
+    
+                        <div className="draw-datas">
+                            <h2 className="draw-title">{dataToMd.title}</h2>
+                            <p>Feito em: {dataToMd.data}</p>
+                            <p>Fonte: {dataToMd.font}</p>
+                        </div>
+    
+                        <div className="draw-description">
+                            <h2>Descrição</h2>
+                            <p>{dataToMd.description}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        </div>
-    )
-}
+                
+            </div>) 
+    }

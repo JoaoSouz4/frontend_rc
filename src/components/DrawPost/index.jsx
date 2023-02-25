@@ -4,7 +4,7 @@ import { Buttons } from './Buttons';
 export const DrawPost = (props) =>{
     const { title, description, data, font, categories, img, funcCallback } = props;
     const handleOpen = ()=>{
-        funcCallback("block", props)
+        funcCallback("flex", props)
     }
     return(
         <>

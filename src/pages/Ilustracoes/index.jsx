@@ -9,9 +9,11 @@ import { MoreDetails } from '../../components/MoreDetails';
 export const Ilustracoes = () => {
 
     const [data, setData] = useState([]);
+    const [dataMd, setDataMd] = useState("");
     const moreDetails = useRef("");
 
-    const handleOpen = (res, dataDraw) => {
+    const handleOpen = async (res, dataDraw) => {
+        await setDataMd(dataDraw)
         moreDetails.current.style.display = res;
     }
     const  handleClose = (res) => {
@@ -27,7 +29,7 @@ export const Ilustracoes = () => {
          <main className= "container">
 
             <div className='container-md' ref={moreDetails}>
-                <MoreDetails funcCallback = {handleClose}/>
+                <MoreDetails funcCallback = {handleClose}  dataToMd = {dataMd}/>
             </div>
             
             <IlustratorDescription/>

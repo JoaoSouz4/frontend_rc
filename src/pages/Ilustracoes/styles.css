@@ -46,10 +46,13 @@
 
 .container-md{
     display: none;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0;
-    margin: auto;
-    margin-top: 5.6rem;
+    margin: 2.7rem;
+}
+
+@media screen and (max-width: 375px) {
+    .container-md{
+       margin: 10px;
+    }
 }
