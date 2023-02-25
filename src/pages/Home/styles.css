@@ -14,13 +14,26 @@
     gap: 1px;
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
+    width: 100%;
     margin-top: 50px;
 }
 
-@media screen and (max-width: 850px)  {
+.container-banner {
+ height: 250px;
+}
+
+
+.section-one img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 788px)  {
     .section-one{
         flex-wrap: wrap-reverse;
+        margin-top: 0;
     }
 
     .description  {
@@ -49,18 +62,13 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    max-width: 500px;
 }
 
 .description h1{
     font-size: 1.7rem;
 }
 
-.carrosel{
-    display: flex;
-    background-color: rgb(226, 226, 226);
-    width: 100%;
-    height: 200px;
-}
 
 .section-two{
     display: flex;

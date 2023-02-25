@@ -20,8 +20,6 @@
 }
 
 .container-draw:hover{
-    transform: scale(1.01);
-    transition: 0.3s ease;
     cursor: pointer;
 }
 

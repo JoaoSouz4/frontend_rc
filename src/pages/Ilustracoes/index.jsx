@@ -1,20 +1,34 @@
-import { useEffect } from 'react';
+import { Children, useEffect, useRef } from 'react';
 import { useState } from 'react'
 
 import { DrawPost } from '../../components/DrawPost';
 import { LogoPost } from '../../components/LogoPost';
 import './styles.css'
 import { IlustratorDescription } from '../../components/IlustratorDescription';
+import { MoreDetails } from '../../components/MoreDetails';
 export const Ilustracoes = () => {
 
     const [data, setData] = useState([]);
+    const moreDetails = useRef("");
+
+    const handleOpen = (res, dataDraw) => {
+        moreDetails.current.style.display = res;
+    }
+    const  handleClose = (res) => {
+        moreDetails.current.style.display = res;
+    }
 
     useEffect(()=>{
         fetch("http://localhost:3000/show",).then(res => res.json()).then(res => setData(res.data));
     }, [])
+
     return(
-        
+        <>
          <main className= "container">
+
+            <div className='container-md' ref={moreDetails}>
+                <MoreDetails funcCallback = {handleClose}/>
+            </div>
             
             <IlustratorDescription/>
 
@@ -32,6 +46,7 @@ export const Ilustracoes = () => {
                             data = {item.data}
                             categories = {item.categories}
                             img  = {item.img}
+                            funcCallback = {handleOpen}
                             >
                             </DrawPost>
                         })}
@@ -51,10 +66,12 @@ export const Ilustracoes = () => {
                             data = {item.data}
                             categories = {item.categories}
                             img  = {item.img}
+                            funcCallback = {handleOpen}
                             />
                         })}
                 </div>
             </section>
          </main>
+         </>
     )
 }

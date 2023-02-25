@@ -43,3 +43,13 @@
 
     border-radius: 15px;
 }
+
+.container-md{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    margin: auto;
+    margin-top: 5.6rem;
+}

@@ -5,6 +5,8 @@ import { HiPencilAlt } from "react-icons/hi";
 import { FaPaintBrush } from "react-icons/fa";
 import { BsHeadphones } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 export const Home = () => {
     return(
@@ -24,9 +26,12 @@ export const Home = () => {
                             <FaPaintBrush className='icon'/>
                         </div>
                     </div>
-                    <div className = "carrosel">
-                        Imagens
+                    
+                        
+                    <div className="container-banner">
+                        <img src = "http://localhost:3000/files/js.png"></img>
                     </div>
+                    
                 </section>
 
                 <section className='section-two'>
