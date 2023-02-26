@@ -1,0 +1,39 @@
+audio{
+    background-color: rgb(255, 255, 255);
+}
+
+.music-post{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.575);
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+/* Botões de Controle */
+.controls{
+    display: flex;
+    gap: 0.2rem;
+}
+.control{
+    font-size: 1.8rem;
+    border-radius: 50%;
+    color: rgb(41, 40, 40);
+}
+.control:hover{
+    cursor: pointer;
+}
+input {
+    cursor: pointer;
+    height: 1.5px;
+}
+
+.arrow{
+    cursor: pointer;
+}
+#volume{
+    width: 50px;
+}
+

@@ -15,7 +15,7 @@ export const MoreDetails = (props) => {
                 />
                 </div>
     
-                <div className='sub-container'>
+                {/* <div className='sub-container'>
                     <img src = {`http://localhost:3000/files${dataToMd.img[0]}`} className="draw-photo"/>
     
                     <div className="draw-informations">
@@ -31,7 +31,7 @@ export const MoreDetails = (props) => {
                             <p>{dataToMd.description}</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 
             </div>) 
     }
