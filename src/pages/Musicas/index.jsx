@@ -11,10 +11,9 @@ export const Musicas = () => {
     return(
         
        <main className="main-container">
-        {console.log(music)}
             <section className="container-apresentation">
                 <h1>Reposiório de ilustrações</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad porro minus id veritatis est deserunt, distinctio ut amet ratione velit magnam quos sint aperiam eligendi maxime fugit quae, impedit magni.</p>
+                <p>Ouça algums curtas que fiz nos últimos 2 anos por puro Hobiy.</p>
             </section>
 
             <section className ="container-music">

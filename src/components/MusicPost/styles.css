@@ -4,13 +4,30 @@ audio{
 
 .music-post{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
+    width: 550px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.575);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     padding: 15px;
 }
+
+.music-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Titulo e Sub-título da Música */
+h5{
+    font-weight: 200;
+}
+
 
 /* Botões de Controle */
 .controls{
@@ -29,11 +46,38 @@ input {
     cursor: pointer;
     height: 1.5px;
 }
-
 .arrow{
     cursor: pointer;
 }
 #volume{
     width: 50px;
+}
+.btn-download {
+    padding: 0.5rem;
+    color: white;
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-secundary) 
+      );
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.363);
+    margin-top: 1rem;
+    font-weight: bolder;
+}
+
+/*Descrição da Música*/
+.container-description{
+    display: none;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(214, 214, 214);
+}
+
+.desc{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
 }
 
