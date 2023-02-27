@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { MusicPost } from '../../components/MusicPost';
+import { BsHeadphones } from 'react-icons/bs';
+import './styles.css'
 export const Musicas = () => {
     const [ music, setMusic ] = useState([]);
     useEffect(() => {
@@ -11,9 +13,16 @@ export const Musicas = () => {
     return(
         
        <main className="main-container">
-            <section className="container-apresentation">
-                <h1>Reposiório de ilustrações</h1>
-                <p>Ouça algums curtas que fiz nos últimos 2 anos por puro Hobiy.</p>
+            <section className="section-one">
+                <div className="description">
+                    <h1>Repositório de Músicas</h1>
+                    <p>Ouça algums curtas que fiz nos últimos 2 anos por puro Hobiey.</p>
+                    <p>Utilizei o software BandLab para fazer as linhas de todos os instrumentos, e quando necessário, mesclar com gravações reais feitas em casa</p>
+                </div>
+                <div className="banner">
+                    <BsHeadphones className = "phone-icon"/>
+                    <p>Use <strong>fones</strong> para uma melhor experiência</p>
+                </div>
             </section>
 
             <section className ="container-music">

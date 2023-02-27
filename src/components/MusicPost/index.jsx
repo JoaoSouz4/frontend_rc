@@ -52,18 +52,18 @@ export const MusicPost = (props) => {
                     <span>00:00</span>
                 </div>
                 <input ref = {rangeTime} type="range" min = "0" max= "100" step = "1"/>
-                <BsVolumeUpFill className='control'/>
+                <BsVolumeUpFill className='control-volume'/>
                 <input ref = { rangeVol } type="range" min = "0" max= "100" step = "1" id='volume'
                 onChange = {(e) => setVolume(rangeVol.current.value)}/>
-            </div>
 
-            
-            <div className='container-description' ref={musicDesc}>
-                <div className='desc'>
-                    <h4>Descrição da Música:</h4>
-                    <p>{description}</p>
+                   
+                <div className='container-description' ref={musicDesc}>
+                    <div className='desc'>
+                        <h4>Descrição da Música:</h4>
+                        <p>{description}</p>
+                    </div>
+                    <button className = "btn-download">Baixar Música</button>
                 </div>
-                <button className = "btn-download">Baixar Música</button>
             </div>
         </div>
         </>

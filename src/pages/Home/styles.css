@@ -13,7 +13,7 @@
 .section-one{
     gap: 1px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-top: 50px;
@@ -28,19 +28,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-@media screen and (max-width: 788px)  {
-    .section-one{
-        flex-wrap: wrap-reverse;
-        margin-top: 0;
-    }
-
-    .description  {
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-    }
 }
 
 .icons-decorations {
@@ -61,6 +48,7 @@
 .description{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1.5rem;
     max-width: 500px;
 }
@@ -162,6 +150,20 @@
 .link-button{
     text-decoration: none;
     width: 100%;
+}
+
+@media screen and (max-width: 788px)  {
+    .section-one{
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+    }
+
+    .description  {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
 }
 
 

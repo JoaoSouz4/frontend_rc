@@ -1,11 +1,14 @@
+import './styles.css'
+
 import { Children, useEffect, useRef } from 'react';
 import { useState } from 'react'
 
 import { DrawPost } from '../../components/DrawPost';
 import { LogoPost } from '../../components/LogoPost';
-import './styles.css'
 import { IlustratorDescription } from '../../components/IlustratorDescription';
 import { MoreDetails } from '../../components/MoreDetails';
+import { FaPaintBrush } from "react-icons/fa";
+
 export const Ilustracoes = () => {
 
     const [data, setData] = useState([]);
@@ -26,7 +29,7 @@ export const Ilustracoes = () => {
 
     return(
         <>
-         <main className= "container">
+         <main className= "main-container">
 
             <div className='container-md' ref={moreDetails}>
                 <MoreDetails funcCallback = {handleClose}  dataToMd = {dataMd}/>

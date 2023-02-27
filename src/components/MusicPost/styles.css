@@ -1,26 +1,18 @@
-audio{
-    background-color: rgb(255, 255, 255);
-}
+
 
 .music-post{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 550px;
+    width: 100%;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.575);
     margin-bottom: 10px;
     border-radius: 5px;
-    padding: 15px;
 }
 
 .music-container{
     display: flex;
-    width: 100%;
-    justify-content: space-around;
     align-items: center;
     gap: 0.5rem;
+    padding: 1.2rem;
+    flex-wrap: wrap;
 }
 
 /* Titulo e Sub-título da Música */
@@ -35,12 +27,16 @@ h5{
     gap: 0.2rem;
 }
 .control{
+    border: 1px solid gray;
     font-size: 1.8rem;
     border-radius: 50%;
     color: rgb(41, 40, 40);
 }
 .control:hover{
     cursor: pointer;
+}
+.control-volume{
+    font-size: 1rem;
 }
 input {
     cursor: pointer;
@@ -50,7 +46,7 @@ input {
     cursor: pointer;
 }
 #volume{
-    width: 50px;
+    width: 3.5rem;
 }
 .btn-download {
     padding: 0.5rem;
@@ -70,7 +66,9 @@ input {
 /*Descrição da Música*/
 .container-description{
     display: none;
+    padding: 1.2rem;
     padding-top: 1rem;
+    width: 100%;
     border-top: 1px solid rgb(214, 214, 214);
 }
 
@@ -80,4 +78,28 @@ input {
     gap: 1rem;
     margin-top: 0.5rem;
 }
+@media screen and (max-width: 628px){
+
+  .section-one{
+    padding: 15px;
+  }
+  .music-container{
+    width: 90vw;
+    text-align: center;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  input{
+    width: 100%;
+  }
+
+  button{
+    width: 100%;
+  }
+}
+
 

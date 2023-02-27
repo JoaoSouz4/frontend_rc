@@ -25,8 +25,7 @@ export const Home = () => {
                             <FaPaintBrush className='icon'/>
                         </div>
                     </div>
-                    
-                        
+                      
                     <div className="container-banner">
                         <img src = "http://localhost:3000/files/js.png"></img>
                     </div>
