@@ -11,7 +11,7 @@
 }
 
 .section-one{
-    gap: 1px;
+    gap: 1.3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

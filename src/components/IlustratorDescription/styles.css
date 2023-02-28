@@ -4,4 +4,18 @@
     flex-direction: column;
     gap: 1.2rem;
 }
+.container-brush{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgb(29, 29, 29);
+}
 
+.icon-brush{
+    margin: 10px;
+    color: white;
+    font-size: 3rem;
+}

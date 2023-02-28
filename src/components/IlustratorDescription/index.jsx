@@ -9,7 +9,7 @@ export const IlustratorDescription  = () => {
                 <p>Você pode acompanhar as ilustraçoes também no meu instagram dedicado a desenhos: </p>
             </div>
 
-            <div container-brush>
+            <div className = "container-brush">
                 <FaPaintBrush className='icon-brush'/>
             </div>
         </section>

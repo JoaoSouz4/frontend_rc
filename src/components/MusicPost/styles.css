@@ -12,6 +12,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1.2rem;
+    width: 600px;
     flex-wrap: wrap;
 }
 
