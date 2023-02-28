@@ -50,7 +50,7 @@ export const Ilustracoes = () => {
                             font = {item.font}
                             data = {item.data}
                             categories = {item.categories}
-                            img  = {item.img}
+                            img  = {item.img[0]}
                             funcCallback = {handleOpen}
                             >
                             </DrawPost>
