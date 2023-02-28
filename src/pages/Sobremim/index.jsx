@@ -11,8 +11,10 @@ export const Sobremim = () => {
             <section className="apresentation">
                 <div className="apresentation-box">
                     <div className="photo-and-contact">
-                        <div className="photo">
-                        </div>
+                        <img 
+                            src = "http://localhost:3001/files/foto_social].jpeg"
+                            className="photo">
+                        </img>
                         <div className='name-and-ocupation'>
                             <label id="nome">João Vitor Souza</label>
                             <label id="ocupation">Dev Front-end</label>

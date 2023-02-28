@@ -16,7 +16,7 @@ export const MoreDetails = (props) => {
     
             <div className='container-whith-informations'>
                 <div className="draw-photo-container">
-                    <img src = {`http://localhost:3000/files${dataToMd.img}`} className="draw-photo-item"/>
+                    <img src = {`http://localhost:3001/files${dataToMd.img}`} className="draw-photo-item"/>
                 </div> 
                
     

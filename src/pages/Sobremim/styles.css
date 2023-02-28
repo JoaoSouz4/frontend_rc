@@ -11,10 +11,9 @@
 
 /*Fotos e Descrições*/
 .photo{
-    content: "";
     width: 150px;
     height: 150px;
-    background-color: rgb(185, 183, 183);
+    object-fit: cover;
     border-radius: 50%;
 }
 

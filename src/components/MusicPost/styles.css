@@ -9,6 +9,7 @@
 
 .music-container{
     display: flex;
+    justify-content: space-around;
     align-items: center;
     gap: 0.5rem;
     padding: 1.2rem;
@@ -48,20 +49,6 @@ input {
 }
 #volume{
     width: 3.5rem;
-}
-.btn-download {
-    padding: 0.5rem;
-    color: white;
-    background: linear-gradient(
-        to right,
-        var(--color-primary),
-        var(--color-secundary) 
-      );
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.363);
-    margin-top: 1rem;
-    font-weight: bolder;
 }
 
 /*Descrição da Música*/

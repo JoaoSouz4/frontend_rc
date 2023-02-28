@@ -24,7 +24,7 @@ export const Ilustracoes = () => {
     }
 
     useEffect(()=>{
-        fetch("http://localhost:3000/show",).then(res => res.json()).then(res => setData(res.data));
+        fetch("http://localhost:3001/show",).then(res => res.json()).then(res => setData(res.data));
     }, [])
 
     return(

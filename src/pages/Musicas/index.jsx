@@ -27,7 +27,9 @@ export const Musicas = () => {
 
             <section className ="container-music">
                 {music.map((music) => {
-                    return <MusicPost title = {music.title}
+                    return <MusicPost 
+                                      key = {music._id}
+                                      title = {music.title}
                                       description  = {music.description}
                                       style = {music.style}
                                       tone = {music.tone}
