@@ -12,9 +12,9 @@ export const Footer = () => {
                     </div>
                     <label id='author'>Desenvolvido por: <strong>João Souza</strong></label>
                     <div className='links'>
-                        <a href='#'><AiOutlineInstagram/></a>
-                        <a href='#'><AiFillLinkedin/></a>
-                        <a href='#'><AiFillGithub/></a>
+                        <a href='https://www.instagram.com/jv.art.0/'><AiOutlineInstagram/></a>
+                        <a href='https://www.linkedin.com/in/jo%C3%A3o-vitor-souza-508a30231/'><AiFillLinkedin/></a>
+                        <a href='https://github.com/JoaoSouz4'><AiFillGithub/></a>
                     </div>
             </div>
         </footer>
