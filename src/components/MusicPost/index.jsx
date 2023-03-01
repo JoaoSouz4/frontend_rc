@@ -96,7 +96,7 @@ export const MusicPost = (props) => {
 
                 <audio 
                     ref = {playerAudio}
-                    src= {`http://localhost:8080/files${url}`}
+                    src= {`https://api-music-rc.onrender.com/files${url}`}
                     onTimeUpdate = {handleTimeUpdate}
                 ></audio>
 

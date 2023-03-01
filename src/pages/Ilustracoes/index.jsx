@@ -24,7 +24,7 @@ export const Ilustracoes = () => {
     }
 
     useEffect(()=>{
-        fetch("http://localhost:3001/show",).then(res => res.json()).then(res => setData(res.data));
+        fetch("https://api-draw-rc.onrender.com/show").then(res => res.json()).then(res => setData(res.data));
     }, [])
 
     return(

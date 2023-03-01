@@ -8,7 +8,7 @@ export const DrawPost = (props) =>{
     return(
         <>
         <div className='container-draw'>
-            <img src = {"http://localhost:3001/files"+img} alt={title} onClick = {handleOpen}/>
+            <img src = {"https://api-draw-rc.onrender.com/files"+img} alt={title} onClick = {handleOpen}/>
             <div className='post-description'>
                 <label className='title'>{title}</label>
                 <label className='font'>{font}</label>

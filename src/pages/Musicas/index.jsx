@@ -6,7 +6,7 @@ import './styles.css'
 export const Musicas = () => {
     const [ music, setMusic ] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:8080/show")
+        fetch("https://api-music-rc.onrender.com/show")
             .then(res => res.json())
             .then(res => setMusic(res.dataMusic));
     },[])

@@ -12,7 +12,7 @@ export const Sobremim = () => {
                 <div className="apresentation-box">
                     <div className="photo-and-contact">
                         <img 
-                            src = "http://localhost:3001/files/foto_social].jpeg"
+                            src = "https://api-draw-rc.onrender.com/files/foto_social].jpeg"
                             className="photo">
                         </img>
                         <div className='name-and-ocupation'>

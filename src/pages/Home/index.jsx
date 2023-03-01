@@ -27,7 +27,7 @@ export const Home = () => {
                     </div>
                       
                     <div className="container-banner">
-                        <img src = "http://localhost:3001/files/js.png"></img>
+                        <img src = "https://api-draw-rc.onrender.com/files/js.png"></img>
                     </div>
                     
                 </section>
