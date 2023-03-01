@@ -8,10 +8,15 @@ import { Link } from 'react-router-dom';
 
 
 export const Home = () => {
+
     return(
             <main className="main-container">
 
                 <section className="section-one">
+
+                    {/* <div class="spinner-grow" role="status">
+                        <span class="sr-only">.</span>
+                    </div> */}
 
                     <div className='description'>
                         <h1>Meu repositório criativo</h1>
@@ -27,7 +32,7 @@ export const Home = () => {
                     </div>
                       
                     <div className="container-banner">
-                        <img src = "https://api-draw-rc.onrender.com/files/js.png"></img>
+                       <img src="https://api-draw-rc.onrender.com/files/js.png" alt="" />
                     </div>
                     
                 </section>
