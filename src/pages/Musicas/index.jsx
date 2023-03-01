@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { MusicPost } from '../../components/MusicPost';
 import { BsHeadphones } from 'react-icons/bs';
+import { LoaderComponent } from '../../components/LoaderComponent';
 import './styles.css'
 export const Musicas = () => {
     const [ music, setMusic ] = useState([]);
@@ -26,14 +27,17 @@ export const Musicas = () => {
             </section>
 
             <section className ="container-music">
-                {music.map((music) => {
-                    return <MusicPost 
-                                      key = {music._id}
-                                      title = {music.title}
-                                      description  = {music.description}
-                                      style = {music.style}
-                                      tone = {music.tone}
-                                      url = {music.url}/>
+
+                {music.length <=0 && <LoaderComponent/>}
+                {music.length > 0 &&
+                    music.map((music) => {
+                        return <MusicPost 
+                             key = {music._id}
+                             title = {music.title}
+                             description  = {music.description}
+                             style = {music.style}
+                             tone = {music.tone}
+                             url = {music.url}/>
                 })}
                 
             </section>

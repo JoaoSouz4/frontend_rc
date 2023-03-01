@@ -7,7 +7,7 @@ import { DrawPost } from '../../components/DrawPost';
 import { LogoPost } from '../../components/LogoPost';
 import { IlustratorDescription } from '../../components/IlustratorDescription';
 import { MoreDetails } from '../../components/MoreDetails';
-import { FaPaintBrush } from "react-icons/fa";
+import { LoaderComponent } from '../../components/LoaderComponent';
 
 export const Ilustracoes = () => {
 
@@ -36,46 +36,52 @@ export const Ilustracoes = () => {
             </div>
             
             <IlustratorDescription/>
-
+        {data.length <= 0 && <LoaderComponent/>}
+        {data.length > 0 &&
+        <>
             <section className="draw-container">
             <h2>Ilustrações</h2>
                 <div className="all-gruop">
-                    {data.map(item => {
-                        if(item.categories[0] != "logo")
-                        
-                        return <DrawPost
-                            key = {item._id}
-                            title = {item.title}
-                            description = {item.description}
-                            font = {item.font}
-                            data = {item.data}
-                            categories = {item.categories}
-                            img  = {item.img[0]}
-                            funcCallback = {handleOpen}
-                            >
-                            </DrawPost>
-                        })}
+                    {
+                        data.map(item => {
+                            if(item.categories[0] != "logo")
+                            return <DrawPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img[0]}
+                                funcCallback = {handleOpen}
+                                />  
+                            })
+                    }
                 </div>
             </section>
-
+            
             <section className="draw-container">
             <h2>Logos | Identidade Visual</h2>
                 <div className="all-gruop">
-                    {data.map(item => {
-                        if(item.categories[0] == "logo")
-                        return <LogoPost
-                            key = {item._id}
-                            title = {item.title}
-                            description = {item.description}
-                            font = {item.font}
-                            data = {item.data}
-                            categories = {item.categories}
-                            img  = {item.img}
-                            funcCallback = {handleOpen}
-                            />
-                        })}
+                    {
+                        data.map(item => {
+                            if(item.categories[0] == "logo")
+                            return <LogoPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img}
+                                funcCallback = {handleOpen}
+                                />
+                        })
+                    }                       
                 </div>
-            </section>
+            </section> 
+            </> 
+}      
          </main>
          </>
     )

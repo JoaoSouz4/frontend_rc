@@ -4,10 +4,13 @@ import { GiGuitarHead } from 'react-icons/gi'
 import { HiPencilAlt } from "react-icons/hi";
 import { FaPaintBrush } from "react-icons/fa";
 import { BsHeadphones } from 'react-icons/bs';
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
 export const Home = () => {
+    const banner = "https://api-draw-rc.onrender.com/files/js.png"
+    const imgRef = useRef();
 
     return(
             <main className="main-container">
@@ -32,9 +35,10 @@ export const Home = () => {
                     </div>
                       
                     <div className="container-banner">
-                       <img src="https://api-draw-rc.onrender.com/files/js.png" alt="" />
+                         <img ref = {imgRef} src={banner}/> 
                     </div>
                     
+
                 </section>
 
                 <section className='section-two'>
@@ -63,6 +67,8 @@ export const Home = () => {
                         </div>
                     </div>
                 </section>
+                {console.log(banner)}
+                {console.log(imgRef)}
 
             </main>
     )
