@@ -30,10 +30,10 @@ nav{
 }
 
 .header-container nav li:hover{
-  border-bottom: 3px solid rgb(0, 255, 149);
+  border-bottom: 3px solid rgb(20, 243, 184);
   transition: 0.8s ease;
   cursor: pointer;
-  color:rgb(0, 255, 149); 
+  color:rgb(20, 243, 184); 
 }
 
 .logo-space{

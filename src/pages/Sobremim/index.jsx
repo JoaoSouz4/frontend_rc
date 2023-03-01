@@ -41,7 +41,7 @@ export const Sobremim = () => {
 
                     <p>  Assim que comecei os estudos, fiquei mara
                         vilhado com as possibilidades que a programação traz, na resolução de problemas e inovação do nosso mundo.
-                        A programação é como uma tela em branco que desafia a criatividade toda vez que pensamos nela eno que podemos fazer.
+                        A programação é como uma tela em branco que desafia a criatividade toda vez que pensamos nela e no que podemos fazer.
                     </p>
 
                     <p>
@@ -53,7 +53,7 @@ export const Sobremim = () => {
 
             <section className='about-project'>
                 <h2>Sobre este Projeto</h2>
-                <p>Há cerca de 6 meses atrás, quando decidi estudar frontend, desenvolvi a primeria versão deste projeto, o objetivo era para testar meus conhecimentos, mas era muito simples, na época eu tinha pouco conhecimento de html e css e nada de Javascript, se tratava de um site estático sem uma responsividade bem trabalhada e com um ressalvas no design.</p>
+                <p>Há cerca de 6 meses atrás, quando decidi estudar frontend, desenvolvi a primeria versão deste projeto, o objetivo era para testar meus conhecimentos, mas era muito vago. Na época eu tinha pouco conhecimento de html e css e nada de Javascript, se tratava de um site estático sem responsividade e com um ressalvas no design.</p>
                 <p>Mesmo assim, criei um repositório e compartilhei a ideia em meu linkedin, afirmando que traria mais funcionalidade e performance.</p>
                 <p>Sendo assim, me dediquei muito em persistir nos estudos, investi em cursos de Javascript, React e MongoDB de forma progressiva, conforme os estudos avançavam, ficava mais claro sobre o que eu deveria fazer e aprender para concluir este projeto com êxito. </p>
             </section>

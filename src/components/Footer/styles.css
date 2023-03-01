@@ -43,6 +43,7 @@ footer .credits{
 }
 
 .links a{
+    text-decoration: none;
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 50%;
@@ -52,6 +53,10 @@ footer .credits{
     font-size: 1.3rem;
     color: var(--color-primary);
     background-color: var(--color-font);
+}
+
+.links a:hover{
+    color: var(--color-primary);
 }
 #name{
     font-size: 1.3rem;

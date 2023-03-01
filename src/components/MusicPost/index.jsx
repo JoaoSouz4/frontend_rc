@@ -60,7 +60,7 @@ export const MusicPost = (props) => {
     } = usePlayerState(playerAudio);
 
    const rangeVol = useRef();
-   const musicDesc = useRef();
+   const musicDesc = useRef("none");
 
     const setVolume = (res) => {
         playerAudio.current.volume = res / 100;
@@ -73,8 +73,11 @@ export const MusicPost = (props) => {
     const showDescription = () =>{
         if(musicDesc.current.style.display == "none") {
             musicDesc.current.style.display = "block";
-            return
-        }  else musicDesc.current.style.display = "none";
+            return;
+        }  else  {
+            musicDesc.current.style.display = "none";
+            return;
+        }
     }
 
 

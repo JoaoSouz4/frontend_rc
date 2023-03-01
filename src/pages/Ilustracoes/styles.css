@@ -25,6 +25,10 @@
     text-align: center;
 }
 
+#title-section{
+    font-size: 1rem;
+}
+
 .all-gruop{
     display: flex;
     overflow-x: scroll;

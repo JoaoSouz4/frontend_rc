@@ -17,14 +17,10 @@ export const Home = () => {
 
                 <section className="section-one">
 
-                    {/* <div class="spinner-grow" role="status">
-                        <span class="sr-only">.</span>
-                    </div> */}
-
                     <div className='description'>
                         <h1>Meu repositório criativo</h1>
                         <p>
-                            Bem vindo ao meu web site pessoal onde compartilho alguns dos frutos gerados a partir de meus hobbies, a ilustração e a música.
+                            Bem vindo ao meu web site pessoal onde compartilho alguns dos frutos gerados a partir de meus hobbys, a ilustração e a música.
                             <br/>Ouça curtas de vários gêneros e artes inspiradas em quadrinhos e mangás.
                         </p>
                         <div className = "icons-decorations">
@@ -51,7 +47,7 @@ export const Home = () => {
                                 <FaPaintBrush className='box-icon'/>
                             </div>
                             <p>
-                                Ilustrações voltadas para a cultura pop, inpirado em obras do ocidente à oriente que adimiro e que contribuiram 
+                                Ilustrações voltadas para a cultura pop, inpirado em obras do ocidente à oriente que admiro e que contribuiram 
                                 para a formação do meu traço. Coleção de ilustrações feitas a partir de 2021.
                             </p>
                             <Link to={'/Ilustracoes'} className="link-button"><button >Acessar</button></Link>

@@ -7,6 +7,10 @@
     margin: 10px;
 }
 
+.description-container h1{
+    font-size: 1.7rem;
+}
+
 .section-one-i{
     gap: 1.3rem;
     display: flex;

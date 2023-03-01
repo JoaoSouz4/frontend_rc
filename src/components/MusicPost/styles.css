@@ -18,8 +18,14 @@
 }
 
 /* Titulo e Sub-título da Música */
-h5{
+.name h5{
     font-weight: 200;
+    color: rgb(105, 104, 104);
+    font-size: 0.8rem
+}
+
+.name h4{
+    font-size: 1.3rem
 }
 
 

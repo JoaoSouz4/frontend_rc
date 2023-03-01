@@ -6,6 +6,8 @@
 }
 .apresentation-box{
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -62,6 +64,7 @@
     grid-template-columns: 40px 40px;
     grid-template-rows: 40px 40px;
     grid-gap: 0.2rem;
+    padding: 0px;
 }
 
 .contact ul a{
