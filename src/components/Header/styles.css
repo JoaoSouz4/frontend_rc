@@ -7,6 +7,10 @@
   background-color: white;
 }
 
+ul{
+  margin: 0;
+}
+
 nav{
   display: flex;
   justify-content: space-around;
@@ -101,6 +105,10 @@ nav{
 .mobile-menu ul li{
   color: white;
   font-weight: bolder;
+}
+
+#list-nav{
+  margin: 0;
 }
 
 @media screen and (max-width:650px){

@@ -40,11 +40,95 @@ export const Ilustracoes = () => {
         {data.length > 0 &&
         <>
             <section className="draw-container">
-            <h2>Ilustrações</h2>
+            <h2>The Last Of Us</h2>
                 <div className="all-gruop">
                     {
                         data.map(item => {
-                            if(item.categories[0] != "logo")
+                            if(item.categories[0] == "tlou")
+                            return <DrawPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img[0]}
+                                funcCallback = {handleOpen}
+                                />  
+                            })
+                    }
+                </div>
+            </section>
+
+            <section className="draw-container">
+            <h2>One Piece</h2>
+                <div className="all-gruop">
+                    {
+                        data.map(item => {
+                            if(item.categories[0] == "One Piece")
+                            return <DrawPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img[0]}
+                                funcCallback = {handleOpen}
+                                />  
+                            })
+                    }
+                </div>
+            </section>
+
+            <section className="draw-container">
+            <h2>Marvel & Dc</h2>
+                <div className="all-gruop">
+                    {
+                        data.map(item => {
+                            if(item.categories[0] == "marvel" || item.categories[0] == "dc"  )
+                            return <DrawPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img[0]}
+                                funcCallback = {handleOpen}
+                                />  
+                            })
+                    }
+                </div>
+            </section>
+
+            <section className="draw-container">
+            <h2>Outros</h2>
+                <div className="all-gruop">
+                    {
+                        data.map(item => {
+                            if(item.categories[0] != "marvel" && item.categories[0] != "dc" && item.categories[0] != "tlou" && item.categories[0] != "One Piece" && item.categories[0] != "logo"   )
+                            return <DrawPost
+                                key = {item._id}
+                                title = {item.title}
+                                description = {item.description}
+                                font = {item.font}
+                                data = {item.data}
+                                categories = {item.categories}
+                                img  = {item.img[0]}
+                                funcCallback = {handleOpen}
+                                />  
+                            })
+                    }
+                </div>
+            </section>
+
+            <section className="draw-container">
+            <h2>Marvel & Dc</h2>
+                <div className="all-gruop">
+                    {
+                        data.map(item => {
+                            if(item.categories[0] == "marvel" || item.categories[0] == "dc"  )
                             return <DrawPost
                                 key = {item._id}
                                 title = {item.title}
