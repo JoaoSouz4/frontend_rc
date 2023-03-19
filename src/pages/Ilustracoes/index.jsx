@@ -40,7 +40,7 @@ export const Ilustracoes = () => {
         {data.length > 0 &&
         <>
             <section className="draw-container">
-            <h2>The Last Of Us</h2>
+                <h2>The Last Of Us</h2>
                 <div className="all-gruop">
                     {
                         data.map(item => {
@@ -123,27 +123,6 @@ export const Ilustracoes = () => {
                 </div>
             </section>
 
-            <section className="draw-container">
-            <h2>Marvel & Dc</h2>
-                <div className="all-gruop">
-                    {
-                        data.map(item => {
-                            if(item.categories[0] == "marvel" || item.categories[0] == "dc"  )
-                            return <DrawPost
-                                key = {item._id}
-                                title = {item.title}
-                                description = {item.description}
-                                font = {item.font}
-                                data = {item.data}
-                                categories = {item.categories}
-                                img  = {item.img[0]}
-                                funcCallback = {handleOpen}
-                                />  
-                            })
-                    }
-                </div>
-            </section>
-            
             <section className="draw-container">
             <h2>Logos | Identidade Visual</h2>
                 <div className="all-gruop">
