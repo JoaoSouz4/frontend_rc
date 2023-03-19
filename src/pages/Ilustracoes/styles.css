@@ -1,52 +1,5 @@
 
-.container { 
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
-    max-width: 800px;
-}
 
-.draw-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-}
-
-.draw-container h2{
-    font-size: 2rem;
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-}
-
-#title-section{
-    font-size: 1rem;
-}
-
-.all-gruop{
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    width: 100%;
-}
-
-.all-gruop::-webkit-scrollbar{
-  border-radius: 20px;
-  border: 1.3px solid rgb(173, 172, 172);
-
-}
-
-.all-gruop::-webkit-scrollbar-thumb{
-    background-color:rgb(5, 233, 176);
-    border-radius: 15px;
-}
 
 .container-md{
     display: none;

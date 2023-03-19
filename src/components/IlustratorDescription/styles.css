@@ -1,22 +1,29 @@
-
-.description-container{
+.desc-ilustration-container{
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
-    margin: 10px;
 }
 
 .description-container h1{
     font-size: 2.3rem;
 }
 
-.section-one-i{
-    gap: 1.3rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    margin-top: 50px;
+.btn-instagram-link a{
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
 }
+
+.btn-instagram-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 200px;
+    border : 2px solid black;
+}
+
 

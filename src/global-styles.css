@@ -5,8 +5,8 @@
   box-sizing: border-box;
 }
 
-h1{
-  font-size: 1.5rem;
+.section-apresentation{
+  margin: 50px
 }
 
 #root{
