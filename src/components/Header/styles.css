@@ -70,12 +70,13 @@ nav{
 
 .mobile-menu {
   position: fixed;
+  left: 0;
   display: flex;
   justify-content: center;
   width: 60vw;
   height: 100vh;
   transition: 0.3s ease;
-  transform: translateX(-500px);
+  transform: translateX(-2500px);
   animation-duration: 0.3s;
   animation-fill-mode: forwards;
   animation-timing-function: ease ease-in-out;
