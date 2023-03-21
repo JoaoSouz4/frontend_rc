@@ -52,7 +52,7 @@ export const Ilustracoes = () => {
                  <section className="all-drawings">
                     <Fade>
                     <section className = "section-title-and-slide">
-                        <h2>The Last of</h2>
+                        <h2>The Last of Us</h2>
                         <SliderComponent>
                             {data.map( item => {
                                 if(item.categories[0] == 'tlou'){
