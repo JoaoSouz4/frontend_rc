@@ -7,9 +7,8 @@ export const DrawPost = (props) =>{
     }
     return(
         <>
-        <div className='container-draw'>
-            {!props.img && alert('askdjn')}
-            <img src = {"https://api-draw-rc.onrender.com/files"+img} alt={title} onClick = {handleOpen} loading = 'lazy'/>
+        <div className='container-draw-post'>
+            <img src = {"https://api-draw-rc.onrender.com/files"+img} alt={title} onClick = {handleOpen}/>
             <div className='post-description'>
                 <label className='title'>{title}</label>
                 <label className='font'>{font}</label>
