@@ -6,6 +6,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { HiOutlineInformationCircle } from 'react-icons/hi';
 import { BsMusicNoteBeamed } from 'react-icons/bs';
 import { HiPencilAlt } from "react-icons/hi";
+import { IoMdArrowDropleft } from 'react-icons/io'
 
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
@@ -14,31 +15,30 @@ import { useRef, useState } from 'react';
   const menu = useRef();
   const [menuBurguer, setMenuBurguer] = useState(false);
 
-  const closeMenu = ()=>{
-    setMenuBurguer(false);
-    menu.current.style = "none";
-    return;
+  const handleClick = () => {
+    if(!menuBurguer){
+      menu.current.style.animationName = "open";
+      setMenuBurguer(true);
+      return;
+    }
+    if (menuBurguer){
+      handleClose()
+      return;
+    }
   }
 
+  const handleClose = () => {
+    menu.current.style.animationName = "close"
+    setMenuBurguer(false);
+ }
   return (
     <>
     <header className="header-container">
 
         <nav>
           <div className='logo-space'>
-
-            <GrMenu className='menu-icon' onClick={()=>{
-              if(!menuBurguer){
-                menu.current.style.display = "flex";
-                setMenuBurguer(true);
-                return;
-              }
-              else {
-                menu.current.style.display = "none";
-                setMenuBurguer(false);
-                return;
-              }
-            }}/>
+            {menuBurguer && <IoMdArrowDropleft className='menu-icon' onClick={handleClick}/>}
+            {!menuBurguer && <GrMenu className='menu-icon' onClick={handleClick}/>}
 
             <div className="logo">João Souza</div>
           </div>
@@ -53,22 +53,22 @@ import { useRef, useState } from 'react';
 
         <div className='mobile-menu' ref = {menu}>
           <ul>
-            <Link to={"/"} className='navegation-links'  onClick= {closeMenu}>
+            <Link to={"/"} className='navegation-links' onClick={handleClose}>
               <AiFillHome className='navegation-links-icon'/>
               <li>Home</li>
             </Link>
 
-            <Link to={"/Ilustracoes"} className='navegation-links' onClick= {closeMenu}>
+            <Link to={"/Ilustracoes"} className='navegation-links'  onClick={handleClose} >
               <HiPencilAlt className='navegation-links-icon'/>
               <li>Ilustrações</li>
             </Link>
 
-            <Link to={"/Musicas"} className='navegation-links' onClick= {closeMenu}>
+            <Link to={"/Musicas"} className='navegation-links'  onClick={handleClose}>
               <BsMusicNoteBeamed className='navegation-links-icon'/>
               <li>Músicas</li>
             </Link>
 
-            <Link to={"/Sobremim"} className='navegation-links' onClick= {closeMenu}>
+            <Link to={"/Sobremim"} className='navegation-links'  onClick={handleClose}>
               <HiOutlineInformationCircle className='navegation-links-icon'/>
               <li>Sobre mim</li>
             </Link>

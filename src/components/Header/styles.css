@@ -69,9 +69,34 @@ nav{
 }
 
 .mobile-menu {
-  display: none;
-  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 60vw;
+  height: 100vh;
   transition: 0.3s ease;
+  transform: translateX(-500px);
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease ease-in-out;
+  background-color: rgb(250, 250, 250);
+  box-shadow: 1px 1px 5px rgba(4, 4, 4, 0.686);
+  z-index: 50px;
+}
+
+@keyframes open {
+  to{
+      transform: translateX(0); 
+  }
+}
+
+@keyframes close {
+  from {
+      transform: translateX(0); 
+  }
+  to{
+      animation-direction: reverse; 
+  }
 }
 .mobile-menu ul{
   width: 100%;
@@ -83,7 +108,6 @@ nav{
   flex-direction: column;
   gap: 1.2rem;
   padding: 1.5rem;
-  transition: 0.3s ease;
 }
 
 .mobile-menu ul .navegation-links{
@@ -92,7 +116,6 @@ nav{
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  background-color: rgb(54, 54, 54);
   padding: 1.5rem ;
   border-radius: 5px;
   outline: none;
@@ -100,12 +123,11 @@ nav{
 
 .navegation-links-icon{
   font-size: 1.3rem;
-  color: white;
+  color: rgb(20, 20, 20);
 }
 
 .mobile-menu ul li{
-  color: white;
-  font-weight: bolder;
+  color: rgb(12, 12, 12);
 }
 
 #list-nav{
