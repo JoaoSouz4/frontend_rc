@@ -31,11 +31,10 @@ export const Ilustracoes = () => {
     
     return(
         <>
-         <main className= "main-container-ilustration">
-
-            <div className='container-md' ref={moreDetails}>
+          <div className='div-md' ref={moreDetails}>
                 <MoreDetails funcCallback = {handleClose}  dataToMd = {dataMd}/>
             </div>
+         <main className= "main-container-ilustration">
              
              <section className="section-apresentation">
                 <div className="title-and-desc">

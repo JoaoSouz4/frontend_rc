@@ -53,16 +53,13 @@
     text-align: center;
 }
 
-.container-md{
+.div-md{
     display: none;
+    z-index: 200;
+    width: 90vw;
+    height: 90vh;
     position: fixed;
-    top: 150px;
-    right: 10px;
-    width:50vw;
-    height: 500px;
-    background-color: white;
-    box-shadow: 0px 0px 0px 1000px rgba(0, 0, 0, 0.377);
-    height: 80vh;
+    top: 2rem;
 }
 
 

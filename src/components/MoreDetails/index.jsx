@@ -8,15 +8,15 @@ export const MoreDetails = (props) => {
         funcCallback("none");
     }
     return (
-        <div className='container-more-details'>
+        <div className='div-more-details'>
     
-            <div className='container-button-closer'  onClick={handleCloser}>
+            <div className='button-closer'  onClick={handleCloser}>
                 <AiOutlineClose className='icon-closer'/>
             </div>
     
-            <div className='container-whith-informations'>
+            <div className='div-whith-informations'>
                 <div className="draw-photo-container">
-                    <img src = {`https://api-draw-rc.onrender.com/files/${dataToMd.img}`} className="draw-photo-item"/>
+                    <img src = {`https://api-draw-rc.onrender.com/files/${dataToMd.img}`} className="draw-photo-item" loading = "lazy"/>
                 </div> 
                
     
@@ -34,5 +34,5 @@ export const MoreDetails = (props) => {
                         </div>
                     </div>
                 </div>  
-            </div>) 
+        </div>) 
     }

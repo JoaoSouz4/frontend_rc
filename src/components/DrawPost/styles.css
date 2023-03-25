@@ -36,15 +36,11 @@
     text-transform: uppercase;
 }
 
-
-
-.more-details {
-    position: absolute;
-    top: 10;
-    background-color: blue;
-    width: 600px;
-    height: 600px;
-    content: "";
+.container-draw-post:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    cursor: pointer;
 }
+
 
 
