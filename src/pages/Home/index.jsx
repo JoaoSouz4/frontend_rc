@@ -1,71 +1,46 @@
 
-import './styles.css'
-import { GiGuitarHead } from 'react-icons/gi'
-import { HiPencilAlt } from "react-icons/hi";
-import { FaPaintBrush } from "react-icons/fa";
-import { BsHeadphones } from 'react-icons/bs';
-import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
+import js from '../../assets/js.png'
+import Title from '../../components/Title/Title';
+import Button from '../../components/Button/button';
+import SectionApresentation from './SectionApresentation';
+import SocialMedias from './SocialMedia/SocialMedias';
+import Banner from './Banner';
+import Wrapper from '../../components/div';
+import WrapperButton from './WrapperButton';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
-    const banner = "https://api-draw-rc.onrender.com/files/js.png"
-    const imgRef = useRef();
 
+    const navigate = useNavigate();
     return(
-            <main className="main-container">
+        <>  
+            <SectionApresentation>
 
-                <section className="section-one">
-
-                    <div className='description'>
-                        <h1>Meu repositório criativo</h1>
-                        <p>
-                            Bem vindo ao meu web site pessoal onde compartilho alguns dos frutos gerados a partir de meus hobbys, a ilustração e a música.
-                            <br/>Ouça curtas de vários gêneros e artes inspiradas em quadrinhos e mangás.
+                <Wrapper flexDirection = "row" jc = 'space-around' width = '100%' flexWrap = 'wrap-reverse'>
+                    <Wrapper gap = '0.5rem' flexDirection = "column" width = '100%' maxWidth = '400px' height = '100%'>
+                        <Title size = '1.7rem' color = 'var(--color-secundary)'>Meu Repositório Crativo</Title>
+                        <p>Bem vindo ao meu Site de divulgação das minhas ilustrações. Entre ou
+                            Faça o cadastro para acessar funcionalidades <strong>exclusivas</strong> para usuários.
                         </p>
-                        <div className = "icons-decorations">
-                            <GiGuitarHead className='icon'></GiGuitarHead>
-                            <HiPencilAlt className='icon'></HiPencilAlt>
-                            <FaPaintBrush className='icon'/>
-                        </div>
-                    </div>
-                      
-                    <div className="container-banner">
-                         <img ref = {imgRef} src={banner}/> 
-                    </div>
-                    
+                        <WrapperButton gap = '3rem' flexDirection = 'row'>
+                            <Button onClick = {() => navigate('/Login')}>Login</Button>
+                            <Button onClick = {() => navigate('/Ilustracoes')}>Ver Ilustrações</Button>
+                        </WrapperButton>     
+                    </Wrapper>
 
-                </section>
+                    <Banner maxWidth = '500px'>
+                        <img src = {js} alt="" />
+                    </Banner>
 
-                <section className='section-two'>
-                    <h2>O que deseja ver agora?</h2>
+                </Wrapper>
+              
+                <SocialMedias />
+                <span/>
+            </SectionApresentation>
 
-                    <div className='box-container'>
-                        <div className='box'>
-                            <h3>Ilustrações</h3>
-                            <div>
-                                <FaPaintBrush className='box-icon'/>
-                            </div>
-                            <p>
-                                Ilustrações voltadas para a cultura pop, inpirado em obras do ocidente à oriente que admiro e que contribuiram 
-                                para a formação do meu traço. Coleção de ilustrações feitas a partir de 2021.
-                            </p>
-                            <Link to={'/Ilustracoes'} className="link-button"><button >Acessar</button></Link>
-                        </div>
-                        <div className='box'>
-                            <h3>Músicas</h3>
-                            <div>
-                                <BsHeadphones className='box-icon'/>
-                            </div>
-                            <p>Sessão dedicada à curtas composições autorais que fiz ao longo da adolescencia utilizando o bandLab. Aqui você encontra uma 
-                                mistura de gêneros como rock, punk, pop, neo soul entre outros </p>
-                            <Link to={'/Musicas'} className="link-button"><button >Acessar</button></Link>
-                        </div>
-                    </div>
-                </section>
-                {console.log(banner)}
-                {console.log(imgRef)}
-
-            </main>
+            {/* <MainContainer>
+            </MainContainer> */}
+        </>
     )
 }

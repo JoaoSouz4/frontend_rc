@@ -1,28 +1,47 @@
 import './global-styles.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+
+//pages
 import { Home } from './pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Musicas } from './pages/Musicas';
 import { Sobremim } from './pages/Sobremim';
 import { Ilustracoes } from './pages/Ilustracoes';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import Cadastro from './pages/Cadastro';
+import LoginPage from './pages/LoginPage';
+
+//Contexts
+import { AuthProvider } from './context/authContext';
+import {DrawProvider} from './context/postContext'
+import GlobalStyles from './components/GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path = "/" element = {<Home />} />
-        <Route path = "/Ilustracoes" element = {<Ilustracoes />} />
-        <Route path = "/Musicas" element = {<Musicas />} />
-        <Route path = "/Sobremim" element = {<Sobremim />} />
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
-  </React.StrictMode>
+  
+    <React.StrictMode>
+      <BrowserRouter>
+      <AuthProvider>
+        <GlobalStyles/>
+       
+          <Header/>
+            <Routes>
+              <Route path = "/" element = {<Home />} />
+              <Route path = "/Ilustracoes" element = {
+                <DrawProvider>
+                  <Ilustracoes/>
+                </DrawProvider>
+              } />
+              <Route path = "/Sobremim" element = {<Sobremim />} />
+              <Route path = "/Login" element = {<LoginPage />} />
+              <Route path = "/Cadastro" element = { <Cadastro/> } />
+            </Routes>
+            
+          <Footer/>
+        </AuthProvider>
+      </BrowserRouter>
+    </React.StrictMode>
 );
-reportWebVitals();
+

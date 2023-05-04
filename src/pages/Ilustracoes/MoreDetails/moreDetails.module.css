@@ -1,0 +1,45 @@
+.titleDraw{
+    font-size: 1.3rem
+}
+
+.titleDescription{
+    font-size: 1rem;
+}
+
+.drawDatas{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputCommentaryContainer{
+    width: 100%;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.inputCommentary{
+    padding: 1rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--color-secundary);
+}
+
+.commentaryAndInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    padding: 1rem;
+}
+
+.drawDescription{
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+@media screen and (max-width: 745px){
+    .commentaryAndInfo{
+        width: 100%;
+    }
+}

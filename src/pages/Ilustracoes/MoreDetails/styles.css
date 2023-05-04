@@ -1,0 +1,91 @@
+.div-more-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    padding: 1.7rem;
+    height: 100%;
+}
+
+.button-closer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid rgb(19, 19, 19);
+    color: rgb(19, 19, 19);
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.div-whith-informations{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.div-whith-informations .draw-photo-container{
+    height: 100%;
+    width: 100%;
+}
+
+.draw-photo-container{
+    display: flex;
+    align-items: center;
+}
+
+.draw-photo-item{
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.263);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.draw-informations{
+    width: 100%;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    border: none;
+    overflow-y: scroll;
+}
+/*Breakpoint mobile*/
+@media screen and (max-width: 744px){
+    
+    .div-whith-informations{
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: scroll;
+        gap: 1rem;
+    }
+
+    .draw-informations{
+        width: 100%;
+    }
+    .draw-photo-container{
+        justify-content: center;
+    }
+    .draw-photo-item{
+        height: 100%;
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 745px){
+    .draw-photo-container{
+        max-width: 800px;
+    }
+    .draw-photo-item{
+        width: 100%;
+    }
+}

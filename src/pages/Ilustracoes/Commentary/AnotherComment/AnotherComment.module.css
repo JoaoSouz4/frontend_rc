@@ -1,0 +1,12 @@
+.dateComment{
+    color: rgb(145, 145, 145);
+    font-size: 0.9rem;
+}
+
+.comment{
+    margin: 0;
+}
+
+.drop{
+    color: var(--color-dark);
+}

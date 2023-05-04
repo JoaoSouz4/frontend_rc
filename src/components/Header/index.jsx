@@ -1,19 +1,23 @@
 
-import './styles.css';
-
+import styles from './Header.module.css'
 import { GrMenu  } from 'react-icons/gr'
 import { AiFillHome } from 'react-icons/ai';
+import { FaUser } from 'react-icons/fa'
 import { HiOutlineInformationCircle } from 'react-icons/hi';
-import { BsMusicNoteBeamed } from 'react-icons/bs';
 import { HiPencilAlt } from "react-icons/hi";
 import { IoMdArrowDropleft } from 'react-icons/io'
-
 import { Link } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext} from 'react';
+import HeaderMenu from './header';
+import HeaderMenuMobile from './Mobile/Mobile';
+import { Context } from '../../context/authContext';
+import { IoExitOutline } from 'react-icons/io5';
 
  export const Header = () => {
   const menu = useRef();
   const [menuBurguer, setMenuBurguer] = useState(false);
+  const {handleLogout} = useContext(Context);
+  const {userLog, authenticated} = useContext(Context);
 
   const handleClick = () => {
     if(!menuBurguer){
@@ -21,10 +25,7 @@ import { useRef, useState } from 'react';
       setMenuBurguer(true);
       return;
     }
-    if (menuBurguer){
-      handleClose()
-      return;
-    }
+    if (menuBurguer) return handleClose()
   }
 
   const handleClose = () => {
@@ -32,51 +33,54 @@ import { useRef, useState } from 'react';
     setMenuBurguer(false);
  }
   return (
-    <>
-    <header className="header-container">
 
-        <nav>
+      <>
+        <HeaderMenu>
           <div className='logo-space'>
-            {menuBurguer && <IoMdArrowDropleft className='menu-icon' onClick={handleClick}/>}
+            {menuBurguer && <IoMdArrowDropleft onClick={handleClick}/>}
             {!menuBurguer && <GrMenu className='menu-icon' onClick={handleClick}/>}
-
-            <div className="logo">João Souza</div>
+            <label>João Souza</label>
           </div>
 
           <ul id='list-nav'>
-            <Link to={"/"} className='navegation-links'><li>Home</li></Link>
-            <Link to={"/Ilustracoes"} className='navegation-links'><li>Ilustrações</li></Link>
-            <Link to={"/Musicas"} className='navegation-links'><li>Músicas</li></Link>
-            <Link to={"/Sobremim"} className='navegation-links'><li>Sobre mim</li></Link>
+            <Link to={"/"}>Home</Link>
+            <Link to={"/Ilustracoes"}>Ilustrações</Link>
+            <Link to={"/Sobremim"}>Sobre o dev</Link>
           </ul>
-        </nav>
+          {
+            authenticated ?
+            <>
+              <div className={styles.userLogoArea}>
+                <span className={styles.label}>{userLog.userName}</span>
+                <span className = {styles.exit} onClick = {handleLogout}>Sair</span>
+              </div>
+            </>
+            :
+             <Link className = {styles.loginName} to = {'/Login'}>Login</Link>
+          }
+        </HeaderMenu>
 
-        <div className='mobile-menu' ref = {menu}>
+
+        <HeaderMenuMobile ref = {menu}>
           <ul>
-            <Link to={"/"} className='navegation-links' onClick={handleClose}>
-              <AiFillHome className='navegation-links-icon'/>
-              <li>Home</li>
-            </Link>
-
-            <Link to={"/Ilustracoes"} className='navegation-links'  onClick={handleClose} >
-              <HiPencilAlt className='navegation-links-icon'/>
-              <li>Ilustrações</li>
-            </Link>
-
-            <Link to={"/Musicas"} className='navegation-links'  onClick={handleClose}>
-              <BsMusicNoteBeamed className='navegation-links-icon'/>
-              <li>Músicas</li>
-            </Link>
-
-            <Link to={"/Sobremim"} className='navegation-links'  onClick={handleClose}>
-              <HiOutlineInformationCircle className='navegation-links-icon'/>
-              <li>Sobre mim</li>
-            </Link>
+            <Link to={"/"} onClick={handleClose}><AiFillHome/>Home</Link>
+            <Link to={"/Ilustracoes"} onClick={handleClose} ><HiPencilAlt />Ilustrações</Link>
+            <Link to={"/Sobremim"} onClick={handleClose}><HiOutlineInformationCircle/>Sobre mim</Link>
+            
+            {
+              authenticated ? 
+                <Link 
+                  onClick={() => {
+                    handleClose();
+                    handleLogout();
+                  }
+                  }
+                ><IoExitOutline/>Sair</Link> 
+              : <Link to={"/Login"}><FaUser/>Login</Link>
+            }
           </ul>
-        </div>
-
-      </header>
-    </>
+        </HeaderMenuMobile>
+      </>
 
   );
 }

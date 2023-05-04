@@ -1,135 +1,50 @@
-import './styles.css'
 
-import { useEffect, useRef } from 'react';
-import { useState } from 'react'
-
-import { DrawPost } from '../../components/DrawPost';
-import { MoreDetails } from '../../components/MoreDetails';
+import _default from '../../config/default.js'
+import { useEffect, useRef, useState, useContext } from 'react';
+import { DrawContext } from '../../context/postContext';
+import MainContainer from '../../components/MainContainer/mainContainer.jsx';
+import Title from '../../components/Title/Title.jsx';
+import Wrapper from '../../components/div.jsx';
 import { LoaderComponent } from '../../components/LoaderComponent';
-import { AiOutlineInstagram } from "react-icons/ai";
-import { SliderComponent } from '../../components/SliderComponent';
-
+import { SliderComponent } from './SliderComponent';
 import { Fade } from 'react-awesome-reveal';
+import { AiOutlineInstagram } from "react-icons/ai";
+import ButtonTransparent from '../../components/Button/buttonTransparent.jsx'
+import { createContext } from 'react';
+
+export const DrawPostContext = createContext();
 
 export const Ilustracoes = () => {
+  
+    const { tlouData, opData, mangaData, heroData } = useContext(DrawContext);
+    const [tlou, setTlou] = useState();
+    const [op, setOp] = useState();
+    const [manga, setManga] = useState();
+    const [hero, setHero] = useState();
 
-    const [data, setData] = useState([]);
-    const [dataMd, setDataMd] = useState("");
-    const moreDetails = useRef("");
+    useEffect( () => {
+        setTlou(tlouData);
+        setOp(opData);
+        setManga(mangaData);
+        setHero(heroData);
+    }, []);
 
-    const handleOpen = async (res, dataDraw) => {
-        await setDataMd(dataDraw)
-        moreDetails.current.style.display = res;
-    }
-    const  handleClose = (res) => {
-        moreDetails.current.style.display = res;
-    }
-
-    useEffect(()=>{
-        fetch("https://api-draw-rc.onrender.com/show").then(res => res.json()).then(res => setData(res.data));
-    }, [])
-    
     return(
         <>
-          <div className='div-md' ref={moreDetails}>
-                <MoreDetails funcCallback = {handleClose}  dataToMd = {dataMd}/>
-            </div>
-         <main className= "main-container-ilustration">
-             
-             <section className="section-apresentation">
-                <div className="title-and-desc">
-                    <h1>Repositório de Ilustrações</h1>
+           
+            <MainContainer>
+                <Wrapper flexDirection = 'column' jc = 'center' width = '100%' alignItems = 'center'>
+                    <Title color = 'var(--color-secundary)' size = '1.9rem'>Repositório de Ilustrações</Title>
                     <p>Acompanhe também em: </p>
-                    <button className = "btn-acess-instagram">
-                        <AiOutlineInstagram id = 'insta-icon'/>
-                        <a href = 'https://www.instagram.com/jv.art.0/' target={'_blank'}>@jv.art.0</a>
-                    </button>
-                </div>
-             </section>
-             {data.length <=0 && <LoaderComponent/>}
-             {data.length > 0 && 
-                 <section className="all-drawings">
-                    <Fade>
-                    <section className = "section-title-and-slide">
-                        <h2>The Last of Us</h2>
-                        <SliderComponent>
-                            {data.map( item => {
-                                if(item.categories[0] == 'tlou'){
-                                    return <DrawPost
-                                        key = { item._id}
-                                        title = { item.title}
-                                        description = {item.description}
-                                        font = {item.font}
-                                        data = {item.data}
-                                        img = {item.img[0]}
-                                        funcCallback = {handleOpen}
-                                    />
-                                }
-                            })}
-                        </SliderComponent>
-                    </section>
-                    </Fade>
-                <Fade>
-                <section className = "section-title-and-slide">
-                    <h2>One Piece</h2>
-                    <SliderComponent>
-                        {data.map( item => {
-                            if(item.categories[0] == 'One Piece'){
-                                return <DrawPost
-                                    key = { item._id} 
-                                    title = { item.title}
-                                    description = {item.description}
-                                    font = {item.font}
-                                    data = {item.data}
-                                    img = {item.img[0]}
-                                    funcCallback = {handleOpen}
-                                />
-                            }
-                        })}
-                    </SliderComponent>
-                </section>
-                </Fade>
-                <Fade>
-                <section className = "section-title-and-slide">
-                    <h2>Marvel e Dc</h2>
-                    <SliderComponent>
-                        {data.map( item => {
-                            if(item.categories[0] == 'marvel' || item.categories[0] == 'dc'){
-                                return <DrawPost
-                                    key = { item._id} 
-                                    title = { item.title}
-                                    description = {item.description}
-                                    font = {item.font}
-                                    data = {item.data}
-                                    img = {item.img[0]}
-                                    funcCallback = {handleOpen}
-                                />
-                            }
-                        })}
-                    </SliderComponent> 
-                </section>
-                </Fade>
-                <Fade>
-                <section className = "section-title-and-slide">
-                    <h2>Outros</h2>
-                    <SliderComponent>
-                        {data.map( item => {
-                            if(item.categories[0] != 'tlou' && item.categories[0] != 'marvel' && item.categories[0] != 'dc' && item.categories[0] != 'One Piece' ){
-                                return <DrawPost
-                                    key = { item._id} 
-                                    title = { item.title}
-                                    description = {item.description}
-                                    font = {item.font}
-                                    data = {item.data}
-                                    img = {item.img[0]}
-                                    funcCallback = {handleOpen}
-                                />
-                            }
-                        })}
-                    </SliderComponent> 
-                </section>
-                </Fade>
-            </section>
-            }
-        </main>
-    </>)}
+                    <ButtonTransparent width = '300px '><AiOutlineInstagram/>@jv.art.0</ButtonTransparent>
+                </Wrapper>
+
+                <Wrapper flexDirection = 'column'>
+                    {!tlou ? <LoaderComponent/> : <SliderComponent drawList = {tlou}/>}
+                    {/* {!op ? <LoaderComponent/> : <SliderComponent drawList = {op}/>}
+                    {!manga ? <LoaderComponent/> : <SliderComponent drawList = {manga}/>}
+                    {!hero ? <LoaderComponent/> : <SliderComponent drawList = {hero}/>} */}
+                </Wrapper>
+            </MainContainer>
+        </>
+    )}

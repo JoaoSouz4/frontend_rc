@@ -1,0 +1,38 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0.3rem;
+}
+
+/*Breakpoint mobile*/
+@media screen and (max-width: 744px){
+    
+    .div-whith-informations{
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: scroll;
+        gap: 1rem;
+    }
+
+    .draw-informations{
+        width: 100%;
+    }
+    .draw-photo-container{
+        justify-content: center;
+    }
+    .draw-photo-item{
+        height: 100%;
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 745px){
+    .draw-photo-container{
+        max-width: 800px;
+    }
+    .draw-photo-item{
+        width: 100%;
+    }
+}

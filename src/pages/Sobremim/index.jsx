@@ -1,18 +1,18 @@
 import './styles.css'
 import { AiOutlineInstagram, AiFillLinkedin, AiFillGithub, AiOutlineMail } from "react-icons/ai";
-import { ProjectTools } from '../../components/ProjectTools'
-
-
+import { ProjectTools } from './ProjectTools';
+import MainContainer from '../../components/MainContainer/mainContainer';
+import foto from '../../assets/foto_social].jpeg'
 
 export const Sobremim = () => {
     return(
-        <main className = "main-container">
+        <MainContainer>
 
             <section className="apresentation">
                 <div className="apresentation-box">
                     <div className="photo-and-contact">
                         <img 
-                            src = "https://api-draw-rc.onrender.com/files/foto_social].jpeg"
+                            src = {foto}
                             className="photo">
                         </img>
                         <div className='name-and-ocupation'>
@@ -70,6 +70,6 @@ export const Sobremim = () => {
                 </div>
             </section>
 
-        </main>
+        </MainContainer>
     )
 }

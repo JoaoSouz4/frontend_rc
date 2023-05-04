@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+Olá, aqui é o dev Nerdola que fez este projeto full stack, e ponha "full stack" nisso,
+pois também sou o cliente que froneceu todos os desenhos e o conteúdo(ksksk);
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Este projeto é para divulgar meus trabalhos artísticos e mais que isso aplicar 
+meu conhecimento como desevolvedor web em um projeto que se assimile ao da realidade;
 
-In the project directory, you can run:
+irei introduzir as tomadas de decisões, estrutura do projeto e tecnologias que utilizei.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+------*Serviços da API*----------------------------------------------------------------------------------------------------------
+Esta aplicação está consumindo minha API que prover dados direto do meu cluster mongoDB: 
+    *Dados completos das ilustrações;
+    *Dados seletivos a partir de parâmetros na url para retornar desenhos de uma seção especfíca;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Além disso a API conta com sistema de cadastro e login, com camadas de autênticação e debug com middlewares entre as rotas;
 
-### `npm test`
+Lista de rotas da API: 
+    */getdraws* => irá retornar todos os desenhos
+    */getdraws/:section* => Irá retornar todos os desenhos de uma determinada sessão, sendo elas:
+        -The Last Of Us
+        -One Piece
+        -Hero
+        -Manga
+                                                    *É preciso inserir algum desses dados acima
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*Como os dados da requisição são retornados*:
+    {
+        message: "<mensagem vinda do servidor>"
+        isSucess: true || false 
+    }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+----*CONTEXT API*---------------------------------------------------------------------------------------------------------------
+        Todas as rotas estão dentro de um contexto, que através de um *estado* está atualizando o status de autenticação,
+        se há a existência de um usuário ou não. O sistema se comporta de maneira diferente quando um usuário está logado e
+        devidamente autenticado, a cada login ele recebe um token jwt, na qual cada usuário tem o seu salvo no localStorage do navegador, então uma vez logado caso o token não expire um não haja a remoção do mesmo, o usuário permanece logado. 
 
-### `npm run eject`
+        Funcionalidades privadas são disponibilizadas para usuários: 
+            -Até 3 comentários em posts;
+            -Excluir Comentários;
+            -Curtir/Descurtir posts;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+----*Styled-Components*----------------------------------------------------------------------------------------------------------
+    Crio os componentes através desta lib, onde os que são constantemente utlizados ficam na pasta
+    "Components". Caso haja necessidade de um componente em um rota específica, é colocado juntamente na pasta
+    "pages", na respectiva pasta onde é necessário usar este componente. Além disso estes componentes são reutilizávels, dado
+    que podemos inserir parâmetros nas props css;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+----*React-Router-Dom*-----------------------------------------------------------------------------------------------------------
+    Estou utilizando a versão 6, seguindo exatamente o padrão de utilização mostrada na documentação;
+    Direcionando o usuário com o Navigate();
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+BreakPoints: 
+    max-width(320px);
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

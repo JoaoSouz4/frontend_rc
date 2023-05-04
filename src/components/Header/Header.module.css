@@ -1,0 +1,16 @@
+
+.userLogoArea{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.label{
+    padding-right: 0.5rem;
+    border-right: 1px solid rgb(193, 193, 193);
+}
+
+.exit{
+    color: var(--color-secundary);
+}
+
