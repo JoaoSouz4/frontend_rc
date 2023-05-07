@@ -7,9 +7,8 @@
 }
 
 .imgPost {
-    display: none;
     opacity: 0;
-    animation-name: animation;
-    animation-duration: 0.3s;
+    animation-duration: 1s;
+    animation-delay: 1s;
     animation-fill-mode: forwards;
 }

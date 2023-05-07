@@ -11,11 +11,11 @@ function Image (props){
     const wrapperRef = useRef();
 
     useEffect(()=> {
-        imgRef.current.style.display = 'block'
+        imgRef.current.style.animationName = 'animation'
     }, [isComplete])
 
     return(
-        <Wrapper width = '100%' height = '100%'>
+        <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' position = 'relative'>
             <img
                 className = 'imgPost'
                 ref = {imgRef}
@@ -28,8 +28,10 @@ function Image (props){
             />
 
             {!isComplete &&
-                <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' ref = {wrapperRef} >
-                    <Spinner color = 'secundary' type = 'grow'></Spinner> 
+                <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' >
+                    <Wrapper width = '100%' position = 'absolute' top = '50%' left = '50%'>
+                        <Spinner color = 'secundary' type = 'grow'></Spinner> 
+                    </Wrapper>
                 </Wrapper>
             }
         </Wrapper>

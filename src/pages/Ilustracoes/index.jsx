@@ -20,10 +20,8 @@ export const DrawPostContext = createContext();
 
 export const Ilustracoes = () => {
   
-    //const { tlouData, opData, mangaData, heroData } = useContext(DrawContext);
-    const { heroData } = useContext(DrawContext);
-  
-
+    const { tlouData, opData, mangaData, heroData } = useContext(DrawContext);
+ 
     return(
         <>
            
@@ -35,9 +33,9 @@ export const Ilustracoes = () => {
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column'>
-                    {/* <SliderComponent drawList = {tlouData}/>
+                    <SliderComponent drawList = {tlouData}/>
                     <SliderComponent drawList = {opData}/>
-                    <SliderComponent drawList = {mangaData}/> */}
+                    <SliderComponent drawList = {mangaData}/>
                     <SliderComponent drawList = {heroData}/>
                 </Wrapper>
             </MainContainer>

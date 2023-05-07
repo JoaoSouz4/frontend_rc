@@ -7,26 +7,26 @@ import _default from "../config/default";
 export const DrawContext = createContext();
 
  function DrawProvider({children}) {
-    // const [ tlouData, setTlouData ] = useState();
-    // const [ opData, setOpData ] = useState();
-    // const [ mangaData, setMangaData ] = useState();
+    const [ tlouData, setTlouData ] = useState();
+    const [ opData, setOpData ] = useState();
+    const [ mangaData, setMangaData ] = useState();
     const [ heroData, setHeroData] = useState();
     const [ loading, setLoading ] = useState(true);
 
     useEffect(()=>{
 
         async function getDatas(){
-            // await fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
-            //     .then(res => res.json())
-            //     .then(res => {setTlouData(res.draw)});
+            await fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
+                .then(res => res.json())
+                .then(res => {setTlouData(res.draw)});
 
-            // await fetch(`${_default.urlApi}/getdraws/One Piece`)
-            //     .then(res => res.json())
-            //     .then(res => {setOpData(res.draw);});
+            await fetch(`${_default.urlApi}/getdraws/One Piece`)
+                .then(res => res.json())
+                .then(res => {setOpData(res.draw);});
 
-            // await fetch(`${_default.urlApi}/getdraws/Manga`)
-            //     .then(res => res.json())
-            //     .then(res => {setMangaData(res.draw);});
+            await fetch(`${_default.urlApi}/getdraws/Manga`)
+                .then(res => res.json())
+                .then(res => {setMangaData(res.draw);});
 
             await fetch(`${_default.urlApi}/getdraws/Hero`)
                 .then(res => res.json())
@@ -46,8 +46,7 @@ export const DrawContext = createContext();
     }
 
     return (
-        //<DrawContext.Provider value={{tlouData, opData, mangaData, heroData}}>
-        <DrawContext.Provider value={{heroData}}>
+        <DrawContext.Provider value={{tlouData, opData, mangaData, heroData}}>
             {children}
         </DrawContext.Provider>
     )
