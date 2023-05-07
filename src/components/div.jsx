@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-position: relative;
+
+    position: ${(props) => {return props.position}};
+    top: ${(props) => {return props.top}};
+    left: ${(props) => {return props.left}};
     display: flex;
     flex-direction: ${(props) => {return props.flexDirection}};
     justify-content: ${(props) => {return props.jc}};

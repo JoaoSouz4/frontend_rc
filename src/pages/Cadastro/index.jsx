@@ -1,11 +1,17 @@
+import _default from '../../config/default';
 
+//Css
 import styles from './cadastro.module.css'
-import { Link } from 'react-router-dom'
+
+//Hooks
 import { useState, useRef} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+
+//Icons
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import MainContainer from '../../components/MainContainer/mainContainer';
-import Title from '../../components/Title/Title';
+
+//Components
+import Title from '../../components/Title';
 import Input from '../../components/input';
 import Button from '../../components/Button/button';
 import Wrapper from '../../components/div';
@@ -28,7 +34,7 @@ export default function Cadastro() {
 
         e.preventDefault();
 
-        fetch("http://localhost:8001/register",{
+        fetch(`${_default.urlApi}/register`,{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"

@@ -3,9 +3,9 @@ import _default from '../../../config/default';
 import Wrapper from '../../../components/div';
 import { Context } from '../../../context/authContext';
 import { useContext } from 'react';
-import { OneComment } from './OneComment';
+import { UserComment } from './UserComment';
 import { AnotherComment } from './AnotherComment';
-import { LoaderComponent } from '../../../components/LoaderComponent';
+import { Spinner } from 'reactstrap';
 
 function Commentaries(props) {
     
@@ -21,7 +21,7 @@ function Commentaries(props) {
                         if(c.commentary){
 
                             if(userLog.id == c.idUser){
-                                return  <OneComment
+                                return  <UserComment
                                             key = {c._id}
                                             id = {c._id}
                                             comment = {c.commentary}
@@ -51,7 +51,7 @@ function Commentaries(props) {
                         }})
                 : <Wrapper color = 'var(--color-gray)' width = '100%' jc = 'center' height = '100%'>Seja o primeiro a comentar :)</Wrapper>
             :
-             <LoaderComponent/>
+                <Spinner color = 'secundary' type = 'grow'/>
             }
         </ul>
     )

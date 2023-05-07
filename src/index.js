@@ -15,18 +15,20 @@ import LoginPage from './pages/LoginPage';
 
 //Contexts
 import { AuthProvider } from './context/authContext';
-import {DrawProvider} from './context/postContext'
-import GlobalStyles from './components/GlobalStyles';
+import { DrawProvider } from './context/AllDrawtContext';
+import GlobalStyles from './components';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     <React.StrictMode>
       <BrowserRouter>
+      <GlobalStyles/>
       <AuthProvider>
-        <GlobalStyles/>
+        
        
           <Header/>
+          
             <Routes>
               <Route path = "/" element = {<Home />} />
               <Route path = "/Ilustracoes" element = {

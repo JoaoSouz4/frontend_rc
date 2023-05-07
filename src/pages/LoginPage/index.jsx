@@ -1,17 +1,24 @@
+//Css
 import styles from './Login.module.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { useState, useRef, useContext } from 'react';
 
-
+//Icons
 import { AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+
+//Routes
+import { Link } from 'react-router-dom';
+
+//Hooks
+import { useState, useRef, useContext } from 'react';
 import { Context } from '../../context/authContext';
-import MainContainer from '../../components/MainContainer/mainContainer';
+
+//Components
 import Input from '../../components/input';
 import Button from '../../components/Button/button';
-import Title from '../../components/Title/Title';
+import Title from '../../components/Title';
 import Wrapper from '../../components/div';
 import Section from '../../components/Section'
 import FormComponent from '../../components/FormComponent';
+
 function LoginPage(){
 
     const [seePass, setSeePass] = useState(true);
@@ -71,7 +78,7 @@ function LoginPage(){
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column' width = '100%'>
-                    <Button onClick={ (e) => {handleLogin(e, email, pass);}} width = '100%'>Entrar</Button>
+                    <Button onClick={ (e) => {handleLogin(e, email, pass)}} width = '100%'>Entrar</Button>
                     <Link className = {styles.link} to = {'/Cadastro'}>Não tenho uma conta.</Link>
                 </Wrapper>
            </FormComponent>

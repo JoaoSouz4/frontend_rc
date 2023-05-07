@@ -1,12 +1,14 @@
 import Wrapper from "../../../../components/div";
 import _default from "../../../../config/default";
-import styles from './oneComment.module.css';
+import styles from './UserComment.module.css';
 import { useContext } from "react";
 import { CommentContext } from "../../MoreDetails";
+import { MethodsContext } from "../../DrawPost";
 
-export function OneComment (props) {
+export function UserComment (props) {
     const { id, comment, userName, idPost } = props;
     const { setAllComments } = useContext(CommentContext);
+    const { setQtdComments} = useContext(MethodsContext)
 
     function dropComment () {;
         const token = localStorage.getItem('token');
@@ -18,7 +20,10 @@ export function OneComment (props) {
             }
         })
             .then(res => res.json())
-            .then( res => setAllComments(res.currentComments));
+            .then( res => {
+                setAllComments(res.currentComments);
+                setQtdComments(res.currentComments.length);
+            });
     }
     const data = new Date();
     let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();  

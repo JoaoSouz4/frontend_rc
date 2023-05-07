@@ -8,20 +8,21 @@ const Button = styled.button`
     border-radius: 0.3rem;
     outline: none;
     border: none;
-    background: linear-gradient(
-            to right,
-            var(--color-primary),
-            var(--color-secundary) 
-    );
+    background: transparent;
     border: 1px solid var(--color-secundary);
-    color: white;
+    color: var(--color-secundary);
     font-weight: bold;
     font-size: 1rem;
     padding: 1rem;
 
     &:hover{
-        background: transparent;
-        color: var(--color-secundary);
+       
+        background: linear-gradient(
+            to right,
+            var(--color-primary),
+            var(--color-secundary) 
+        );
+        color: white;
         cursor: pointer;
         transition: 0.3s ease;
     }

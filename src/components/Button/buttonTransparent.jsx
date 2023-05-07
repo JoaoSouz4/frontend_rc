@@ -17,5 +17,10 @@ const ButtonTransparent = styled.button`
     &:hover{
         cursor: pointer;  
     }
+
+    a{
+        color: var(--color-black);
+        text-decoration: none
+    }
 `
 export default ButtonTransparent;

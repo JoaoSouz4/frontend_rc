@@ -8,33 +8,39 @@ import Commentaries from '../Commentary';
 import Wrapper from '../../../components/div';
 import Button from  '../../../components/Button/button';
 import { PostContext } from '../SliderComponent';
+import { MethodsContext } from '../DrawPost';
 
 export const CommentContext = createContext();
 
 export const MoreDetails = (props) => {
     
-    const { userLog } =  useContext(Context);
+    const { userLog, authenticated} =  useContext(Context);
+
     const ctx = useContext(PostContext);
-
+    const { setQtdComments } = useContext(MethodsContext);
     const { funcCallback } = props; 
-    const [allComments, setAllComments] = useState();
 
+    const [allComments, setAllComments] = useState();
     const [ comment, setComment ] = useState("");
+
     const inputCommentRef = useRef()
 
     useEffect( () => setAllComments(ctx.usersComments), [])
     
     function handleComment(){
+ 
+        if(!authenticated) return alert('Faça o login para poder comentar')
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
-        fetch(`http://localhost:8001/insert/${userLog.id}/${ctx.id}/${comment}`, {
+        fetch(`http://localhost:8001/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + tokenP
             },
         }).then(res => res.json()).then(res => {
+            setQtdComments(res.currentComments.length)
             setAllComments(res.currentComments);
-            inputCommentRef.current.value = "";
+            inputCommentRef.current.value = "";  
         })
     }
 
@@ -74,7 +80,7 @@ export const MoreDetails = (props) => {
                             <h2 className = {styles.titleDescription}>Descrição</h2>
                             <p>{ctx.description}</p>
                         </div>
-                        <CommentContext.Provider value = {{setAllComments}}>
+                        <CommentContext.Provider value = {{setAllComments, setQtdComments}}>
                             <Commentaries commentsList = {allComments}/>
                         </CommentContext.Provider>
                     </div>

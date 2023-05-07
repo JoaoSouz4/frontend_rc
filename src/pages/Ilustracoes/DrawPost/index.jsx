@@ -1,7 +1,7 @@
 import './styles.css'
 import styles from './iconLike.module.css';
 import { AiOutlineHeart,AiFillHeart} from 'react-icons/ai';
-import { useContext, useState, useEffect, useRef} from 'react';
+import { useContext, useState, useEffect, useRef, createContext} from 'react';
 
 import { PostContext } from '../SliderComponent';
 import { Context } from '../../../context/authContext';
@@ -13,18 +13,20 @@ import Wrapper  from '../../../components/div';
 import WrapperFixed from '../../../components/WrapperFixed';
 import { MoreDetails } from '../MoreDetails';
 import ShowComments from '../ShowComments';
+import Image from '../../../components/Image/Image';
 
+export const MethodsContext = createContext();
 
 export const DrawPost = () =>{
 
     const ctx = useContext(PostContext);
-
+    const { title, font, usersComments, usersLiked, _id, url, data} = ctx;
     const { authenticated, userLog } = useContext(Context);
+
+
     const [ qtdLikes, setQtdLikes ] = useState();
     const [qtdComments, setQtdComments] = useState();
-
     const [isLiked, setIsLiked] = useState(false);
-
     const refMoreDetails = useRef();
 
     useEffect(()=>{
@@ -34,8 +36,8 @@ export const DrawPost = () =>{
             setIsLiked(true);
            }
         }
-        setQtdLikes(ctx.usersLiked.length);
-        setQtdComments(ctx.usersComments.length);
+        setQtdLikes(usersLiked.length);
+        setQtdComments(usersComments.length);
     }, []);
 
     function handleLike(){
@@ -47,7 +49,7 @@ export const DrawPost = () =>{
                 handleDeslike();
                 return
             } else {
-                fetch(`${_default.urlApi}/likepost/${userLog.id}/${ctx.id}`, {
+                fetch(`${_default.urlApi}/likepost/${userLog.id}/${_id}`, {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + tokenP
@@ -68,7 +70,8 @@ export const DrawPost = () =>{
 
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
-        fetch(`${_default.urlApi}/deslikepost/${userLog.id}/${ctx.id}`, {
+
+        fetch(`${_default.urlApi}/deslikepost/${userLog.id}/${_id}`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + tokenP
@@ -94,23 +97,30 @@ export const DrawPost = () =>{
         <>
 
         <WrapperFixed ref = {refMoreDetails}>
-            <MoreDetails funcCallback = {handleCloseMoreDetails}></MoreDetails>
+            <MethodsContext.Provider value = {{setQtdComments}}>
+                <MoreDetails funcCallback = {handleCloseMoreDetails}></MoreDetails>
+            </MethodsContext.Provider>
         </WrapperFixed>
+
         <div className='container-draw-post'>
-            <img 
-                src = {`${_default.urlApi}/files${ctx.url}`} alt={ctx.title}
+            {/* <img 
+                src = {`${_default.urlApi}/files${url}`} 
+                alt={title} 
                 onClick = {handleOpenMoreDetails}
-                
-            />
+                onLoad={(e)=>{console.log(e)}}
+            /> */}
+
+            <Image url = {`${_default.urlApi}/files${url}`} alt = {title} ></Image>
 
             <div className='post-description'>
-                <label className='title'>{ctx.title}</label>
-                <label className='font'>{ctx.ont}</label>
-                <label className='data'>{ctx.data}</label>
+                <label className='title'>{title}</label>
+                <label className='font'>{font}</label>
+                <label className='data'>{data}</label>
             </div>
 
             <Wrapper jc = 'space-around' width = '100%' borderTop = '1px solid var(--color-gray)' padding = '0.3rem'>
-                <Wrapper alignItems = 'center'>
+
+                <Wrapper alignItems = 'center' gap = '0.3rem' height = '100%'>
                     {!isLiked ? 
                         <>
                             <AiOutlineHeart onClick = {handleLike}/>
@@ -125,7 +135,7 @@ export const DrawPost = () =>{
                     }
                 </Wrapper>
 
-                <Wrapper onClick = {handleOpenMoreDetails} alignItems = 'center'> 
+                <Wrapper onClick = {handleOpenMoreDetails} alignItems = 'center' gap = '0.3rem'> 
                 <>
                     <FaRegComment className = 'option-icon'/>
                     <ShowComments comments = {qtdComments}/>

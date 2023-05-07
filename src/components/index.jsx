@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     }
     :root{
         --color-dark:  rgb(15, 163, 131);
-        --cor-primary:rgb(0, 255, 149);
+        --color-primary:rgb(0, 255, 149);
         --color-secundary: rgb(8, 216, 171);
         --color-black: #393939;
         --color-gray: #d0d0d0;

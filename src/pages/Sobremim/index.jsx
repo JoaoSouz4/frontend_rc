@@ -1,7 +1,7 @@
 import './styles.css'
 import { AiOutlineInstagram, AiFillLinkedin, AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { ProjectTools } from './ProjectTools';
-import MainContainer from '../../components/MainContainer/mainContainer';
+import MainContainer from '../../components/mainContainer';
 import foto from '../../assets/foto_social].jpeg'
 
 export const Sobremim = () => {

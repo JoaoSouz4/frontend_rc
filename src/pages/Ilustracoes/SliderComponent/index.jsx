@@ -1,16 +1,13 @@
+import { createContext } from 'react';
 
-import Title from '../../../components/Title/Title';
+//Components
+import Title from '../../../components/Title';
 import { DrawPost } from '../DrawPost';
 import WrapperSlide from '../../../components/WrapperSlider';
 import Section from '../../../components/Section';
 import ContainerWrapperSlide from '../WrapperContainerSlide';
-import { DrawPostContext } from '..';
-import { useContext } from 'react';
-import { createContext } from 'react';
 
 export const PostContext = createContext();
-
-
 export const SliderComponent = (props) => {
 
     const { drawList } = props;
@@ -23,7 +20,7 @@ export const SliderComponent = (props) => {
                 <WrapperSlide>
                     {
                         drawList.map( d => {
-                            return <PostContext.Provider value = {d}>
+                            return <PostContext.Provider key = {d._id} value = {d}>
                                         <DrawPost/>
                                     </PostContext.Provider>
                         })

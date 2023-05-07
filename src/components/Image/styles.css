@@ -1,0 +1,15 @@
+@keyframes animation {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.imgPost {
+    display: none;
+    opacity: 0;
+    animation-name: animation;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
