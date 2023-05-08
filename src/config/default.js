@@ -1,3 +1,3 @@
 export default {
-    urlApi : "http://localhost:8001"
+    urlApi : "https://apirepositoriocriativo.onrender.com"
 }
