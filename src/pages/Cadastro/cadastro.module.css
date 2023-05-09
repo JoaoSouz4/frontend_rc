@@ -90,10 +90,6 @@
     font-size: 1.2rem; 
 }
 
-a{
-    margin-top: 1rem;
-}
-
 @media screen and (max-width: 555px) {
     .formRegister {
         display: flex;
