@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const AbsoluteWrapper = styled.div`
     position: absolute;
-    bottom: 4rem;
+    bottom: 2rem;
     left: 3rem;
 
     div svg{

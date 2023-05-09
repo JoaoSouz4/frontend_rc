@@ -12,6 +12,7 @@ import HeaderMenu from './header';
 import HeaderMenuMobile from './Mobile/Mobile';
 import { Context } from '../../context/authContext';
 import { IoExitOutline } from 'react-icons/io5';
+import { Spinner } from 'reactstrap';
 
  export const Header = () => {
   const menu = useRef();
@@ -51,7 +52,15 @@ import { IoExitOutline } from 'react-icons/io5';
             authenticated ?
             <>
               <div className={styles.userLogoArea}>
-                <span className={styles.label}>{userLog.userName}</span>
+                <span className={styles.label}>
+
+                  {!userLog.userName ? 
+                    <Spinner color = 'secundary' type = 'grow' style = {{height: '0.5rem', width: '0.5rem'}}></Spinner>
+                  :
+                    <span>{userLog.userName}</span>
+                  }
+                  
+                </span>
                 <span className = {styles.exit} onClick = {handleLogout}>Sair</span>
               </div>
             </>
@@ -76,7 +85,7 @@ import { IoExitOutline } from 'react-icons/io5';
                   }
                   }
                 ><IoExitOutline/>Sair</Link> 
-              : <Link to={"/Login"}><FaUser/>Login</Link>
+              : <Link to={"/Login"} onClick={handleClose}><FaUser/>Login</Link>
             }
           </ul>
         </HeaderMenuMobile>

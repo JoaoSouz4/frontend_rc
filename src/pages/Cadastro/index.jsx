@@ -48,7 +48,11 @@ export default function Cadastro() {
         })
         .then( (resp) => resp.json())
         .then( (resp) => {
-            alert('Cadastrado com sucesso!')
+            if(!resp.isSucess){
+                return alert(resp.message)
+            }
+
+            alert('Registrado com sucesso');
             navigate("/Login");
         }
         )

@@ -34,7 +34,7 @@ export const Sobremim = () => {
                 <div className="apresentation-text">
                     <h2>Sobre mim</h2>
                     <p>
-                        Nasci e moro em Porto Velho, capital do estado de Rondônia, atualmente (02/2023) tenho 20 anos de idade.
+                        Nasci e moro em Porto Velho, capital do estado de Rondônia, atualmente (05/2023) tenho 20 anos de idade.
                         Sempre gostei da cultura geek de modo em geral e a area da tecnologia nunca esteve de fora, principalmente
                         nos últimos 1,5 anos em que despertei o interesse na programação.
                     </p>
@@ -53,9 +53,9 @@ export const Sobremim = () => {
 
             <section className='about-project'>
                 <h2>Sobre este Projeto</h2>
-                <p>Há cerca de 6 meses atrás, quando decidi estudar frontend, desenvolvi a primeria versão deste projeto, o objetivo era para testar meus conhecimentos, mas era muito vago. Na época eu tinha pouco conhecimento de html e css e nada de Javascript, se tratava de um site estático sem responsividade e com um ressalvas no design.</p>
+                <p>Há cerca de 8 meses atrás, quando decidi estudar frontend, desenvolvi a primeria versão deste projeto, o objetivo eratestar meus conhecimentos, mesmo sendo muito vago. Na época eu tinha pouco conhecimento de html e css e nada de Javascript, se tratava de um site estático sem responsividade e com um ressalvas no design.</p>
                 <p>Mesmo assim, criei um repositório e compartilhei a ideia em meu linkedin, afirmando que traria mais funcionalidade e performance.</p>
-                <p>Sendo assim, me dediquei muito em persistir nos estudos, investi em cursos de Javascript, React e MongoDB de forma progressiva, conforme os estudos avançavam, ficava mais claro sobre o que eu deveria fazer e aprender para concluir este projeto com êxito. </p>
+                <p>Sendo assim, me dediquei muito em persistir nos estudos, investi em cursos onlines e materias didáticos de forma progressiva, conforme os estudos avançam, fica mais claro sobre o que devo fazer e aprender para continuar a melhorar este projeto. </p>
             </section>
 
             <ProjectTools>

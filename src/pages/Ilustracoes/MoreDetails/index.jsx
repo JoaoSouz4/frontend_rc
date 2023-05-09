@@ -32,12 +32,13 @@ export const MoreDetails = (props) => {
         if(!authenticated) return alert('Faça o login para poder comentar')
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
-        fetch(`http://localhost:8001/insert/${userLog.id}/${ctx._id}/${comment}`, {
+        fetch(`${_default.urlApi}/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + tokenP
             },
         }).then(res => res.json()).then(res => {
+            console.log(res);
             setQtdComments(res.currentComments.length)
             setAllComments(res.currentComments);
             inputCommentRef.current.value = "";  
@@ -53,12 +54,10 @@ export const MoreDetails = (props) => {
             width = '90%' 
             height = '90%'
             bgColor = ' #fafafa'
+            position = 'relative'
         >
 
-            <div 
-                className='button-closer'
-                onClick = {funcCallback}
-            >
+            <div className={styles.buttonCloser} onClick = {funcCallback}>
                 <AiOutlineClose className='icon-closer'/>
             </div>
     
@@ -80,6 +79,7 @@ export const MoreDetails = (props) => {
                             <h2 className = {styles.titleDescription}>Descrição</h2>
                             <p>{ctx.description}</p>
                         </div>
+                        
                         <CommentContext.Provider value = {{setAllComments, setQtdComments}}>
                             <Commentaries commentsList = {allComments}/>
                         </CommentContext.Provider>

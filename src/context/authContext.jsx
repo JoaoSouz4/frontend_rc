@@ -20,6 +20,7 @@ export function AuthProvider({children}){
                     'Authorization': 'Bearer ' + tokenP
                 }
             }).then(res => res.json()).then(res => {
+                console.log(res);
                 setAuthenticated(true);
                 setUserLog(res.authData);
             });

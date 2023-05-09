@@ -27,6 +27,7 @@ function Commentaries(props) {
                                             comment = {c.commentary}
                                             idPost = {c.idPost}
                                             userName = {c.userName}
+                                            createdAt = {c.createdAt}
                                         />
                             } else {
                                 return (
@@ -34,6 +35,7 @@ function Commentaries(props) {
                                         key = {c._id}
                                         comment = {c.commentary}
                                         userName = {c.userName}
+                                        createdAt = {c.createdAt}
                                     >
                                     </AnotherComment>
                                 )
@@ -45,6 +47,7 @@ function Commentaries(props) {
                                     key = {c._id}
                                     comment = {c.commentary}
                                     userName = {c.userName}
+                                    createdAt = {c.createdAt}
                                 >
                                 </AnotherComment>
                             )

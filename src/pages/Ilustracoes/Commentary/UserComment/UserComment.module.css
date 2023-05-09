@@ -9,4 +9,5 @@
 
 .drop{
     color: var(--color-dark);
+    cursor: pointer;
 }

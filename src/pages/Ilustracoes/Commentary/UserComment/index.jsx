@@ -6,9 +6,15 @@ import { CommentContext } from "../../MoreDetails";
 import { MethodsContext } from "../../DrawPost";
 
 export function UserComment (props) {
-    const { id, comment, userName, idPost } = props;
+    const { id, comment, userName, idPost, createdAt } = props;
     const { setAllComments } = useContext(CommentContext);
-    const { setQtdComments} = useContext(MethodsContext)
+    const { setQtdComments} = useContext(MethodsContext);
+
+    const date = new Date(createdAt);
+    const day = date.getDate();
+    const mes = date.getMonth();
+    const ano = date.getFullYear();
+    const dateComment = `${day}/${mes+1}/${ano}`
 
     function dropComment () {;
         const token = localStorage.getItem('token');
@@ -25,13 +31,11 @@ export function UserComment (props) {
                 setQtdComments(res.currentComments.length);
             });
     }
-    const data = new Date();
-    let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();  
     return (
         <Wrapper flexDirection = 'column' jc = 'flex-start' width = '100%' >
             <p className = {styles.comment}><strong>{userName}</strong> {comment}
             </p>
-            <span className = {styles.dateComment}>{dataFormatada} | <span onClick = { () => {dropComment()}} className = {styles.drop}>excluir</span></span>
+            <span className = {styles.dateComment}>{dateComment} | <span onClick = { () => {dropComment()}} className = {styles.drop}>excluir</span></span>
         </Wrapper>
     )
 }

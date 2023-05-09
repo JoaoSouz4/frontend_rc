@@ -1,27 +1,3 @@
-.div-more-details{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #fafafa;
-    padding: 1.7rem;
-    height: 100%;
-}
-
-.button-closer{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 1rem;
-    right: 1rem;
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid rgb(19, 19, 19);
-    color: rgb(19, 19, 19);
-    border-radius: 0.3rem;
-    cursor: pointer;
-}
 
 .div-whith-informations{
     display: flex;
