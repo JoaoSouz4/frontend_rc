@@ -16,13 +16,12 @@ export const CommentContext = createContext();
 
 export const MoreDetails = (props) => {
     
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage, refAlert, refSubmit } = useContext(Context);
     const ctx = useContext(PostContext);
     const { setQtdComments } = useContext(MethodsContext);
     const { funcCallback } = props;
 
     const inputCommentRef = useRef();
-    const alertRef = useRef();
 
     const [allComments, setAllComments] = useState();
     const [ comment, setComment ] = useState("");
@@ -30,12 +29,23 @@ export const MoreDetails = (props) => {
     useEffect( () => setAllComments(ctx.usersComments), [])
     
     function handleComment(){
-        
-        if(!authenticated) return alert('Faça o login para poder comentar')
+        refAlert.current.style.display = 'flex';
+        if(!authenticated) {
+
+            setRequestIsSucess(false);
+            setRequestMessage('Faça o login para enviar comentários');
+            setTimeout( () => {
+                refAlert.current.style.display = 'none';
+                setRequestIsSucess("");
+                setRequestMessage("");
+            }, 3000)
+
+            return
+        }
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
 
-        alertRef.current.style.display = 'flex';
+        refAlert.current.style.display = 'flex';
 
         fetch(`${_default.urlApi}/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
@@ -51,8 +61,10 @@ export const MoreDetails = (props) => {
         });
 
         setTimeout( () => {
-            alertRef.current.style.display = 'none';
-        }, 4000)
+            refAlert.current.style.display = 'none';
+            setRequestIsSucess("");
+            setRequestMessage("");
+        }, 3000)
     }
 
     return (
@@ -65,7 +77,7 @@ export const MoreDetails = (props) => {
             bgColor = ' #fafafa'
             position = 'relative'
         >
-            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {alertRef}>
+            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert}>
                 <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
             </WrapperAlert>
 
@@ -104,7 +116,6 @@ export const MoreDetails = (props) => {
                             className = {styles.inputCommentary}
                             onChange={ e => setComment(e.target.value)}
                             ref = {inputCommentRef}
-                            
                         />
 
                         <Button onClick={handleComment} width = '20%' >Send</Button>

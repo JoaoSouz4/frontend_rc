@@ -14,6 +14,8 @@ import WrapperFixed from '../../../components/WrapperFixed';
 import { MoreDetails } from '../MoreDetails';
 import ShowComments from '../ShowComments';
 import Image from '../../../components/Image/Image';
+import Alert from '../../../components/Alert';
+import WrapperAlert from '../../../components/WrapperAlert';
 
 export const MethodsContext = createContext();
 
@@ -21,7 +23,7 @@ export const DrawPost = () =>{
 
     const ctx = useContext(PostContext);
     const { title, font, usersComments, usersLiked, _id, url, data} = ctx;
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage, refAlert, refSubmit } = useContext(Context);
 
     const refMoreDetails = useRef();
 
@@ -41,6 +43,9 @@ export const DrawPost = () =>{
     }, []);
 
     function handleLike(){
+
+        refAlert.current.style.display = 'flex';
+        
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token)
 
@@ -57,17 +62,31 @@ export const DrawPost = () =>{
                 })
                     .then( res => res.json())
                     .then( (res) => {
+                        setRequestIsSucess(res.isSucess);
+                        setRequestMessage(res.message);
                         setQtdLikes(res.currentQtdLikes);
-                        setIsLiked(true)
+                        setIsLiked(true);
+                        setTimeout(() => {
+                            refAlert.current.style.display = 'none'
+                            setRequestIsSucess("");
+                            setRequestMessage("");
+                        }, 3000);
                     })
             }
             return
         }
-        alert('Faça o login para poder curtir')
+        setRequestIsSucess(false);
+        setRequestMessage('Faça o login para curtir os posts.');
+        setTimeout(() => {
+            setRequestIsSucess("");
+            setRequestMessage("");
+            refAlert.current.style.display = 'none'
+        }, 3000);
+        
     }
 
     function handleDeslike(){
-
+        refAlert.current.style.display = 'flex';
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
 
@@ -79,8 +98,15 @@ export const DrawPost = () =>{
         })
         .then( res => res.json())
         .then( (res) => {
+            setRequestIsSucess(res.isSucess);
+            setRequestMessage(res.message);
             setQtdLikes(res.currentQtdLikes);
-            setIsLiked(false)
+            setIsLiked(false);
+            setTimeout(() => {
+                refAlert.current.style.display = 'none'
+                setRequestIsSucess("");
+                setRequestMessage("");
+            }, 3000);
         }) 
     }
 
@@ -95,7 +121,11 @@ export const DrawPost = () =>{
 
     return(
         <>
-
+        
+        <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+            <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+        </WrapperAlert>
+        
         <WrapperFixed ref = {refMoreDetails}>
             <MethodsContext.Provider value = {{setQtdComments}}>
                 <MoreDetails funcCallback = {handleCloseMoreDetails}></MoreDetails>
@@ -122,7 +152,11 @@ export const DrawPost = () =>{
                         </>
                     :
                         <>
-                            <AiFillHeart className = {styles.iconLike} onClick = {handleLike}/>
+                            <AiFillHeart className = {styles.iconLike} onClick = { () => {
+                                refAlert.current.style.display = 'flex';
+                                handleLike();
+                                }
+                            }/>
                             <ShowLikes likes = {qtdLikes}/>
                         </> 
                     }
