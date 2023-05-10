@@ -9,42 +9,51 @@ import Wrapper from '../../../components/div';
 import Button from  '../../../components/Button/button';
 import { PostContext } from '../SliderComponent';
 import { MethodsContext } from '../DrawPost';
+import Alert from '../../../components/Alert'
+import WrapperAlert from '../../../components/WrapperAlert';
 
 export const CommentContext = createContext();
 
 export const MoreDetails = (props) => {
     
-    const { userLog, authenticated} =  useContext(Context);
-
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
     const ctx = useContext(PostContext);
     const { setQtdComments } = useContext(MethodsContext);
-    const { funcCallback } = props; 
+    const { funcCallback } = props;
+
+    const inputCommentRef = useRef();
+    const alertRef = useRef();
 
     const [allComments, setAllComments] = useState();
     const [ comment, setComment ] = useState("");
 
-    const inputCommentRef = useRef()
-
     useEffect( () => setAllComments(ctx.usersComments), [])
     
     function handleComment(){
- 
+        
         if(!authenticated) return alert('Faça o login para poder comentar')
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
+
+        alertRef.current.style.display = 'flex';
+
         fetch(`${_default.urlApi}/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + tokenP
             },
         }).then(res => res.json()).then(res => {
-            console.log(res);
+            setRequestIsSucess(res.isSucess);
+            setRequestMessage(res.message);
             setQtdComments(res.currentComments.length)
             setAllComments(res.currentComments);
             inputCommentRef.current.value = "";  
-        })
-    }
+        });
 
+        setTimeout( () => {
+            alertRef.current.style.display = 'none';
+        }, 4000)
+    }
 
     return (
         <Wrapper 
@@ -56,6 +65,9 @@ export const MoreDetails = (props) => {
             bgColor = ' #fafafa'
             position = 'relative'
         >
+            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {alertRef}>
+                <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+            </WrapperAlert>
 
             <div className={styles.buttonCloser} onClick = {funcCallback}>
                 <AiOutlineClose className='icon-closer'/>

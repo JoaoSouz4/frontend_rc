@@ -4,9 +4,9 @@ import _default from '../../config/default';
 import styles from './cadastro.module.css'
 
 //Hooks
-import { useState, useRef} from 'react';
-import { Link, useNavigate } from 'react-router-dom'
-
+import { useState, useRef, useContext} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Context } from '../../context/authContext';
 //Icons
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
@@ -17,9 +17,13 @@ import Button from '../../components/Button/button';
 import Wrapper from '../../components/div';
 import Section from '../../components/Section'
 import FormComponent from '../../components/FormComponent';
+import WrapperAlert from '../../components/WrapperAlert';
+import Alert from '../../components/Alert';
 
 export default function Cadastro() {
 
+    
+    const { refAlert, refSubmit, setRequestIsSucess, setRequestMessage, requestIsSucess, requestMessage} = useContext(Context);
     const [userName, setUserName] = useState();
     const [userEmail, setUserEmail] = useState();
     const [userPass, setUserPass] = useState();
@@ -48,18 +52,40 @@ export default function Cadastro() {
         })
         .then( (resp) => resp.json())
         .then( (resp) => {
-            if(!resp.isSucess){
-                return alert(resp.message)
-            }
 
-            alert('Registrado com sucesso');
-            navigate("/Login");
+            if(!resp.isSucess){
+                setRequestIsSucess(resp.isSucess);
+                setRequestMessage(resp.message);
+                refSubmit.current.disabled = false;
+
+                setTimeout(()=> {
+                    refAlert.current.style.display = 'none'
+                    setRequestMessage("");
+                    setRequestIsSucess("");
+                }, 4000);
+                return
+            } else {
+
+                setRequestIsSucess(resp.isSucess);
+                setRequestMessage(resp.message);
+                refSubmit.current.disabled = false;
+                setTimeout(()=> {
+                    refAlert.current.style.display = 'none'
+                    setRequestMessage("");
+                    setRequestIsSucess("");
+                }, 2000);
+                window.location.href = "/"
+            }
         }
         )
     }
 
     return (
         <Section alignItems = 'center'>
+
+            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+                <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+            </WrapperAlert>
 
             <FormComponent>
             <Title color = 'var(--color-secundary)' size = '1.8rem' align = 'center'>Cadastro de Usuário</Title>
@@ -128,10 +154,18 @@ export default function Cadastro() {
                 </Wrapper>
 
                 <Button
+                    ref = {refSubmit}
                     type="submit"
                     width = '100%'
-                    onClick={ (e) => {handleRegister(e,userName, userEmail, userPass, userConfirmPass)}}
-                    >Cadastrar</Button>
+                    onClick={ 
+                        (e) => {
+                            refSubmit.current.disabled = true;
+                            refAlert.current.style.display = 'flex';
+                            handleRegister(e,userName, userEmail, userPass, userConfirmPass)
+                        }
+                    }
+                    >Cadastrar
+                </Button>
                 <Link className = {styles.link} to = {"/Login"}>Já possui uma conta?</Link>
             </FormComponent>
         </Section>

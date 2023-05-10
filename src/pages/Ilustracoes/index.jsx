@@ -24,7 +24,6 @@ export const Ilustracoes = () => {
  
     return(
         <>
-           
             <MainContainer>
                 <Wrapper flexDirection = 'column' jc = 'center' width = '100%' alignItems = 'center'>
                     <Title color = 'var(--color-secundary)' size = '1.9rem'>Repositório de Ilustrações</Title>

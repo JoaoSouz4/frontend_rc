@@ -18,6 +18,8 @@ import Title from '../../components/Title';
 import Wrapper from '../../components/div';
 import Section from '../../components/Section'
 import FormComponent from '../../components/FormComponent';
+import WrapperAlert from '../../components/WrapperAlert';
+import Alert from '../../components/Alert';
 
 function LoginPage(){
 
@@ -25,10 +27,15 @@ function LoginPage(){
     const [ email, setEmail ] = useState("");
     const [ pass, setPass] = useState("");
     const refPass = useRef();
-    const { authenticated, handleLogin } = useContext(Context);
+    const { authenticated, handleLogin, requestIsSucess, requestMessage, refAlert, refSubmit } = useContext(Context);
 
     return (
         <Section alignItems = 'center'>
+
+            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+                <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+            </WrapperAlert>
+
            <FormComponent>
                 <Title align = 'center' color = 'var(--color-secundary)' size = '1.8rem'>Login</Title>
                 <Wrapper flexDirection = 'column'  width = '100%'>
@@ -78,7 +85,20 @@ function LoginPage(){
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column' width = '100%'>
-                    <Button onClick={ (e) => {handleLogin(e, email, pass)}} width = '100%'>Entrar</Button>
+
+                    <Button 
+                        ref = {refSubmit}
+                        width = '100%'
+                        onClick={ 
+                            (e) => {
+                                refSubmit.current.disabled = true;
+                                refAlert.current.style.display = 'flex';
+                                handleLogin(e, email, pass)
+                            }
+                        } 
+                    >Entrar
+                    </Button>
+
                     <Link className = {styles.link} to = {'/Cadastro'}>Não tenho uma conta.</Link>
                 </Wrapper>
            </FormComponent>

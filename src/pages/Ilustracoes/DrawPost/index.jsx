@@ -21,13 +21,13 @@ export const DrawPost = () =>{
 
     const ctx = useContext(PostContext);
     const { title, font, usersComments, usersLiked, _id, url, data} = ctx;
-    const { authenticated, userLog } = useContext(Context);
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
 
+    const refMoreDetails = useRef();
 
     const [ qtdLikes, setQtdLikes ] = useState();
     const [qtdComments, setQtdComments] = useState();
     const [isLiked, setIsLiked] = useState(false);
-    const refMoreDetails = useRef();
 
     useEffect(()=>{
 
@@ -103,13 +103,7 @@ export const DrawPost = () =>{
         </WrapperFixed>
 
         <div className='container-draw-post'>
-            {/* <img 
-                src = {`${_default.urlApi}/files${url}`} 
-                alt={title} 
-                onClick = {handleOpenMoreDetails}
-                onLoad={(e)=>{console.log(e)}}
-            /> */}
-
+          
             <Image url = {`${_default.urlApi}/files${url}`} alt = {title} ></Image>
 
             <div className='post-description'>
@@ -130,8 +124,7 @@ export const DrawPost = () =>{
                         <>
                             <AiFillHeart className = {styles.iconLike} onClick = {handleLike}/>
                             <ShowLikes likes = {qtdLikes}/>
-                        </>
-                       
+                        </> 
                     }
                 </Wrapper>
 
