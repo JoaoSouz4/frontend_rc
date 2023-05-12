@@ -16,12 +16,14 @@ export const CommentContext = createContext();
 
 export const MoreDetails = (props) => {
     
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage, refAlert, refSubmit } = useContext(Context);
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
     const ctx = useContext(PostContext);
+
     const { setQtdComments } = useContext(MethodsContext);
     const { funcCallback } = props;
 
     const inputCommentRef = useRef();
+    const refAlert = useRef();
 
     const [allComments, setAllComments] = useState();
     const [ comment, setComment ] = useState("");
@@ -29,42 +31,42 @@ export const MoreDetails = (props) => {
     useEffect( () => setAllComments(ctx.usersComments), [])
     
     function handleComment(){
+        
         refAlert.current.style.display = 'flex';
-        if(!authenticated) {
 
+        if(!authenticated) {
             setRequestIsSucess(false);
             setRequestMessage('Faça o login para enviar comentários');
-            setTimeout( () => {
-                refAlert.current.style.display = 'none';
-                setRequestIsSucess("");
-                setRequestMessage("");
-            }, 3000)
 
+            setTimeout(() => {
+                refAlert.current.style.display = 'none';
+                setRequestIsSucess('');
+                setRequestMessage('');
+            }, 2000)
             return
         }
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
-
-        refAlert.current.style.display = 'flex';
 
         fetch(`${_default.urlApi}/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + tokenP
             },
-        }).then(res => res.json()).then(res => {
+        }).then(res => res.json()).then( (res) => {
             setRequestIsSucess(res.isSucess);
             setRequestMessage(res.message);
             setQtdComments(res.currentComments.length)
             setAllComments(res.currentComments);
-            inputCommentRef.current.value = "";  
-        });
+            inputCommentRef.current.value = "";
 
-        setTimeout( () => {
-            refAlert.current.style.display = 'none';
-            setRequestIsSucess("");
-            setRequestMessage("");
-        }, 3000)
+            setTimeout(() => {
+                refAlert.current.style.display = 'none';
+                setRequestIsSucess('');
+                setRequestMessage('');
+            },2000)
+        }) 
+
     }
 
     return (
@@ -77,7 +79,7 @@ export const MoreDetails = (props) => {
             bgColor = ' #fafafa'
             position = 'relative'
         >
-            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert}>
+            <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert}>
                 <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
             </WrapperAlert>
 
@@ -123,5 +125,5 @@ export const MoreDetails = (props) => {
                 </section>
             </div>
         </Wrapper>
-        ) 
-    }
+    ) 
+}

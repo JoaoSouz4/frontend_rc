@@ -22,7 +22,6 @@ import Alert from '../../components/Alert';
 
 export default function Cadastro() {
 
-    
     const { refAlert, refSubmit, setRequestIsSucess, setRequestMessage, requestIsSucess, requestMessage} = useContext(Context);
     const [userName, setUserName] = useState();
     const [userEmail, setUserEmail] = useState();

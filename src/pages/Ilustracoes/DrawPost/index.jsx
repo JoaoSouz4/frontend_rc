@@ -23,10 +23,11 @@ export const DrawPost = () =>{
 
     const ctx = useContext(PostContext);
     const { title, font, usersComments, usersLiked, _id, url, data} = ctx;
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage, refAlert, refSubmit } = useContext(Context);
+    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
 
     const refMoreDetails = useRef();
-
+    const refAlert = useRef();
+    
     const [ qtdLikes, setQtdLikes ] = useState();
     const [qtdComments, setQtdComments] = useState();
     const [isLiked, setIsLiked] = useState(false);
@@ -43,8 +44,6 @@ export const DrawPost = () =>{
     }, []);
 
     function handleLike(){
-
-        refAlert.current.style.display = 'flex';
         
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token)
@@ -78,15 +77,16 @@ export const DrawPost = () =>{
         setRequestIsSucess(false);
         setRequestMessage('Faça o login para curtir os posts.');
         setTimeout(() => {
+            refAlert.current.style.display = 'none'
             setRequestIsSucess("");
             setRequestMessage("");
-            refAlert.current.style.display = 'none'
         }, 3000);
         
     }
 
     function handleDeslike(){
         refAlert.current.style.display = 'flex';
+
         const token = localStorage.getItem('token');
         const tokenP = JSON.parse(token);
 
@@ -122,7 +122,7 @@ export const DrawPost = () =>{
     return(
         <>
         
-        <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+        <WrapperAlert ref = {refAlert} position = 'fixed' bottom = '2rem' left = '2rem' alignItems = 'center' jc = 'center'>
             <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
         </WrapperAlert>
         
@@ -147,7 +147,10 @@ export const DrawPost = () =>{
                 <Wrapper alignItems = 'center' gap = '0.3rem' height = '100%'>
                     {!isLiked ? 
                         <>
-                            <AiOutlineHeart onClick = {handleLike}/>
+                            <AiOutlineHeart onClick = { () => {
+                                refAlert.current.style.display = 'flex';
+                                handleLike();
+                            }}/>
                             <ShowLikes likes = {qtdLikes}/>
                         </>
                     :
