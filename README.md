@@ -12,73 +12,100 @@ aos meus estudos e o meu "amadurecimento" como programador. Comecei este projeto
 Hoje, o projeto está bem próximo de como imaginei inicialmente, com muito estudo venho construindo e melhorando
 constantemente cada trecho de códico, ainda está em produção, mas com um nível de entrega minimamente aceitável.
 
-
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 # Tecnologias Usadas no front-end:
 <ul>
-    <li>React</li>
+    <li>React 18.2.0</li>
+     <li>Styled Component 5.3.10</li>
       <li>Javascript</li>
-       <li>Styled Component</li>
 </ul>
 
 # Estrutura do Projeto
-<ul>
-    <li>React</li>
-      <li>Javascript</li>
-       <li>Styled Component</li>
-</ul>
 
+- `assets`: onde ficam os elementos 100% estáticos da aplicação, como elementos visuais.
+- `components`: Aqui estão todos os componentes que são usados por toda aplicação como o header, footer,
+Botões, títulos etc.
+- `context` : espaço onde crio os contextosque englobaram toda ou parte da aplicação.
+- `pages` : pages ou rotes representam as páginas que compõem o site, é o arquivo principal onde os 
+demais componentes estarão. No caso estão as páginas: Home, ilustrações e sobre o dev, onde dedico uma pasta para cada uma. Essencialmente cada pasta é composta por um arquivos index.jsx e um arquivo de estilo, onde venho utilizando mais stylesComponents. Os demais componentes que só aparecerão e uma página específica, serão criados dentro da pasta da respectiva pasta.
 
+# Funcionamento
+Os dados presentes estão vindo de requisições de uma API que desenvolvi para este trabalho:
 
+    https://apirepositoriocriativo.onrender.com
 
+<h3>Funcionalidades</h3>
 
+A princípio a aplicação permite que usuários façam o registro e login dentro do site para poder acessar funcionalidades privadas, porém <strong>não precisam estar logados para ver os desenhos</strong> 
 
-------*Serviços da API*----------------------------------------------------------------------------------------------------------
+- Curtir e descurtir qualquer desenho;
+- Fazer comentários em qualquer desenho com uma quantidade de caracteres e de comentários ainda não definidos pra cada usuário, o mesmo também pode excluir os comentários feitos anteriormente por ele;
+- Realizar o registro no site, sendo necessário apenas um nome de usuário, email e senha;
+- Login com informações passadas no registro: nome de usuário e senha;
 
-url: 
-Esta aplicação está consumindo uma API dedicada para este projeto provendo dados direto das collections em meu cluster mongoDB, com ela é possível:
+<h3>Uso do Contexto</h3>
+No arquivo raiz do projeto estão a parte do roteamento da aplicação, onde é possível inserir contextos que
+englobam todas as rotas provendo dados para todos os componentes.
+Um deles é o authProvider que monitora os status de autenticação, se há um usuário logado ou não: 
 
-    *Obter dados completos de todas as ilustrações;
-    *Dados seletivos a partir de parâmetros na url para retornar desenhos de uma seção específca;
+```
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  
+    <React.StrictMode>
+      <BrowserRouter>
+      <GlobalStyles/>
+      <AuthProvider>
+          <Header/>
+            <Routes>
+              <Route path = "/" element = {<Home />} />
+              <Route path = "/Ilustracoes" element = {
+                <DrawProvider>
+                  <Ilustracoes/>
+                </DrawProvider>
+              } />
+              <Route path = "/Sobremim" element = {<Sobremim />} />
+              <Route path = "/Login" element = {<LoginPage />} />
+              <Route path = "/Cadastro" element = { <Cadastro/> } />
+            </Routes>
+            
+          <Footer/>
+        </AuthProvider>
+      </BrowserRouter>
+    </React.StrictMode>
+);
+```
+O authProovider possui variáveis de estado sobre as permissões de usuário, na qual estão disponíveis em qualquer parte da aplicação. 
 
+Também possui algumas funcões como a de login, na qual dado um formulário preenchido pelo usuário, é feita uma requisição com esses dados para validação:
 
-Lista de rotas da API: 
-    */getdraws* => irá retornar todos os desenhos
-    */getdraws/:section* => Irá retornar todos os desenhos de uma determinada sessão, sendo elas:
-        -The Last Of Us
-        -One Piece
-        -Hero
-        -Manga
-                                                    *É preciso inserir algum desses dados acima
+```
+    fetch(`${_default.urlApi}/login`, {
+            method: 'POST', 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userName: name,
+                userPass: pass
+            })
+        })
+```
 
-
-
-
-*Como os dados da requisição são retornados*:
+Caso a requisição seja bem sucedida será retornado uma resposta em json com o seguinte formato: 
+````
     {
-        message: "<mensagem vinda do servidor>"
-        isSucess: true || false 
+        isSucess: true,
+        message: <mensagem da requisição>,
+        token: <hash complexa>
     }
+````
 
-----*CONTEXT API*---------------------------------------------------------------------------------------------------------------
-        Todas as rotas estão dentro de um contexto, que através de um *estado* está atualizando o status de autenticação,
-        se há a existência de um usuário ou não. O sistema se comporta de maneira diferente quando um usuário está logado e
-        devidamente autenticado, a cada login ele recebe um token jwt, na qual cada usuário tem o seu salvo no localStorage do navegador, então uma vez logado caso o token não expire um não haja a remoção do mesmo, o usuário permanece logado. 
-
-        Funcionalidades privadas são disponibilizadas para usuários: 
-            -Até 3 comentários em posts;
-            -Excluir Comentários;
-            -Curtir/Descurtir posts;
-
-----*Styled-Components*----------------------------------------------------------------------------------------------------------
-    Crio os componentes através desta lib, onde os que são constantemente utlizados ficam na pasta
-    "Components". Caso haja necessidade de um componente em um rota específica, é colocado juntamente na pasta
-    "pages", na respectiva pasta onde é necessário usar este componente. Além disso estes componentes são reutilizávels, dado
-    que podemos inserir parâmetros nas props css;
+Token: Quando o usuário é validado pela API, a mesma me retorna um token JWT único para usuário, essa exclusividade se da pelo fato do token ser gerado a partir de três elementos, o header, o payload e uma secret que nada mais é do que uma hash complexa feita por mim e que só eu tenho acesso, na qual não transito este dado por ser um dado sensível. Esta secret funciona como uma assinatura, na qual todos os tokens a possui em sua comoposição. O token gara
 
 
-----*React-Router-Dom*-----------------------------------------------------------------------------------------------------------
-    Estou utilizando a versão 6, seguindo exatamente o padrão de utilização mostrada na documentação;
-    Direcionando o usuário com o Navigate();
+# Autores
+[<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>João Souza</sub>](https://github.com/JoaoSouz4)
 
 
 
@@ -87,8 +114,14 @@ Lista de rotas da API:
 
 
 
-BreakPoints: 
-    max-width(320px);
+                                              
+
+
+
+
+
+
+
 
 
 
