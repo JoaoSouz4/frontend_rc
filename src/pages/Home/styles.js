@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SectionApresentation = styled.section`
+export const SectionApresentation = styled.section`
     width: 100vw;
     height: 100vh;
     padding: 3rem;
@@ -29,4 +29,31 @@ const SectionApresentation = styled.section`
         }
     }
 `
-export default SectionApresentation ;
+
+export const Banner = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 30%;
+    max-width: ${(props) => {return props.maxWidth}};
+
+    img{
+        object-fit: cover;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 800px){
+        display: none;
+    }
+`
+
+export const WrapperButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    @media screen and (max-width: 400px){
+        flex-direction: column;
+    }
+`

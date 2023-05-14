@@ -1,19 +1,45 @@
+# Introdução ao Projeto:
+
 Olá, aqui é o dev Nerdola que fez este projeto full stack, e ponha "full stack" nisso,
-pois também sou o cliente que froneceu todos os desenhos e o conteúdo(ksksk);
+pois também sou o cliente que forneceu todos os desenhos e conteúdos presentes;
+
+Este projeto tem como objetivo divulgar meus trabalhos artísticos e mais que isso aplicar 
+meu conhecimento como desevolvedor web em um projeto que se seja mais próximo da realidade;
+
+O site está em constante evolução visto que o seu ritmo de desenvolvimento está diretamente ligado 
+aos meus estudos e o meu "amadurecimento" como programador. Comecei este projeto em agosto de 2022, quando decidi estudar desenvolvimento web. A primeria versão se tratava de arquivos Html separados, cada um sendo uma página da aplicação ( plenamente eu chamava isso de rotas ), com seus respectivos arquivos css. Na época não havia javaScript, o site era estático, cumpria apenas o propósito de mostrar os meus desenhos. 
+
+Hoje, o projeto está bem próximo de como imaginei inicialmente, com muito estudo venho construindo e melhorando
+constantemente cada trecho de códico, ainda está em produção, mas com um nível de entrega minimamente aceitável.
 
 
-Este projeto é para divulgar meus trabalhos artísticos e mais que isso aplicar 
-meu conhecimento como desevolvedor web em um projeto que se assimile ao da realidade;
+# Tecnologias Usadas no front-end:
+<ul>
+    <li>React</li>
+      <li>Javascript</li>
+       <li>Styled Component</li>
+</ul>
 
-irei introduzir as tomadas de decisões, estrutura do projeto e tecnologias que utilizei.
+# Estrutura do Projeto
+<ul>
+    <li>React</li>
+      <li>Javascript</li>
+       <li>Styled Component</li>
+</ul>
+
+
+
+
 
 
 ------*Serviços da API*----------------------------------------------------------------------------------------------------------
-Esta aplicação está consumindo minha API que prover dados direto do meu cluster mongoDB: 
-    *Dados completos das ilustrações;
-    *Dados seletivos a partir de parâmetros na url para retornar desenhos de uma seção especfíca;
 
-Além disso a API conta com sistema de cadastro e login, com camadas de autênticação e debug com middlewares entre as rotas;
+url: 
+Esta aplicação está consumindo uma API dedicada para este projeto provendo dados direto das collections em meu cluster mongoDB, com ela é possível:
+
+    *Obter dados completos de todas as ilustrações;
+    *Dados seletivos a partir de parâmetros na url para retornar desenhos de uma seção específca;
+
 
 Lista de rotas da API: 
     */getdraws* => irá retornar todos os desenhos

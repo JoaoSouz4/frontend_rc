@@ -69,7 +69,7 @@ export const DrawPost = () =>{
                             refAlert.current.style.display = 'none'
                             setRequestIsSucess("");
                             setRequestMessage("");
-                        }, 3000);
+                        }, 2000);
                     })
             }
             return
@@ -80,7 +80,7 @@ export const DrawPost = () =>{
             refAlert.current.style.display = 'none'
             setRequestIsSucess("");
             setRequestMessage("");
-        }, 3000);
+        }, 2000);
         
     }
 
@@ -106,7 +106,7 @@ export const DrawPost = () =>{
                 refAlert.current.style.display = 'none'
                 setRequestIsSucess("");
                 setRequestMessage("");
-            }, 3000);
+            }, 2000);
         }) 
     }
 

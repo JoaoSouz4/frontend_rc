@@ -6,18 +6,15 @@ import { useNavigate } from 'react-router-dom';
 //Components
 import Title from '../../components/Title';
 import Button from '../../components/Button/button';
-import SectionApresentation from './SectionApresentation';
-import SocialMedias from './SocialMedia/SocialMedias';
-import Banner from './Banner';
 import Wrapper from '../../components/div';
-import WrapperButton from './WrapperButton';
+import { WrapperButton, Banner, SectionApresentation } from './styles.js';
+import SocialMedias from './SocialMedia'
 
 
 export const Home = () => {
 
     const navigate = useNavigate();
     return(
-        <>  
             <SectionApresentation>
 
                 <Wrapper flexDirection = "row" jc = 'space-around' width = '100%' flexWrap = 'wrap-reverse'>
@@ -41,9 +38,5 @@ export const Home = () => {
                 <SocialMedias />
                 <span/>
             </SectionApresentation>
-
-            {/* <MainContainer>
-            </MainContainer> */}
-        </>
     )
 }

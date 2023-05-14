@@ -15,7 +15,7 @@ import Title from '../../components/Title';
 import Input from '../../components/input';
 import Button from '../../components/Button/button';
 import Wrapper from '../../components/div';
-import Section from '../../components/Section'
+import MainContainer from '../../components/mainContainer'
 import FormComponent from '../../components/FormComponent';
 import WrapperAlert from '../../components/WrapperAlert';
 import Alert from '../../components/Alert';
@@ -80,9 +80,9 @@ export default function Cadastro() {
     }
 
     return (
-        <Section alignItems = 'center'>
+        <MainContainer>
 
-            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+            <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
                 <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
             </WrapperAlert>
 
@@ -167,6 +167,6 @@ export default function Cadastro() {
                 </Button>
                 <Link className = {styles.link} to = {"/Login"}>Já possui uma conta?</Link>
             </FormComponent>
-        </Section>
+        </MainContainer>
     )
 }

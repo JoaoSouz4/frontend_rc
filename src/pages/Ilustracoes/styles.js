@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ContainerWrapperSlide = styled.div`
+export const ContainerWrapperSlide = styled.div`
 
     display: flex;
     justify-content: center;
@@ -19,5 +19,3 @@ const ContainerWrapperSlide = styled.div`
       border-radius: 15px;
     }
 `
-
-export default ContainerWrapperSlide;

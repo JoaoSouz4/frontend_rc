@@ -5,7 +5,7 @@ import Title from '../../../components/Title';
 import { DrawPost } from '../DrawPost';
 import WrapperSlide from '../../../components/WrapperSlider';
 import Section from '../../../components/Section';
-import ContainerWrapperSlide from '../WrapperContainerSlide';
+import { ContainerWrapperSlide } from '../styles';
 
 export const PostContext = createContext();
 export const SliderComponent = (props) => {
