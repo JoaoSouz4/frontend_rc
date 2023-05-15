@@ -43,7 +43,7 @@ A princípio a aplicação permite que usuários façam o registro e login dentr
 - Realizar o registro no site, sendo necessário apenas um nome de usuário, email e senha;
 - Login com informações passadas no registro: nome de usuário e senha;
 
-<h3>Uso do Contexto</h3>
+<h3>Contexto de Autenticação</h3>
 No arquivo raiz do projeto estão a parte do roteamento da aplicação, onde é possível inserir contextos que
 englobam todas as rotas provendo dados para todos os componentes.
 Um deles é o authProvider que monitora os status de autenticação, se há um usuário logado ou não: 
@@ -75,7 +75,7 @@ root.render(
     </React.StrictMode>
 );
 ```
-O authProovider possui variáveis de estado sobre as permissões de usuário, na qual estão disponíveis em qualquer parte da aplicação. 
+O authProovider possui variáveis de estado sobre as permissões de usuário, na qual estão disponíveis em qualquer parte da aplicação.
 
 Também possui algumas funcões como a de login, na qual dado um formulário preenchido pelo usuário, é feita uma requisição com esses dados para validação:
 
@@ -101,11 +101,37 @@ Caso a requisição seja bem sucedida será retornado uma resposta em json com o
     }
 ````
 
-Token: Quando o usuário é validado pela API, a mesma me retorna um token JWT único para usuário, essa exclusividade se da pelo fato do token ser gerado a partir de três elementos, o header, o payload e uma secret que nada mais é do que uma hash complexa feita por mim e que só eu tenho acesso, na qual não transito este dado por ser um dado sensível. Esta secret funciona como uma assinatura, na qual todos os tokens a possui em sua comoposição. O token gara
+Token: Quando o usuário é validado pela API, a mesma retorna um token JWT único para o usuário, assinado com uma secret única que somado aos dados do paylaod e header garantem um token único para cada usuário. Assim que os dados chegam, o token é salvo no localStorage até que o usuário decida sair da sua conta.
+
+Com o uso do Hook <strong>useEffect</strong> uma função é executada toda vez que qualquer página da aplicação é carregada, esta função
+faz uma busca no localStorage do navegador, procurando pela existência de um token:
+
+````
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        const tokenP = JSON.parse(token)
+
+        if(token){
+            fetch( `${_default.urlApi}/auth`,{
+                method: "GET",
+                headers: {
+                    'Authorization': 'Bearer ' + tokenP
+                }
+            }).then(res => res.json()).then(res => {
+                setAuthenticated(true);
+                setUserLog(res.authData);
+            });
+        }
+        setLoading(false);
+    }, [])
+````
+
+Caso exista um token, uma requisição é feita para validar este token como uma camada de segurança, afim de verficar se este token foi devidamente construído com a secret da Api. No retorno se bem sucedida o usuário se mantém logado no site.
 
 
-# Autores
-[<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>João Souza</sub>](https://github.com/JoaoSouz4)
+
+
+
 
 
 
