@@ -2,7 +2,7 @@ import './styles.css';
 import { useState, useContext, useEffect, useRef, createContext } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { Context } from '../../../context/authContext';
-import _default from '../../../config/default';
+import _default from '../../../services/default';
 import styles from './moreDetails.module.css';
 import Commentaries from '../Commentary';
 import Wrapper from '../../../components/div';

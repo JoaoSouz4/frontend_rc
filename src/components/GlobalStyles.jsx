@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
         --color-secundary: rgb(8, 216, 171);
         --color-black: #393939;
         --color-gray: #d0d0d0;
-    }
+    }  
 
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;

@@ -1,14 +1,15 @@
-import './styles.css'
+
+import { FooterContainer, Label } from './styles'
 export const Footer = () => {
     return(
-        <footer>
+        <FooterContainer>
             <div className="footer-content">
                     <div className='credits'>
-                        <label id='name'>Meu Repositório Criativo &copy; </label>
-                        <label id='finesh'>v1.0.1</label>
+                        <Label fontSize = '1.3rem'>Meu Repositório Criativo &copy; </Label>
+                        <Label >v1.1.2</Label>
                     </div>
-                    <label id='author'>Desenvolvido por: <strong>João Souza</strong></label>
+                    <Label fontSize = '1.1rem'>Desenvolvido por: <strong>João Souza</strong></Label>
             </div>
-        </footer>
+        </FooterContainer>
     )
 }

@@ -16,10 +16,10 @@ import Input from '../../components/input';
 import Button from '../../components/Button/button';
 import Title from '../../components/Title';
 import Wrapper from '../../components/div';
-import Section from '../../components/Section'
 import FormComponent from '../../components/FormComponent';
 import WrapperAlert from '../../components/WrapperAlert';
 import Alert from '../../components/Alert';
+import MainContainer from '../../components/mainContainer';
 
 function LoginPage(){
 
@@ -30,7 +30,7 @@ function LoginPage(){
     const { authenticated, handleLogin, requestIsSucess, requestMessage, refAlert, refSubmit } = useContext(Context);
 
     return (
-        <Section alignItems = 'center'>
+        <MainContainer>
 
             <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
                 <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
@@ -102,7 +102,7 @@ function LoginPage(){
                     <Link className = {styles.link} to = {'/Cadastro'}>Não tenho uma conta.</Link>
                 </Wrapper>
            </FormComponent>
-        </Section>
+        </MainContainer>
     )
 }
 export default LoginPage;

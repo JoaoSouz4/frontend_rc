@@ -2,7 +2,8 @@ import React from "react";
 import { createContext, useState, useEffect } from "react";
 import { Spinner } from "reactstrap";
 import Wrapper from "../components/div";
-import _default from "../config/default";
+import _default from "../services/default";
+import axios from "axios";
 
 export const DrawContext = createContext();
 
@@ -14,7 +15,6 @@ export const DrawContext = createContext();
     const [ loading, setLoading ] = useState(true);
 
     useEffect(()=>{
-
         async function getDatas(){
             await fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
                 .then(res => res.json())
@@ -35,7 +35,7 @@ export const DrawContext = createContext();
                     setLoading(false);
                 });
             }
-        getDatas()
+        getDatas();
     }, []);
 
     if (loading) {

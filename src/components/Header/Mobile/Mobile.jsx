@@ -27,7 +27,7 @@ const HeaderMenuMobile = styled.nav`
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
     animation-timing-function: ease ease-in-out;
-    background-color: #f6f6f6;
+    background-color: var(--color-black);
     box-shadow: 0px 4px 10px #000000aa;
     z-index: 50;
 
@@ -51,7 +51,7 @@ const HeaderMenuMobile = styled.nav`
         width: 100%;
         padding: 1rem;
         gap: 2rem;
-        color: #2d2c2c;
+        color: white;
     }
 `
 

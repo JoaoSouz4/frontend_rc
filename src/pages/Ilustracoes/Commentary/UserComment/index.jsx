@@ -1,5 +1,5 @@
 import Wrapper from "../../../../components/div";
-import _default from "../../../../config/default";
+import _default from "../../../../services/default";
 import styles from './UserComment.module.css';
 import { useContext, useRef } from "react";
 import { CommentContext } from "../../MoreDetails";

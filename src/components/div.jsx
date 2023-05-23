@@ -21,6 +21,7 @@ const Wrapper = styled.div`
     flex-wrap: ${(props) => { return props.flexWrap}};
     color: ${(props) => { return props.color}};
     z-index: ${(props) => { return props.z}};
+    background-color: ${(props) => {return props.bg}};
     svg{
         font-size: 1.9rem;
         cursor: pointer;

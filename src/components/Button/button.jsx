@@ -6,25 +6,29 @@ const Button = styled.button`
     justify-content: center;
     width: ${(props) => {return props.width}};
     border-radius: 0.3rem;
-    outline: none;
-    border: none;
-    background: transparent;
+    border-radius: 0.8rem;
+    background: linear-gradient(
+            to right,
+            var(--color-primary),
+            var(--color-secundary) 
+        );
     border: 1px solid var(--color-secundary);
-    color: var(--color-secundary);
+    color: white;
     font-weight: bold;
     font-size: 1rem;
     padding: 1rem;
 
     &:hover{
        
-        background: linear-gradient(
-            to right,
-            var(--color-primary),
-            var(--color-secundary) 
-        );
-        color: white;
+        background: transparent;
+        
+        color: var(--color-secundary);
         cursor: pointer;
         transition: 0.3s ease;
+    }
+
+    &:disabled{
+        opacity: 50%;
     }
 `
 export default Button

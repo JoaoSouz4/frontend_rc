@@ -1,0 +1,11 @@
+.icon{
+    color: transparent;
+    font-size: 10rem;
+}
+
+.btn{
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-dark);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}

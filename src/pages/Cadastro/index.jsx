@@ -1,11 +1,8 @@
-import _default from '../../config/default';
-
-//Css
-import styles from './cadastro.module.css'
+import _default from '../../services/default';
 
 //Hooks
 import { useState, useRef, useContext} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Context } from '../../context/authContext';
 //Icons
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -14,28 +11,33 @@ import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEye
 import Title from '../../components/Title';
 import Input from '../../components/input';
 import Button from '../../components/Button/button';
-import Wrapper from '../../components/div';
 import MainContainer from '../../components/mainContainer'
 import FormComponent from '../../components/FormComponent';
 import WrapperAlert from '../../components/WrapperAlert';
 import Alert from '../../components/Alert';
+import WrapperForm from '../../components/WrapperForm';
+import { SeePass } from './styles';
+
 
 export default function Cadastro() {
 
-    const { refAlert, refSubmit, setRequestIsSucess, setRequestMessage, requestIsSucess, requestMessage} = useContext(Context);
-    const [userName, setUserName] = useState();
-    const [userEmail, setUserEmail] = useState();
-    const [userPass, setUserPass] = useState();
-    const [userConfirmPass, setUserConfirmPass] = useState();
-
+    const { refAlert, refSubmit, setRequestAlert, requestAlert} = useContext(Context);
     const [ seePass, setSeePass] = useState(true);
+    const [ form, setForm] = useState(
+        {
+            name: '',
+            email: '',
+            pass: '',
+            cPass: ''
+        }
+    )
     const refPass = useRef();
     const refCPass = useRef();
-    const navigate = useNavigate()
 
-    const handleRegister = (e,name, email, pass, cPass) => {
-
+    const handleRegister = (e, form) => {
         e.preventDefault();
+
+        const { name, email, pass, cPass } = form;
 
         fetch(`${_default.urlApi}/register`,{
             method: "POST",
@@ -53,28 +55,24 @@ export default function Cadastro() {
         .then( (resp) => {
 
             if(!resp.isSucess){
-                setRequestIsSucess(resp.isSucess);
-                setRequestMessage(resp.message);
                 refSubmit.current.disabled = false;
+                setRequestAlert({isSucess: resp.isSucess, message: resp.message});
 
-                setTimeout(()=> {
+                return setTimeout(()=> {
                     refAlert.current.style.display = 'none'
-                    setRequestMessage("");
-                    setRequestIsSucess("");
-                }, 4000);
-                return
-            } else {
-
-                setRequestIsSucess(resp.isSucess);
-                setRequestMessage(resp.message);
-                refSubmit.current.disabled = false;
-                setTimeout(()=> {
-                    refAlert.current.style.display = 'none'
-                    setRequestMessage("");
-                    setRequestIsSucess("");
-                }, 2000);
-                window.location.href = "/"
+                    setRequestAlert({isSucess: false, message: null});
+                }, 4000); 
             }
+                
+            setRequestAlert({isSucess: resp.isSucess, message: resp.message});
+            refSubmit.current.disabled = false;
+                
+            setTimeout(()=> {
+                refAlert.current.style.display = 'none'
+                setRequestAlert({isSucess: false, message: null});
+            }, 2000);
+
+            window.location.href = "/"
         }
         )
     }
@@ -82,90 +80,103 @@ export default function Cadastro() {
     return (
         <MainContainer>
 
-            <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
-                <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+            <WrapperAlert ref = {refAlert}>
+                <Alert 
+                    isSucess = {requestAlert.isSucess} 
+                    message = {requestAlert.message}
+                />
             </WrapperAlert>
 
             <FormComponent>
-            <Title color = 'var(--color-secundary)' size = '1.8rem' align = 'center'>Cadastro de Usuário</Title>
-                <Wrapper flexDirection = 'column' width = '100%'>
-                    <label><AiOutlineUser/>Nome de usuário</label>
-                    <Input
-                        type = "text" 
-                        placeholder = "Crie um nome de usuário"
-                        onChange = {(e) => setUserName(e.target.value)}
-                    />
-                </Wrapper>
+                <Title color = 'var(--color-secundary)' size = '1.8rem' align = 'center'>Cadastro de Usuário</Title>
 
-                <Wrapper flexDirection = 'column' width = '100%'>
-                    <label><AiOutlineMail/>Email</label>
-                    <Input 
-                        type = "email" 
-                        placeholder = "Insira seu melhor email"
-                        onChange = { (e) => setUserEmail(e.target.value)}
-                        width = '100%'
+                    <WrapperForm>
+                        <label>
+                            <AiOutlineUser/>
+                            Nome de usuário
+                        </label>
+
+                        <Input
+                            type = "text" 
+                            placeholder = "Crie um nome de usuário"
+                            onChange = {(e) => setForm( { ...form, name: e.target.value})}
                         />
-                </Wrapper>
+                    </WrapperForm>
 
-                <Wrapper flexDirection = 'column' width = '100%'>
-                    <label className = {styles.seePassArea}>
-                        <div className = {styles.div}>
-                            <AiOutlineLock/>
-                            Crie uma senha
-                        </div>
+                    <WrapperForm>
+                        <label>
+                            <AiOutlineMail/>
+                            Email
+                        </label>
+                        <Input 
+                            type = "email" 
+                            placeholder = "Insira seu melhor email"
+                            onChange = {(e) => setForm( { ...form, email: e.target.value})}
+                            width = '100%'
+                        />
+                    </WrapperForm>
 
-                        {!seePass ? 
-                            <AiOutlineEyeInvisible 
-                                className = {styles.eyeOpen}
-                                onClick={() => {
-                                    setSeePass(later => !later);
-                                    refPass.current.type = "text"
-                                    refCPass.current.type = "text"
-                                }}
-                            /> :
-                            <AiOutlineEye
-                                className = {styles.eyeClose}
-                                onClick={() => {
-                                    setSeePass(later => !later)
-                                    refPass.current.type = "password"
-                                    refCPass.current.type = "password"
-                                }}
-                            />
+                    <WrapperForm position = 'relative'>
+                        <label>
+                            <div>
+                                <AiOutlineLock/>
+                                Crie uma senha
+                            </div>
+                        
+                            <SeePass>
+                                {!seePass ? 
+                                        
+                                    <AiOutlineEyeInvisible 
+                                        onClick={() => {
+                                            setSeePass(later => !later);
+                                            refPass.current.type = "text"
+                                            refCPass.current.type = "text"
+                                        }}
+                                    /> 
+                                :
+                                    <AiOutlineEye
+                                        onClick={() => {
+                                            setSeePass(later => !later)
+                                            refPass.current.type = "password"
+                                            refCPass.current.type = "password"
+                                            }}
+                                        />
+                                    }
+                            </SeePass>
+                        </label>
+                        
+                        <Input
+                            ref = {refPass} 
+                            type = "password" 
+                            placeholder = "crie uma senha"
+                            onChange = {(e) => setForm( { ...form, pass: e.target.value})}
+                        />
+                    </WrapperForm>
+
+                    <WrapperForm>
+                        <label><AiOutlineLock/>Confirmar senha</label>
+                        <Input
+                            ref = {refCPass}
+                            type="password" 
+                            placeholder="Reescreva a senha criada"
+                            onChange = {(e) => setForm( { ...form, cPass: e.target.value})}
+                        />
+                    </WrapperForm>
+
+                    <Button
+                        ref = {refSubmit}
+                        type="submit"
+                        width = '100%'
+                        onClick={ 
+                            (e) => {
+                                refSubmit.current.disabled = true;
+                                refAlert.current.style.display = 'flex';
+                                handleRegister(e, form)
+                            }
                         }
-        
-                    </label>
-                    <Input
-                        ref = {refPass} 
-                        type = "password" 
-                        placeholder = "crie uma senha"
-                        onChange = { (e) => setUserPass(e.target.value)}
-                    />
-                </Wrapper>
-
-                <Wrapper flexDirection = 'column' width = '100%'>
-                    <label><AiOutlineLock/>Confirmar senha</label>
-                    <Input
-                        ref = {refCPass}
-                        type="password" 
-                        placeholder="Reescreva a senha criada"
-                        onChange = { (e) => setUserConfirmPass(e.target.value)}
-                    />
-                </Wrapper>
-
-                <Button
-                    ref = {refSubmit}
-                    type="submit"
-                    width = '100%'
-                    onClick={ 
-                        (e) => {
-                            refSubmit.current.disabled = true;
-                            refAlert.current.style.display = 'flex';
-                            handleRegister(e,userName, userEmail, userPass, userConfirmPass)
-                        }
-                    }
                     >Cadastrar
-                </Button>
-                <Link className = {styles.link} to = {"/Login"}>Já possui uma conta?</Link>
+                    </Button>
+                    <Link to = {"/Login"}>Já possui uma conta?</Link>
             </FormComponent>
         </MainContainer>
     )

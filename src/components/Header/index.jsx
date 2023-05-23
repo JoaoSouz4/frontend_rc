@@ -1,32 +1,31 @@
-
-import styles from './Header.module.css'
 import { GrMenu  } from 'react-icons/gr'
 import { AiFillHome } from 'react-icons/ai';
 import { FaUser } from 'react-icons/fa'
 import { HiOutlineInformationCircle } from 'react-icons/hi';
 import { HiPencilAlt } from "react-icons/hi";
 import { IoMdArrowDropleft } from 'react-icons/io'
-import { Link } from 'react-router-dom';
+import { IoExitOutline } from 'react-icons/io5';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState, useContext} from 'react';
-import HeaderMenu from './header';
 import HeaderMenuMobile from './Mobile/Mobile';
 import { Context } from '../../context/authContext';
-import { IoExitOutline } from 'react-icons/io5';
 import { Spinner } from 'reactstrap';
+import {HeaderMenu, ListNav, LogoArea, MenuBarIcon} from './styles'
+import DropDown from './DropDown/DropDown';
+
 
  export const Header = () => {
   const menu = useRef();
+  const navigate = useNavigate();
   const [menuBurguer, setMenuBurguer] = useState(false);
-  const {handleLogout} = useContext(Context);
-  const {userLog, authenticated} = useContext(Context);
+  const {userLog, authenticated, handleLogout} = useContext(Context);
 
   const handleClick = () => {
     if(!menuBurguer){
       menu.current.style.animationName = "open";
-      setMenuBurguer(true);
-      return;
+      return setMenuBurguer(true);
     }
-    if (menuBurguer) return handleClose()
+    return handleClose()
   }
 
   const handleClose = () => {
@@ -37,36 +36,25 @@ import { Spinner } from 'reactstrap';
 
       <>
         <HeaderMenu>
-          <div className='logo-space'>
-            {menuBurguer && <IoMdArrowDropleft onClick={handleClick}/>}
-            {!menuBurguer && <GrMenu className='menu-icon' onClick={handleClick}/>}
+          <LogoArea>
+          <MenuBarIcon>
+            {menuBurguer ?
+              <IoMdArrowDropleft onClick={handleClick}/>
+            :
+              <GrMenu onClick={handleClick}/>
+            }
+            </MenuBarIcon>
             <label>João Souza</label>
-          </div>
+          </LogoArea>
 
-          <ul id='list-nav'>
+          <ListNav>
             <Link to={"/"}>Home</Link>
             <Link to={"/Ilustracoes"}>Ilustrações</Link>
             <Link to={"/Sobremim"}>Sobre o dev</Link>
-          </ul>
-          {
-            authenticated ?
-            <>
-              <div className={styles.userLogoArea}>
-                <span className={styles.label}>
-
-                  {!userLog.userName ? 
-                    <Spinner color = 'secundary' type = 'grow' style = {{height: '0.5rem', width: '0.5rem'}}></Spinner>
-                  :
-                    <span>{userLog.userName}</span>
-                  }
-                  
-                </span>
-                <span className = {styles.exit} onClick = {handleLogout}>Sair</span>
-              </div>
-            </>
-            :
-             <Link className = {styles.loginName} to = {'/Login'}>Login</Link>
-          }
+          </ListNav>
+          
+          <DropDown/>
+          
         </HeaderMenu>
 
 
@@ -80,8 +68,9 @@ import { Spinner } from 'reactstrap';
               authenticated ? 
                 <Link 
                   onClick={() => {
-                    handleClose();
                     handleLogout();
+                    navigate('/')
+                    handleClose();
                   }
                   }
                 ><IoExitOutline/>Sair</Link> 

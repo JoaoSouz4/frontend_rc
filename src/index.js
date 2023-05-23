@@ -16,7 +16,7 @@ import LoginPage from './pages/LoginPage';
 //Contexts
 import { AuthProvider } from './context/authContext';
 import { DrawProvider } from './context/AllDrawtContext';
-import GlobalStyles from './components';
+import GlobalStyles from './components/GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

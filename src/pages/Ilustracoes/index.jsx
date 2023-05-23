@@ -1,5 +1,5 @@
 
-import _default from '../../config/default.js'
+import _default from '../../services/default.js'
 
 //Context
 import { DrawContext } from '../../context/AllDrawtContext.jsx';

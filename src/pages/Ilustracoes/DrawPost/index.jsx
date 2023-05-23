@@ -1,16 +1,16 @@
-import './styles.css'
 import styles from './iconLike.module.css';
-import { AiOutlineHeart,AiFillHeart} from 'react-icons/ai';
+import { AiOutlineHeart,AiFillHeart, AiOutlineComment} from 'react-icons/ai';
+
 import { useContext, useState, useEffect, useRef, createContext} from 'react';
 
 import { PostContext } from '../SliderComponent';
 import { Context } from '../../../context/authContext';
 
-import { FaRegComment } from 'react-icons/fa';
-import _default from '../../../config/default';
+
+import _default from '../../../services/default';
 import ShowLikes from '../showLikes';
 import Wrapper  from '../../../components/div';
-import WrapperFixed from '../../../components/WrapperFixed';
+import { WrapperFixed, DrawPostContainer, InformationsPost, TitleDraw } from './styles';
 import { MoreDetails } from '../MoreDetails';
 import ShowComments from '../ShowComments';
 import Image from '../../../components/Image/Image';
@@ -21,9 +21,8 @@ export const MethodsContext = createContext();
 
 export const DrawPost = () =>{
 
-    const ctx = useContext(PostContext);
-    const { title, font, usersComments, usersLiked, _id, url, data} = ctx;
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
+    const { title, font, usersComments, usersLiked, _id, url, data} = useContext(PostContext)
+    const { authenticated, userLog, requestAlert, setRequestAlert } = useContext(Context);
 
     const refMoreDetails = useRef();
     const refAlert = useRef();
@@ -34,8 +33,8 @@ export const DrawPost = () =>{
 
     useEffect(()=>{
 
-        for( let i in ctx.usersLiked){
-           if(ctx.usersLiked[i]._idUser == userLog.id){
+        for( let i in usersLiked){
+           if(usersLiked[i]._idUser == userLog.id){
             setIsLiked(true);
            }
         }
@@ -61,25 +60,21 @@ export const DrawPost = () =>{
                 })
                     .then( res => res.json())
                     .then( (res) => {
-                        setRequestIsSucess(res.isSucess);
-                        setRequestMessage(res.message);
+                        setRequestAlert({isSucess: res.isSucess, message: res.message});
                         setQtdLikes(res.currentQtdLikes);
                         setIsLiked(true);
                         setTimeout(() => {
                             refAlert.current.style.display = 'none'
-                            setRequestIsSucess("");
-                            setRequestMessage("");
+                            setRequestAlert({ isSucess: false, message: null});
                         }, 2000);
                     })
             }
             return
         }
-        setRequestIsSucess(false);
-        setRequestMessage('Faça o login para curtir os posts.');
+        setRequestAlert({isSucess: false, message: 'Faça o login para curtir os posts'});
         setTimeout(() => {
             refAlert.current.style.display = 'none'
-            setRequestIsSucess("");
-            setRequestMessage("");
+            setRequestAlert({ isSucess: false, message: null});
         }, 2000);
         
     }
@@ -98,14 +93,12 @@ export const DrawPost = () =>{
         })
         .then( res => res.json())
         .then( (res) => {
-            setRequestIsSucess(res.isSucess);
-            setRequestMessage(res.message);
+            setRequestAlert({isSucess: res.isSucess, message: res.message});
             setQtdLikes(res.currentQtdLikes);
             setIsLiked(false);
             setTimeout(() => {
                 refAlert.current.style.display = 'none'
-                setRequestIsSucess("");
-                setRequestMessage("");
+                setRequestAlert({isSucess: false, message: null})
             }, 2000);
         }) 
     }
@@ -121,58 +114,55 @@ export const DrawPost = () =>{
 
     return(
         <>
-        
-        <WrapperAlert ref = {refAlert} position = 'fixed' bottom = '2rem' left = '2rem' alignItems = 'center' jc = 'center'>
-            <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
-        </WrapperAlert>
-        
-        <WrapperFixed ref = {refMoreDetails}>
-            <MethodsContext.Provider value = {{setQtdComments}}>
-                <MoreDetails funcCallback = {handleCloseMoreDetails}></MoreDetails>
-            </MethodsContext.Provider>
-        </WrapperFixed>
+            <WrapperAlert ref = {refAlert} position = 'fixed' bottom = '2rem' left = '2rem' alignItems = 'center' jc = 'center'>
+                <Alert isSucess = {requestAlert.isSucess} message = {requestAlert.message}/>
+            </WrapperAlert>
+            
+            <WrapperFixed ref = {refMoreDetails}>
+                <MethodsContext.Provider value = {{setQtdComments}}>
+                    <MoreDetails funcCallback = {handleCloseMoreDetails}></MoreDetails>
+                </MethodsContext.Provider>
+            </WrapperFixed>
 
-        <div className='container-draw-post'>
-          
-            <Image url = {`${_default.urlApi}/files${url}`} alt = {title} ></Image>
+            <DrawPostContainer>
+                <Image url = {`${_default.urlApi}/files${url}`} alt = {title} ></Image>
 
-            <div className='post-description'>
-                <label className='title'>{title}</label>
-                <label className='font'>{font}</label>
-                <label className='data'>{data}</label>
-            </div>
+                <InformationsPost>
+                    <TitleDraw>{title}</TitleDraw>
+                    <label>{font}</label>
+                    <label>{data}</label>
+                </InformationsPost>
 
-            <Wrapper jc = 'space-around' width = '100%' borderTop = '1px solid var(--color-gray)' padding = '0.3rem'>
+                <Wrapper jc = 'space-around' width = '100%' padding = '0.3rem'>
+                    <Wrapper alignItems = 'center' gap = '0.3rem' height = '100%'>
+                        {!isLiked ? 
+                            <>
+                                <AiOutlineHeart className = {styles.icon} onClick = { () => {
+                                    refAlert.current.style.display = 'flex';
+                                    handleLike();
+                                }}/>
+                                <ShowLikes likes = {qtdLikes}/>
+                            </>
+                        :
+                            <>
+                                <AiFillHeart className = {styles.iconLike} onClick = { () => {
+                                    refAlert.current.style.display = 'flex';
+                                    handleLike();
+                                    }
+                                }/>
+                                <ShowLikes likes = {qtdLikes}/>
+                            </> 
+                        }
+                    </Wrapper>
 
-                <Wrapper alignItems = 'center' gap = '0.3rem' height = '100%'>
-                    {!isLiked ? 
+                    <Wrapper onClick = {handleOpenMoreDetails} alignItems = 'center' gap = '0.3rem'> 
                         <>
-                            <AiOutlineHeart onClick = { () => {
-                                refAlert.current.style.display = 'flex';
-                                handleLike();
-                            }}/>
-                            <ShowLikes likes = {qtdLikes}/>
+                            <AiOutlineComment className = {styles.icon}/>
+                            <ShowComments comments = {qtdComments}/>
                         </>
-                    :
-                        <>
-                            <AiFillHeart className = {styles.iconLike} onClick = { () => {
-                                refAlert.current.style.display = 'flex';
-                                handleLike();
-                                }
-                            }/>
-                            <ShowLikes likes = {qtdLikes}/>
-                        </> 
-                    }
+                    </Wrapper>
                 </Wrapper>
-
-                <Wrapper onClick = {handleOpenMoreDetails} alignItems = 'center' gap = '0.3rem'> 
-                <>
-                    <FaRegComment className = 'option-icon'/>
-                    <ShowComments comments = {qtdComments}/>
-                </>
-                </Wrapper>
-            </Wrapper>
-        </div>
+            </DrawPostContainer>
         </>
     )
 }

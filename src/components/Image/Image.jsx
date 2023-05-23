@@ -6,9 +6,7 @@ import Wrapper from "../div";
 function Image (props){
 
     const [ isComplete, setIsComplete ] = useState(false);
-
     const imgRef = useRef();
-    const wrapperRef = useRef();
 
     useEffect(()=> {
         imgRef.current.style.animationName = 'animation'

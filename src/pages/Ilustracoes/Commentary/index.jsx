@@ -1,5 +1,5 @@
 import styles from './commentary.module.css'
-import _default from '../../../config/default';
+import _default from '../../../services/default';
 import Wrapper from '../../../components/div';
 import { Context } from '../../../context/authContext';
 import { useContext } from 'react';
