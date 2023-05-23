@@ -42,4 +42,23 @@ export const TitleDraw = styled.h4`
     font-size: 1.3rem;
     text-align: center;
     width: 100%;
+    height: 100%;
+`
+export const BoxOption = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 100%;
+    width: 50%;
+`
+
+export const Option = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg{
+        font-size: 1.7rem;
+    }
 `

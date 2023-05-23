@@ -5,7 +5,7 @@ export const FooterContainer = styled.footer`
     color: white;
     font-size: 1.2rem;
     text-align: center;
-    background-color: var(--color-primary);
+    background-color: var(--color-secundary);
     padding: 2rem;
 `
 

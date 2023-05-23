@@ -59,6 +59,8 @@ export const List = styled.ul`
     a{
         color: var(--color-black);
         text-decoration: none;
+
+
     }
 `
 
@@ -71,9 +73,12 @@ export const Item = styled.li`
     padding: 0.5rem;
 
     &:hover{
-        background-color: gray;
+        background-color: #d7d7d7;
+        color: var(--color-black);
         cursor: pointer;
     }
+
+    
 `
 export const ItemDivisor = styled.hr`
     padding: 0;

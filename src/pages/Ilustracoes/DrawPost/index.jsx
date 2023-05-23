@@ -1,21 +1,20 @@
-import styles from './iconLike.module.css';
+import styles from './icon.module.css'
 import { AiOutlineHeart,AiFillHeart, AiOutlineComment} from 'react-icons/ai';
-
 import { useContext, useState, useEffect, useRef, createContext} from 'react';
-
-import { PostContext } from '../SliderComponent';
-import { Context } from '../../../context/authContext';
-
-
-import _default from '../../../services/default';
 import ShowLikes from '../showLikes';
 import Wrapper  from '../../../components/div';
-import { WrapperFixed, DrawPostContainer, InformationsPost, TitleDraw } from './styles';
 import { MoreDetails } from '../MoreDetails';
 import ShowComments from '../ShowComments';
-import Image from '../../../components/Image/Image';
+import ImageDraw from '../../../components/Image/ImgDraw';
 import Alert from '../../../components/Alert';
 import WrapperAlert from '../../../components/WrapperAlert';
+import { Spinner } from 'reactstrap';
+import { WrapperFixed, DrawPostContainer, InformationsPost, TitleDraw, BoxOption, Option } from './styles';
+
+import getToken from '../../../services/getToken';
+import _default from '../../../services/default';
+import { Context } from '../../../context/authContext';
+import { PostContext } from '../SliderComponent';
 
 export const MethodsContext = createContext();
 
@@ -30,6 +29,7 @@ export const DrawPost = () =>{
     const [ qtdLikes, setQtdLikes ] = useState();
     const [qtdComments, setQtdComments] = useState();
     const [isLiked, setIsLiked] = useState(false);
+    const [loadLike, setLoadLike] = useState(false);
 
     useEffect(()=>{
 
@@ -43,66 +43,52 @@ export const DrawPost = () =>{
     }, []);
 
     function handleLike(){
-        
-        const token = localStorage.getItem('token');
-        const tokenP = JSON.parse(token)
+        setLoadLike(true);
+        const token = getToken();
 
         if(authenticated){
-            if(isLiked) {
-                handleDeslike();
-                return
-            } else {
-                fetch(`${_default.urlApi}/likepost/${userLog.id}/${_id}`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + tokenP
-                    }
-                })
-                    .then( res => res.json())
-                    .then( (res) => {
-                        setRequestAlert({isSucess: res.isSucess, message: res.message});
-                        setQtdLikes(res.currentQtdLikes);
-                        setIsLiked(true);
-                        setTimeout(() => {
-                            refAlert.current.style.display = 'none'
-                            setRequestAlert({ isSucess: false, message: null});
-                        }, 2000);
-                    })
-            }
-            return
+            if(isLiked) return handleDeslike();
+            
+            fetch(`${_default.urlApi}/likepost/${userLog.id}/${_id}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then( res => res.json())
+            .then( (res) => {
+                setQtdLikes(res.currentQtdLikes);
+                setIsLiked(true);
+                setLoadLike(false);
+            })
+        } else {
+            setLoadLike(false);
+            refAlert.current.style.display = 'flex'
+            setRequestAlert({isSucess: false, message: 'Faça o login para curtir os posts'});
+            setTimeout(() => {
+                refAlert.current.style.display = 'none'
+                setRequestAlert({ isSucess: false, message: null});
+            }, 2000);
         }
-        setRequestAlert({isSucess: false, message: 'Faça o login para curtir os posts'});
-        setTimeout(() => {
-            refAlert.current.style.display = 'none'
-            setRequestAlert({ isSucess: false, message: null});
-        }, 2000);
-        
     }
 
     function handleDeslike(){
-        refAlert.current.style.display = 'flex';
-
-        const token = localStorage.getItem('token');
-        const tokenP = JSON.parse(token);
+        setLoadLike(true);
+        const token = getToken();
 
         fetch(`${_default.urlApi}/deslikepost/${userLog.id}/${_id}`, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + tokenP
+                'Authorization': 'Bearer ' + token
             }
         })
         .then( res => res.json())
         .then( (res) => {
-            setRequestAlert({isSucess: res.isSucess, message: res.message});
             setQtdLikes(res.currentQtdLikes);
             setIsLiked(false);
-            setTimeout(() => {
-                refAlert.current.style.display = 'none'
-                setRequestAlert({isSucess: false, message: null})
-            }, 2000);
+            setLoadLike(false);
         }) 
     }
-
 
     function handleOpenMoreDetails(){
         refMoreDetails.current.style.display = 'flex';
@@ -125,7 +111,7 @@ export const DrawPost = () =>{
             </WrapperFixed>
 
             <DrawPostContainer>
-                <Image url = {`${_default.urlApi}/files${url}`} alt = {title} ></Image>
+                <ImageDraw url = {`${_default.urlApi}/files${url}`} alt = {title} ></ImageDraw>
 
                 <InformationsPost>
                     <TitleDraw>{title}</TitleDraw>
@@ -134,33 +120,46 @@ export const DrawPost = () =>{
                 </InformationsPost>
 
                 <Wrapper jc = 'space-around' width = '100%' padding = '0.3rem'>
-                    <Wrapper alignItems = 'center' gap = '0.3rem' height = '100%'>
-                        {!isLiked ? 
+                    <BoxOption>
+                        <Option>
+                        {
+                        
+                        !isLiked ? 
                             <>
-                                <AiOutlineHeart className = {styles.icon} onClick = { () => {
-                                    refAlert.current.style.display = 'flex';
-                                    handleLike();
-                                }}/>
-                                <ShowLikes likes = {qtdLikes}/>
+                                {loadLike ?
+                                    <>
+                                        <Spinner color = 'secundary' type = 'grow' style = {{height: '1rem', width: '1rem'}}/>
+                                    </>
+                                :
+                                    <>
+                                        <AiOutlineHeart onClick = {handleLike}/>
+                                        <ShowLikes likes = {qtdLikes}/> 
+                                    </>
+                                }
                             </>
                         :
                             <>
-                                <AiFillHeart className = {styles.iconLike} onClick = { () => {
-                                    refAlert.current.style.display = 'flex';
-                                    handleLike();
-                                    }
-                                }/>
-                                <ShowLikes likes = {qtdLikes}/>
+                                {loadLike ?
+                                    <>
+                                        <Spinner color = 'secundary' type = 'grow' style = {{height: '1rem', width: '1rem'}}/>
+                                    </>
+                                :
+                                    <>
+                                        <AiFillHeart className = {styles.icon} onClick = {handleLike}/>
+                                        <ShowLikes likes = {qtdLikes}/>
+                                    </>
+                                }
                             </> 
                         }
-                    </Wrapper>
+                        </Option>
+                    </BoxOption>
 
-                    <Wrapper onClick = {handleOpenMoreDetails} alignItems = 'center' gap = '0.3rem'> 
+                    <BoxOption onClick = {handleOpenMoreDetails}> 
                         <>
-                            <AiOutlineComment className = {styles.icon}/>
+                            <AiOutlineComment/>
                             <ShowComments comments = {qtdComments}/>
                         </>
-                    </Wrapper>
+                    </BoxOption>
                 </Wrapper>
             </DrawPostContainer>
         </>

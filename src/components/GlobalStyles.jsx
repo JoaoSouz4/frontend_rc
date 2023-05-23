@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
         --color-primary:rgb(0, 255, 149);
         --color-secundary: rgb(8, 216, 171);
         --color-black: #393939;
-        --color-gray: #d0d0d0;
+        --color-gray: #a8a8a8;
     }  
 
     body {

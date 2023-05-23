@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Spinner } from "reactstrap";
-import './styles.css';
 import Wrapper from "../div";
+import { Image } from "./syles";
 
-function Image (props){
+function ImageDraw (props){
 
     const [ isComplete, setIsComplete ] = useState(false);
     const imgRef = useRef();
@@ -14,7 +14,7 @@ function Image (props){
 
     return(
         <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' position = 'relative'>
-            <img
+            <Image
                 className = 'imgPost'
                 ref = {imgRef}
                 src= {props.url} 
@@ -37,4 +37,4 @@ function Image (props){
     
 }
 
-export default Image;
+export default ImageDraw;

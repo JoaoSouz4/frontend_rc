@@ -5,12 +5,12 @@ import { HiOutlineInformationCircle } from 'react-icons/hi';
 import { HiPencilAlt } from "react-icons/hi";
 import { IoMdArrowDropleft } from 'react-icons/io'
 import { IoExitOutline } from 'react-icons/io5';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState, useContext} from 'react';
-import HeaderMenuMobile from './Mobile/Mobile';
 import { Context } from '../../context/authContext';
 import { Spinner } from 'reactstrap';
-import {HeaderMenu, ListNav, LogoArea, MenuBarIcon} from './styles'
+import {HeaderMenu, ListNav, LogoArea, MenuBarIcon, HeaderMenuMobile} from './styles'
 import DropDown from './DropDown/DropDown';
 
 

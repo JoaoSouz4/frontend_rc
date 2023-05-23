@@ -17,7 +17,7 @@ export const SectionApresentation = styled.section`
     span{ 
         position: absolute;
         bottom: 0;
-        border-bottom: 6rem solid var(--color-primary);
+        border-bottom: 6rem solid var(--color-secundary);
         border-left: 100vw solid transparent;
         z-index: -1;
         width: 100%;

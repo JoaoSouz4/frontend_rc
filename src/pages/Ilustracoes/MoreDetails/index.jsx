@@ -11,12 +11,13 @@ import { PostContext } from '../SliderComponent';
 import { MethodsContext } from '../DrawPost';
 import Alert from '../../../components/Alert'
 import WrapperAlert from '../../../components/WrapperAlert';
+import getToken from '../../../services/getToken';
 
 export const CommentContext = createContext();
 
 export const MoreDetails = (props) => {
     
-    const { authenticated, userLog, requestIsSucess, requestMessage, setRequestIsSucess, setRequestMessage } = useContext(Context);
+    const { authenticated, userLog, requestAlert, setRequestAlert } = useContext(Context);
     const ctx = useContext(PostContext);
 
     const { setQtdComments } = useContext(MethodsContext);
@@ -31,39 +32,32 @@ export const MoreDetails = (props) => {
     useEffect( () => setAllComments(ctx.usersComments), [])
     
     function handleComment(){
-        
+
+        const token = getToken();
         refAlert.current.style.display = 'flex';
 
         if(!authenticated) {
-            setRequestIsSucess(false);
-            setRequestMessage('Faça o login para enviar comentários');
-
-            setTimeout(() => {
+            setRequestAlert( { isSucess: false, message: 'Faça o login para poder comentar'})
+            return setTimeout(() => {
                 refAlert.current.style.display = 'none';
-                setRequestIsSucess('');
-                setRequestMessage('');
+                setRequestAlert( { isSucess: false, message: null})
             }, 2000)
-            return
         }
-        const token = localStorage.getItem('token');
-        const tokenP = JSON.parse(token);
 
         fetch(`${_default.urlApi}/insert/${userLog.id}/${ctx._id}/${comment}`, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + tokenP
+                'Authorization': 'Bearer ' + token
             },
         }).then(res => res.json()).then( (res) => {
-            setRequestIsSucess(res.isSucess);
-            setRequestMessage(res.message);
+            setRequestAlert( { isSucess: res.isSucess , message: 'Obrigado pelo comentário!'})
             setQtdComments(res.currentComments.length)
             setAllComments(res.currentComments);
             inputCommentRef.current.value = "";
 
             setTimeout(() => {
                 refAlert.current.style.display = 'none';
-                setRequestIsSucess('');
-                setRequestMessage('');
+                setRequestAlert( { isSucess: false, message: null})
             },2000)
         }) 
 
@@ -80,7 +74,7 @@ export const MoreDetails = (props) => {
             position = 'relative'
         >
             <WrapperAlert position = 'fixed' bottom = '2rem' left = '2rem' ref = {refAlert}>
-                <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
+                <Alert isSucess = {requestAlert.isSucess} message = {requestAlert.message}/>
             </WrapperAlert>
 
             <div className={styles.buttonCloser} onClick = {funcCallback}>

@@ -24,8 +24,8 @@ function DropDown(){
     }
 
     const handleClick = () => {
-        if(!isOpen) return close(); 
-        open();
+        if(!isOpen) return open(); 
+        close();
     }
 
     return (
