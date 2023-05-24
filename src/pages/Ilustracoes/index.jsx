@@ -15,6 +15,7 @@ import Wrapper from '../../components/div.jsx';
 import { SliderComponent } from './SliderComponent';
 import { AiOutlineInstagram } from "react-icons/ai";
 import ButtonTransparent from '../../components/Button/buttonTransparent.jsx'
+import { Spinner } from 'reactstrap';
 
 export const DrawPostContext = createContext();
 
@@ -32,10 +33,10 @@ export const Ilustracoes = () => {
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column'>
-                    <SliderComponent drawList = {tlouData}/>
-                    <SliderComponent drawList = {opData}/>
-                    <SliderComponent drawList = {mangaData}/>
-                    <SliderComponent drawList = {heroData}/>
+                    { tlouData ? <SliderComponent drawList = {tlouData}/> : <Spinner/> }
+                    { opData ? <SliderComponent drawList = {opData}/> : <Spinner/>}
+                    { mangaData ? <SliderComponent drawList = {mangaData}/> : <Spinner/>}
+                    { heroData ? <SliderComponent drawList = {heroData}/> : <Spinner/>}
                 </Wrapper>
             </MainContainer>
         </>

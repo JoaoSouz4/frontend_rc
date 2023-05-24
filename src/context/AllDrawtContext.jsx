@@ -15,20 +15,20 @@ export const DrawContext = createContext();
     const [ loading, setLoading ] = useState(true);
 
     useEffect(()=>{
-        async function getDatas(){
-            await fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
+        function getDatas(){
+            fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
                 .then(res => res.json())
                 .then(res => {setTlouData(res.draw)});
 
-            await fetch(`${_default.urlApi}/getdraws/One Piece`)
+            fetch(`${_default.urlApi}/getdraws/One Piece`)
                 .then(res => res.json())
                 .then(res => {setOpData(res.draw);});
 
-            await fetch(`${_default.urlApi}/getdraws/Manga`)
+            fetch(`${_default.urlApi}/getdraws/Manga`)
                 .then(res => res.json())
                 .then(res => {setMangaData(res.draw);});
 
-            await fetch(`${_default.urlApi}/getdraws/Hero`)
+            fetch(`${_default.urlApi}/getdraws/Hero`)
                 .then(res => res.json())
                 .then(res => {
                     setHeroData(res.draw);

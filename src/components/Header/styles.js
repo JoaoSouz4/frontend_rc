@@ -90,7 +90,7 @@ export const HeaderMenuMobile = styled.nav`
     width: 60vw;
     height: 100%;
     transition: 0.3s ease;
-    transform: translateX(-2500px);
+    transform: translateX(-100%);
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
     animation-timing-function: ease ease-in-out;
