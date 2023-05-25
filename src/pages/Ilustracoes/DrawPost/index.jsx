@@ -5,7 +5,7 @@ import ShowLikes from '../showLikes';
 import Wrapper  from '../../../components/div';
 import { MoreDetails } from '../MoreDetails';
 import ShowComments from '../ShowComments';
-import ImageDraw from '../../../components/Image/ImgDraw';
+import ImageDraw from '../Image/ImgDraw';
 import Alert from '../../../components/Alert';
 import WrapperAlert from '../../../components/WrapperAlert';
 import { Spinner } from 'reactstrap';

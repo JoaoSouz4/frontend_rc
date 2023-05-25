@@ -9,6 +9,7 @@ import Button from '../../components/Button/button';
 import Wrapper from '../../components/div';
 import { WrapperButton, Banner, SectionApresentation } from './styles.js';
 import SocialMedias from './SocialMedia'
+import Text from '../../components/Text'
 
 
 export const Home = () => {
@@ -20,9 +21,9 @@ export const Home = () => {
                 <Wrapper flexDirection = "row" jc = 'space-around' width = '100%' flexWrap = 'wrap-reverse'>
                     <Wrapper gap = '0.5rem' flexDirection = "column" width = '100%' maxWidth = '400px' height = '100%'>
                         <Title size = '2.7rem' color = 'var(--color-secundary)'>Meu Repositório Crativo</Title>
-                        <p>Bem vindo ao meu Site de divulgação das minhas ilustrações. Entre ou
+                        <Text>Bem vindo ao meu Site de divulgação das minhas ilustrações. Entre ou
                             Faça o cadastro para acessar funcionalidades <strong>exclusivas</strong> para usuários.
-                        </p>
+                        </Text>
                         <WrapperButton gap = '3rem' flexDirection = 'row'>
                             <Button onClick = {() => navigate('/Login')}>Login</Button>
                             <Button onClick = {() => navigate('/Ilustracoes')}>Ver Ilustrações</Button>

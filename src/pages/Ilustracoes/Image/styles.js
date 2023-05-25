@@ -16,4 +16,10 @@ export const Image = styled.img`
         opacity: 1;
     }
 }
+
+`
+export const MockImage = styled.div`
+    background-color: gray;
+    width: 100%;
+    height: 100%;
 `

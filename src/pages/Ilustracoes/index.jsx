@@ -33,10 +33,10 @@ export const Ilustracoes = () => {
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column'>
-                    { tlouData ? <SliderComponent drawList = {tlouData}/> : <Spinner/> }
-                    { opData ? <SliderComponent drawList = {opData}/> : <Spinner/>}
-                    { mangaData ? <SliderComponent drawList = {mangaData}/> : <Spinner/>}
-                    { heroData ? <SliderComponent drawList = {heroData}/> : <Spinner/>}
+                    <SliderComponent drawList = {tlouData}/>
+                    <SliderComponent drawList = {opData}/> 
+                    <SliderComponent drawList = {mangaData}/> 
+                    <SliderComponent drawList = {heroData}/> 
                 </Wrapper>
             </MainContainer>
         </>

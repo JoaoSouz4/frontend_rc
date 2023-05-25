@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Spinner } from "reactstrap";
-import Wrapper from "../div";
-import { Image } from "./syles";
+import Wrapper from "../../../components/div";
+import { Image } from "./styles";
 
 function ImageDraw (props){
 
@@ -26,8 +26,8 @@ function ImageDraw (props){
             />
 
             {!isComplete &&
-                <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' >
-                    <Wrapper width = '100%' position = 'absolute' top = '50%' left = '50%'>
+                <Wrapper width = '100%' height = '100%' jc = 'center' alignItems = 'center' position = 'absolute'>
+                    <Wrapper width = '100%' jc = 'center' alignItems = 'center'>
                         <Spinner color = 'secundary' type = 'grow'></Spinner> 
                     </Wrapper>
                 </Wrapper>
