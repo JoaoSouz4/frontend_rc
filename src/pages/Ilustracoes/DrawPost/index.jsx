@@ -100,7 +100,7 @@ export const DrawPost = () =>{
 
     return(
         <>
-            <WrapperAlert ref = {refAlert} position = 'fixed' bottom = '2rem' left = '2rem' alignItems = 'center' jc = 'center'>
+            <WrapperAlert ref = {refAlert}>
                 <Alert isSucess = {requestAlert.isSucess} message = {requestAlert.message}/>
             </WrapperAlert>
             

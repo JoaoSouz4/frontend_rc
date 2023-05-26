@@ -15,7 +15,7 @@ export const DrawContext = createContext();
     const [ loading, setLoading ] = useState(true);
 
     useEffect(()=>{
-        function getDatas(){
+      
             fetch(`${_default.urlApi}/getdraws/The Last Of Us`)
                 .then(res => res.json())
                 .then(res => {setTlouData(res.draw)});
@@ -32,10 +32,8 @@ export const DrawContext = createContext();
                 .then(res => res.json())
                 .then(res => {
                     setHeroData(res.draw);
-                    setLoading(false);
+                    setLoading(false)
                 });
-            }
-        getDatas();
     }, []);
 
     if (loading) {

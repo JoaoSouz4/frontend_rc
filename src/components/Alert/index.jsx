@@ -4,16 +4,14 @@ import { CiCircleAlert } from 'react-icons/ci';
 import { Spinner } from 'reactstrap';
 import Wrapper from '../div';
 import { AlertContainer } from './styles';
-import { useEffect, useRef } from 'react';
-import WrapperAlert from '../WrapperAlert';
+import { AlertProvider} from '../../context/AlertContext';
 
 function Alert(props) {
 
    const { message, isSucess } = props;
-  
     return (
-    
-        <AlertContainer>
+        <AlertProvider>
+            <AlertContainer>
             {
                 !message ?
                     <Wrapper jc = 'center' alignItems = 'center' gap = '1rem'>
@@ -28,7 +26,8 @@ function Alert(props) {
                         <CiCircleAlert/>
             }
             {message}
-        </AlertContainer>
+            </AlertContainer>
+        </AlertProvider>
     )
 }
 

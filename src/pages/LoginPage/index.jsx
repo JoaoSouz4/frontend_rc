@@ -1,5 +1,4 @@
-//Css
-import styles from './Login.module.css';
+
 
 //Icons
 import { AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -20,6 +19,7 @@ import FormComponent from '../../components/FormComponent';
 import WrapperAlert from '../../components/WrapperAlert';
 import Alert from '../../components/Alert';
 import MainContainer from '../../components/mainContainer';
+import Layout from '../../components/layout'
 
 function LoginPage(){
 
@@ -31,15 +31,14 @@ function LoginPage(){
 
     return (
         <MainContainer>
-
-            <WrapperAlert position = 'absolute' bottom = '2rem' left = '2rem' ref = {refAlert} alignItems = 'center' jc = 'center'>
+            <WrapperAlert  ref = {refAlert} >
                 <Alert isSucess = {requestIsSucess} message = {requestMessage}/>
             </WrapperAlert>
 
            <FormComponent>
                 <Title align = 'center' color = 'var(--color-secundary)' size = '1.8rem'>Login</Title>
                 <Wrapper flexDirection = 'column'  width = '100%'>
-                    <label className = {styles.label}><AiOutlineUser/>Nome de usuário</label>
+                    <label><AiOutlineUser/>Nome de usuário</label>
                     <Input
                         type="text" 
                         placeholder="Insira seu nome de usuário"
@@ -50,14 +49,14 @@ function LoginPage(){
 
                 <Wrapper flexDirection = 'column' width = '100%'>
 
-                    <label id = {styles.labelPass}>
-                        <Wrapper id = {styles.idLabelPass}>
+                    <label>
+                        <Wrapper>
                             <AiOutlineLock/>Senha
                         </Wrapper>
 
                         {!seePass ? 
                             <AiOutlineEye
-                                className = {styles.eyeOpen}
+                                
                                 onClick={() => {
                                     setSeePass(later => !later);
                                     refPass.current.type = "password"
@@ -65,7 +64,7 @@ function LoginPage(){
                                 }}
                             /> :
                             <AiOutlineEyeInvisible 
-                                className = {styles.eyeClose}
+                                
                                 onClick={() => {
                                     setSeePass(later => !later)
                                     refPass.current.type = ""
@@ -81,7 +80,7 @@ function LoginPage(){
                         ref = {refPass}
                         onChange={(e) => setPass(e.target.value)}
                     />
-                    <Link className = {styles.link} >Esqueci a senha.</Link>
+                    <Link>Esqueci a senha.</Link>
                 </Wrapper>
 
                 <Wrapper flexDirection = 'column' width = '100%'>
@@ -99,7 +98,7 @@ function LoginPage(){
                     >Entrar
                     </Button>
 
-                    <Link className = {styles.link} to = {'/Cadastro'}>Não tenho uma conta.</Link>
+                    <Link to = {'/Cadastro'}>Não tenho uma conta.</Link>
                 </Wrapper>
            </FormComponent>
         </MainContainer>

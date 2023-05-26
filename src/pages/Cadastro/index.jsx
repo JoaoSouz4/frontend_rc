@@ -18,10 +18,12 @@ import Alert from '../../components/Alert';
 import WrapperForm from '../../components/WrapperForm';
 import { SeePass } from './styles';
 
+import { AlertContext } from '../../context/AlertContext';
 
 export default function Cadastro() {
 
-    const { refAlert, refSubmit, setRequestAlert, requestAlert} = useContext(Context);
+    const { requestAlert, openAlert, refAlert, refSubmit} = useContext(AlertContext);
+
     const [ seePass, setSeePass] = useState(true);
     const [ form, setForm] = useState(
         {
@@ -35,7 +37,9 @@ export default function Cadastro() {
     const refCPass = useRef();
 
     const handleRegister = (e, form) => {
+
         e.preventDefault();
+        openAlert();
 
         const { name, email, pass, cPass } = form;
 
@@ -53,27 +57,9 @@ export default function Cadastro() {
         })
         .then( (resp) => resp.json())
         .then( (resp) => {
-
-            if(!resp.isSucess){
-                refSubmit.current.disabled = false;
-                setRequestAlert({isSucess: resp.isSucess, message: resp.message});
-
-                return setTimeout(()=> {
-                    refAlert.current.style.display = 'none'
-                    setRequestAlert({isSucess: false, message: null});
-                }, 4000); 
+            if(!resp.isSucess) return openAlert(resp.isSucess, resp.message);
+            window.location.href = "/";
             }
-                
-            setRequestAlert({isSucess: resp.isSucess, message: resp.message});
-            refSubmit.current.disabled = false;
-                
-            setTimeout(()=> {
-                refAlert.current.style.display = 'none'
-                setRequestAlert({isSucess: false, message: null});
-            }, 2000);
-
-            window.location.href = "/"
-        }
         )
     }
 
@@ -81,10 +67,7 @@ export default function Cadastro() {
         <MainContainer>
 
             <WrapperAlert ref = {refAlert}>
-                <Alert 
-                    isSucess = {requestAlert.isSucess} 
-                    message = {requestAlert.message}
-                />
+                <Alert isSucess = {requestAlert.isSucess} message = {requestAlert.message}/>
             </WrapperAlert>
 
             <FormComponent>
@@ -167,13 +150,7 @@ export default function Cadastro() {
                         ref = {refSubmit}
                         type="submit"
                         width = '100%'
-                        onClick={ 
-                            (e) => {
-                                refSubmit.current.disabled = true;
-                                refAlert.current.style.display = 'flex';
-                                handleRegister(e, form)
-                            }
-                        }
+                        onClick={ (e) => {handleRegister(e, form)}}
                     >Cadastrar
                     </Button>
                     <Link to = {"/Login"}>Já possui uma conta?</Link>

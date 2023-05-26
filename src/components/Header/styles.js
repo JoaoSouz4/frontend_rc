@@ -37,7 +37,7 @@ export const ListNav = styled.ul`
         font-weight: 500;
 
         &:hover,
-        &:active{
+        &.active{
             transition: 0.3s ease;
             color: var(--color-secundary);
         }

@@ -7,7 +7,7 @@ export const Container = styled.div`
     gap: 2.5rem;
 
     @media screen and (max-width: 750px) {
-            flex-direction: column
+        flex-direction: column
     }
 `
 export const Aside = styled.aside`

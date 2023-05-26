@@ -42,42 +42,39 @@ export function AuthProvider({children}){
     }, [])
 
     function handleLogin(e, name, pass){
-        e.preventDefault();
+
         fetch(`${_default.urlApi}/login`, {
             method: 'POST', 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                userName: name,
-                userPass: pass
-            })
-        }).then(resp => resp.json())
-          .then(resp => {
-            if(resp.isSucess){
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userName: name, userPass: pass})
+        })
+        .then(resp => resp.json())
+        .then(resp => {
+            
+        if(resp.isSucess){
 
-                localStorage.setItem('token', JSON.stringify(resp.token));
-                setRequestAlert({ isSucess: resp.isSucess, message: resp.message});
-                setAuthenticated(true);
+            localStorage.setItem('token', JSON.stringify(resp.token));
+            setRequestAlert({ isSucess: resp.isSucess, message: resp.message});
+            setAuthenticated(true);
                 
-                refSubmit.current.disabled = false;
-                window.location.href = "/"
+            refSubmit.current.disabled = false;
+            window.location.href = "/"
 
-                setTimeout(()=> {
-                    refAlert.current.style.display = 'none'
-                    setRequestAlert({ isSucess: false, message: null});
-                }, 1000)
+            setTimeout(()=> {
+                refAlert.current.style.display = 'none'
+                setRequestAlert({ isSucess: false, message: null});
+            }, 1000)
 
-            } else {
+        } else {
                 
-                setRequestAlert({ isSucess: resp.isSucess, message: resp.message});
-                refSubmit.current.disabled = false;
-                setTimeout(()=> {
-                    refAlert.current.style.display = 'none'
-                    setRequestAlert({ isSucess: false, message: null});
-                }, 4000)
-            }
-        }).catch(e => {console.log("ERRO" + e)})
+            setRequestAlert({ isSucess: resp.isSucess, message: resp.message});
+            refSubmit.current.disabled = false;
+            setTimeout(()=> {
+                refAlert.current.style.display = 'none'
+                setRequestAlert({ isSucess: false, message: null});
+            }, 4000)
+        }
+    })
     }
 
     function handleLogout(){
