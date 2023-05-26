@@ -15,7 +15,7 @@ import Wrapper from '../../components/div.jsx';
 import { SliderComponent } from './SliderComponent';
 import { AiOutlineInstagram } from "react-icons/ai";
 import ButtonTransparent from '../../components/Button/buttonTransparent.jsx'
-import { Spinner } from 'reactstrap';
+import { WrapperD }from './styles'
 
 export const DrawPostContext = createContext();
 
@@ -26,11 +26,11 @@ export const Ilustracoes = () => {
     return(
         <>
             <MainContainer>
-                <Wrapper flexDirection = 'column' jc = 'center' width = '100%' alignItems = 'center'>
+                <WrapperD>
                     <Title color = 'var(--color-secundary)' size = '1.9rem'>Repositório de Ilustrações</Title>
                     <p>Acompanhe também em: </p>
                     <ButtonTransparent width = '300px '><AiOutlineInstagram/><a href="https://www.instagram.com/jv.art.0/" target='_blank'>@jv.art.0</a></ButtonTransparent>
-                </Wrapper>
+                </WrapperD>
 
                 <Wrapper flexDirection = 'column'>
                     <SliderComponent drawList = {tlouData}/>

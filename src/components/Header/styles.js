@@ -36,7 +36,9 @@ export const ListNav = styled.ul`
         text-decoration: none;
         font-weight: 500;
 
-        &:hover{
+        &:hover,
+        &:active{
+            transition: 0.3s ease;
             color: var(--color-secundary);
         }
     }
@@ -50,8 +52,8 @@ export const LogoArea = styled.div`
     label {
         font-family: 'Dancing Script', cursive;
         font-size: 1.7rem;
-        font-weight: bold;
-        color: rgb(32, 32, 32);
+        font-weight: bolder;
+        color: rgb(32,32,32)
     }
 `
 

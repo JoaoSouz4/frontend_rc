@@ -1,33 +1,13 @@
 import styled from "styled-components";
 
 export const SectionApresentation = styled.section`
-    width: 100vw;
+    width: 75vw;
     height: 100vh;
-    padding: 3rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     z-index: 10px;
-
-    p{
-        font-size: 1.2rem;
-        color: var(--color-black);
-    }
-
-    span{ 
-        position: absolute;
-        bottom: 0;
-        border-bottom: 6rem solid var(--color-secundary);
-        border-left: 100vw solid transparent;
-        z-index: -1;
-        width: 100%;
-    }
-
-    @media screen and(max-width: 760px) {
-        p{
-            font-size: 1rem;
-        }
-    }
+    position: relative;
 `
 
 export const Banner = styled.div`
@@ -35,7 +15,7 @@ export const Banner = styled.div`
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 30%;
+    height: 100%;
     max-width: ${(props) => {return props.maxWidth}};
 
     img{
@@ -43,7 +23,7 @@ export const Banner = styled.div`
         width: 100%;
     }
 
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 935px){
         display: none;
     }
 `
@@ -55,5 +35,26 @@ export const WrapperButton = styled.div`
 
     @media screen and (max-width: 400px){
         flex-direction: column;
+    }
+`
+
+export const AbsoluteWrapper = styled.div`
+    position: absolute;
+    bottom: 2rem;
+    left: 3rem;
+
+    div svg{
+        color: var(--color-black);
+        cursor: pointer;
+    }
+`
+
+export const Container = styled.div`
+    width: 100vw;
+`
+
+export const SocialMedia = styled.div`
+    svg{
+        color: var(--color-black);
     }
 `

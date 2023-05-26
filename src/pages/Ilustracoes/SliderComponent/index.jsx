@@ -3,11 +3,10 @@ import { createContext, useState, useEffect } from 'react';
 //Components
 import Title from '../../../components/Title';
 import { DrawPost } from '../DrawPost';
-import WrapperSlide from '../../../components/WrapperSlider';
-import Section from '../../../components/Section';
-import { ContainerWrapperSlide } from '../styles';
+import {Section, WrapperSlide, ContainerWrapperSlide} from './styles';
 import { Spinner } from 'reactstrap';
 import Wrapper from '../../../components/div';
+
 export const PostContext = createContext();
 export const SliderComponent = (props) => {
 

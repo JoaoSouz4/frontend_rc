@@ -14,11 +14,13 @@ function DropDown(){
     const [ isOpen, setIsOpen] = useState(false);
 
     const open = () => {
+        listRef.current.style.animationName = 'animation'
         listRef.current.style.display = 'flex';
         setIsOpen(later => !later);
     }
 
     const close = () => {
+        listRef.current.style.animationName = 'reverse'
         listRef.current.style.display = 'none';
         setIsOpen(later => !later);
     }

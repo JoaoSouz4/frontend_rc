@@ -13,22 +13,22 @@ function Alert(props) {
   
     return (
     
-            <AlertContainer>
-                {
-                    ! message ?
-                        <Wrapper jc = 'center' alignItems = 'center' gap = '1rem'>
-                            <Spinner color = 'secundary' type = 'grow' style = {{height: '0.5rem', width: '0.5rem'}}/>
-                            carregando. Por favor, aguarde....
+        <AlertContainer>
+            {
+                !message ?
+                    <Wrapper jc = 'center' alignItems = 'center' gap = '1rem'>
+                        <Spinner color = 'secundary' type = 'grow' style = {{height: '0.5rem', width: '0.5rem'}}/>
+                        carregando. Por favor, aguarde....
                         </Wrapper>
-                    :
+                :
             
                     isSucess ?
                         <AiOutlineCheckCircle/>
                     :
                         <CiCircleAlert/>
-                }
-                {message}
-            </AlertContainer>
+            }
+            {message}
+        </AlertContainer>
     )
 }
 

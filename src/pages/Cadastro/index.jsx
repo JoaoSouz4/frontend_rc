@@ -11,7 +11,7 @@ import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEye
 import Title from '../../components/Title';
 import Input from '../../components/input';
 import Button from '../../components/Button/button';
-import MainContainer from '../../components/mainContainer'
+import MainContainer from '../../components/mainContainer';
 import FormComponent from '../../components/FormComponent';
 import WrapperAlert from '../../components/WrapperAlert';
 import Alert from '../../components/Alert';

@@ -10,7 +10,8 @@ const ButtonTransparent = styled.button`
     outline: none;
     border: none;
     background-color: transparent;
-    border: 2px solid var(--color-black);
+    border: 1px solid var(--color-black);
+    border-radius: 0.8rem;
     color: var(--color-black);
     font-size: 1rem;
 

@@ -1,4 +1,4 @@
-import './global-styles.css';
+
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -16,7 +16,7 @@ import LoginPage from './pages/LoginPage';
 //Contexts
 import { AuthProvider } from './context/authContext';
 import { DrawProvider } from './context/AllDrawtContext';
-import GlobalStyles from './components/GlobalStyles';
+import GlobalStyles from './components/styles/GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

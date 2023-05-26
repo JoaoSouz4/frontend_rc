@@ -1,21 +1,26 @@
-import styled from 'styled-components'
-
-export const ContainerWrapperSlide = styled.div`
-
+import styled from "styled-components";
+import Title from "../../components/Title";
+import ButtonTransparent from "../../components/Button/buttonTransparent";
+export const WrapperD = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     flex-direction: column;
-    height: 80%;
-    overflow-x: scroll;
-    padding: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
-    ::-webkit-scrollbar{
-    border-radius: 20px;
-    border: 1.3px solid rgb(173, 172, 172);
+    p{
+        color: var(--color-gray)
     }
-    ::-webkit-scrollbar-thumb{
-      background-color:rgb(5, 233, 176);
-      border-radius: 15px;
+
+    @media screen and (max-width: 500px){
+        ${Title}{
+            text-align: center;
+            width: 100%;
+            font-size: 1.7rem;
+        }
+
+        ${ButtonTransparent}{
+            width: 100%;
+        }
     }
 `

@@ -36,13 +36,14 @@ import DropDown from './DropDown/DropDown';
 
       <>
         <HeaderMenu>
+          
           <LogoArea>
-          <MenuBarIcon>
-            {menuBurguer ?
-              <IoMdArrowDropleft onClick={handleClick}/>
-            :
-              <GrMenu onClick={handleClick}/>
-            }
+            <MenuBarIcon>
+              {menuBurguer ?
+                <IoMdArrowDropleft onClick={handleClick}/>
+              :
+                <GrMenu onClick={handleClick}/>
+              }
             </MenuBarIcon>
             <label>João Souza</label>
           </LogoArea>

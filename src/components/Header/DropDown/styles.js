@@ -35,12 +35,26 @@ export const DropDownContainer = styled.div`
         align-items: center;
         color: white;
 
+        &:hover{
+            transition: 0.3s ease;
+            background-color: var(--color-dark);
+        }
+
         svg{
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
     } 
 `
+
 export const List = styled.ul`
+
+    @keyframes animation {
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     display: none;
     flex-direction: column;
     width: 120%;
@@ -54,13 +68,14 @@ export const List = styled.ul`
     left: 0;
     top: calc(100% + .40rem);
     box-shadow: 0 2px 5px 0 rgb(0,0,0, .3);
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(10px);
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 
     a{
         color: var(--color-black);
         text-decoration: none;
-
-
     }
 `
 
@@ -73,6 +88,7 @@ export const Item = styled.li`
     padding: 0.5rem;
 
     &:hover{
+        transition: 0.3s ease;
         background-color: #d7d7d7;
         color: var(--color-black);
         cursor: pointer;

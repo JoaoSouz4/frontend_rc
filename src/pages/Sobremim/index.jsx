@@ -7,9 +7,10 @@ import { Aside, Contact, LinkSocialMedia, TextBox, Name, Container} from './styl
 import Wrapper from '../../components/div'
 import Title from '../../components/Title';
 import Text from "../../components/Text";
+import Layout from "../../components/layout";
 export const Sobremim = () => {
     return(
-        <MainContainer>
+        <Layout>
 
             <Container>
                 <Aside>
@@ -83,6 +84,6 @@ export const Sobremim = () => {
                 </Text>
             </TextBox>
 
-        </MainContainer>
+        </Layout>
     )
 }
