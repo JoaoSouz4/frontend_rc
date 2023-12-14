@@ -111,7 +111,7 @@ export const DrawPost = () =>{
             </WrapperFixed>
 
             <DrawPostContainer>
-                <ImageDraw url = {`${_default.urlApi}/files${url}`} alt = {title} ></ImageDraw>
+                <ImageDraw url = {url} alt = {title} ></ImageDraw>
 
                 <InformationsPost>
                     <TitleDraw>{title}</TitleDraw>
