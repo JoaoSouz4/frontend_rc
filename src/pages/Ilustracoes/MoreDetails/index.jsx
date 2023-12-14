@@ -84,7 +84,7 @@ export const MoreDetails = (props) => {
             <div className='div-whith-informations'>
 
                 <div className="draw-photo-container">
-                    <img src = {`${_default.urlApi}/files/${ctx.url}`} className="draw-photo-item" loading = "lazy"/>
+                    <img src = {ctx.url} className="draw-photo-item" loading = "lazy"/>
                 </div>
 
                 <section className = {styles.commentaryAndInfo}> 
